@@ -873,10 +873,11 @@ Chart.defaults.plugins.tooltip.cornerRadius=8;
 async function loadAll() {
   setSyncDot('loading');
   try {
-    const [regs, cats, cap] = await Promise.all([
+    const [regs, cats, cap, comps] = await Promise.all([
       sbGet('registros','order=id.asc'),
       sbGet('categorias','order=name.asc'),
-      sbGet('capital','id=eq.1')
+      sbGet('capital','id=eq.1'),
+      sbGet('compromisos','order=fecha.asc')
     ]);
     data = regs.map(r => ({
       id: r.id, mes: r.mes, anio: r.anio,
@@ -885,6 +886,10 @@ async function loadAll() {
     }));
     if (cats.length) CATS = cats;
     if (cap.length) capCfg = {initial:cap[0].initial, mes:cap[0].mes, anio:cap[0].anio};
+    compromisos = comps.map(c=>({
+      id: c.id, titulo: c.titulo, fecha: c.fecha,
+      monto: Number(c.monto), notas: c.notas||'', completado: c.completado
+    }));
     setSyncDot('ok');
   } catch(e) {
     setSyncDot('error');
@@ -1470,8 +1475,15 @@ function eliminarPin(){
 }
 
 // ── COMPROMISOS ──
-let compromisos=JSON.parse(localStorage.getItem('finanzas_compromisos')||'[]');
-function saveCompromisos(){ localStorage.setItem('finanzas_compromisos',JSON.stringify(compromisos)); }
+let compromisos=[];
+async function saveCompromisos(comp){ 
+  try{ await sbUpsert('compromisos', comp); }
+  catch(e){ showToast('Error al guardar compromiso','#dc2626'); }
+}
+async function deleteCompromiso(id){
+  try{ await sbDelete('compromisos',`id=eq.${id}`); }
+  catch(e){ showToast('Error al eliminar','#dc2626'); }
+}
 
 function diasHasta(fecha){
   const hoy=new Date(); hoy.setHours(0,0,0,0);
@@ -1624,7 +1636,7 @@ function cerrarModalComp(e){
   if(e&&e.target!==document.getElementById('comp-modal-overlay')) return;
   document.getElementById('comp-modal-overlay').style.display='none';
 }
-function guardarComp(){
+async function guardarComp(){
   const titulo=document.getElementById('comp-inp-titulo').value.trim();
   const fecha=document.getElementById('comp-inp-fecha').value;
   const monto=parseFloat(document.getElementById('comp-inp-monto').value)||0;
@@ -1633,26 +1645,33 @@ function guardarComp(){
   if(!titulo){showToast('Escribe una descripción','#dc2626');return;}
   if(!fecha){showToast('Selecciona una fecha','#dc2626');return;}
   if(monto<=0){showToast('Ingresa un monto válido','#dc2626');return;}
+  const row={id:editId||String(Date.now()),titulo,fecha,monto,notas,completado:false};
   if(editId){
     const idx=compromisos.findIndex(c=>c.id===editId);
     if(idx>-1) compromisos[idx]={...compromisos[idx],titulo,fecha,monto,notas};
+    row.completado=compromisos.find(c=>c.id===editId)?.completado||false;
   } else {
-    compromisos.push({id:String(Date.now()),titulo,fecha,monto,notas,completado:false});
+    compromisos.push({...row});
   }
-  saveCompromisos();
+  await saveCompromisos(row);
   document.getElementById('comp-modal-overlay').style.display='none';
   renderCompromisos();
   showToast(editId?'Compromiso actualizado ✓':'Compromiso agregado ✓','#059669');
 }
 function editarComp(id){ abrirModalComp(id); }
-function toggleComp(id){
+async function toggleComp(id){
   const c=compromisos.find(x=>x.id===id);
-  if(c){ c.completado=!c.completado; saveCompromisos(); renderCompromisos(); }
+  if(c){
+    c.completado=!c.completado;
+    await saveCompromisos({...c});
+    renderCompromisos();
+  }
 }
-function eliminarComp(id){
+async function eliminarComp(id){
   if(!confirm('¿Eliminar este compromiso?')) return;
   compromisos=compromisos.filter(c=>c.id!==id);
-  saveCompromisos(); renderCompromisos();
+  await deleteCompromiso(id);
+  renderCompromisos();
   showToast('Compromiso eliminado','#6b7280');
 }
 
