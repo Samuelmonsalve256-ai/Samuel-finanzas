@@ -332,7 +332,9 @@ html,body{min-height:100vh;background:var(--bg);-webkit-tap-highlight-color:tran
 .settings-item-title{font-size:13px;font-weight:600;color:var(--t0)}
 .settings-item-sub{font-size:11px;color:var(--t3);margin-top:1px}
 .settings-item-arrow{color:var(--t4);font-size:14px}
-  .reg-grid{grid-template-columns:1fr 1fr}
+
+@media(max-width:640px){
+  .reg-grid{grid-template-columns:1fr}
   .kpi-strip{grid-template-columns:1fr 1fr}
   .stat-row{grid-template-columns:1fr 1fr}
   .hl-grid{grid-template-columns:1fr 1fr}
