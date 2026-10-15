@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Mis Finanzas</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.47.0/dist/tabler-icons.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 :root{
@@ -1050,7 +1050,8 @@ const getMes  = () => parseInt(document.getElementById('sel-mes').value);
 const getAnio = () => parseInt(document.getElementById('sel-anio').value);
 const esc     = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const catClr  = nm => { const c=CATS.find(x=>x.name===nm); return c?c.color:'#64748b'; };
-const today   = () => new Date().toISOString().slice(0,10);
+// Fecha local (YYYY-MM-DD). toISOString() usa UTC y en Colombia, después de las 7 p. m., daba la fecha de mañana
+const today   = () => { const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); };
 
 function setSyncDot(state) { // 'ok' | 'loading' | 'error'
   const d = document.getElementById('sync-dot');
@@ -1098,16 +1099,18 @@ async function loadAll() {
       sbGet('capital','id=eq.1'),
       sbGet('compromisos','order=fecha.asc')
     ]);
+    // Se normalizan los tipos: la base puede devolver números como texto, y los botones
+    // buscan los registros por id numérico y los compromisos por id de texto
     data = regs.map(r => ({
-      id: r.id, mes: r.mes, anio: r.anio,
+      id: Number(r.id), mes: Number(r.mes), anio: Number(r.anio),
       tipo: r.tipo, cat: r.cat,
-      desc: r.descripcion, monto: r.monto, fecha: r.fecha
+      desc: r.descripcion, monto: Number(r.monto)||0, fecha: r.fecha
     }));
     if (cats.length) CATS = cats;
-    if (cap.length) capCfg = {initial:cap[0].initial, mes:cap[0].mes, anio:cap[0].anio};
+    if (cap.length) capCfg = {initial:Number(cap[0].initial)||0, mes:Number(cap[0].mes), anio:Number(cap[0].anio)};
     compromisos = comps.map(c=>({
-      id: c.id, titulo: c.titulo, fecha: c.fecha,
-      monto: Number(c.monto), notas: c.notas||'', completado: c.completado
+      id: String(c.id), titulo: c.titulo, fecha: c.fecha,
+      monto: Number(c.monto)||0, notas: c.notas||'', completado: !!c.completado
     }));
     setSyncDot('ok');
   } catch(e) {
@@ -1469,13 +1472,20 @@ async function ecAmt(el) {
   const id=parseInt(el.dataset.id), item=data.find(d=>d.id===id);
   if(!item) return;
   item.monto=num||0;
-  try {
-    setSyncDot('loading');
-    await sbUpdate('registros',{monto:num||0},`id=eq.${id}`);
-    setSyncDot('ok');
-  } catch(e){ setSyncDot('error'); showToast('Error al guardar','#dc2626'); }
   updateKPIs();
+  // Se guarda 700 ms después de la última tecla: antes se enviaba un guardado por cada
+  // tecla y, si llegaban en desorden, en la nube quedaba un monto incompleto
+  clearTimeout(amtTimers[id]);
+  setSyncDot('loading');
+  amtTimers[id]=setTimeout(async ()=>{
+    delete amtTimers[id];
+    try {
+      await sbUpdate('registros',{monto:item.monto},`id=eq.${id}`);
+      setSyncDot('ok');
+    } catch(e){ setSyncDot('error'); showToast('Error al guardar el monto','#dc2626'); }
+  },700);
 }
+const amtTimers={};
 
 function updDot(sel) {
   const dot=document.getElementById('cdot-'+parseInt(sel.dataset.id));
@@ -1525,7 +1535,12 @@ async function addIng() {
     await sbInsert('registros',row);
     setSyncDot('ok');
     showToast('✓ Ingreso guardado','#059669');
-  } catch(e){ setSyncDot('error'); showToast('Error al guardar','#dc2626'); }
+  } catch(e){
+    // No se guardó en la nube: se quita de la lista para que no aparezca y luego desaparezca
+    data=data.filter(d=>d.id!==row.id);
+    renderLists();
+    setSyncDot('error'); showToast('No se pudo guardar el ingreso. Revisa tu conexión e inténtalo de nuevo','#dc2626');
+  }
 }
 
 async function addGas() {
@@ -1545,7 +1560,12 @@ async function addGas() {
     await sbInsert('registros',row);
     setSyncDot('ok');
     showToast('✓ Gasto guardado','#059669');
-  } catch(e){ setSyncDot('error'); showToast('Error al guardar','#dc2626'); }
+  } catch(e){
+    // No se guardó en la nube: se quita de la lista para que no aparezca y luego desaparezca
+    data=data.filter(d=>d.id!==row.id);
+    renderLists();
+    setSyncDot('error'); showToast('No se pudo guardar el gasto. Revisa tu conexión e inténtalo de nuevo','#dc2626');
+  }
 }
 
 async function delE(id) {
@@ -1714,7 +1734,7 @@ function renderResumen() {
       <div><div class="res-stat-lbl">Balance neto</div><div class="res-stat-val" style="color:${bal>=0?'var(--bd)':'var(--rd)'}">${fmt(bal)}</div><div class="res-stat-sub">${bal>=0?'superávit':'déficit'}</div></div>
     </div>
     <div class="res-stat sa">
-      <div class="res-stat-icon" style="background:var(--aml);color:var(--amd)"><i class="ti ti-piggy-bank" aria-hidden="true"></i></div>
+      <div class="res-stat-icon" style="background:var(--aml);color:var(--amd)"><i class="ti ti-pig-money" aria-hidden="true"></i></div>
       <div><div class="res-stat-lbl">Tasa de ahorro</div><div class="res-stat-val" style="color:var(--amd)">${aho}%</div><div class="res-stat-sub">${stats.length} meses</div></div>
     </div>
   </div>`;
@@ -2706,7 +2726,7 @@ async function toggleComp(id){
       cat:CATS[0]?.name||'Otros',
       descripcion:`[COMP] ${c.titulo}`,
       monto:c.monto,
-      fecha:hoy.toISOString().split('T')[0]
+      fecha:today()
     };
     try{
       setSyncDot('loading');
