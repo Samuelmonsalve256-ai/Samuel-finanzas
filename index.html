@@ -9,6 +9,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js"></script>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Mis Finanzas">
 <style>
 :root{
@@ -1025,6 +1032,12 @@ textarea.cs-in{resize:none;font-size:14px;line-height:1.4}
 .cpf-cat{display:flex;align-items:center;gap:8px}
 .cpf-cat-ico{width:44px;height:44px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c)}
 .cp-item.k-ok .cp-nota-tag{opacity:.55}
+
+/* Interruptor */
+.sw{width:44px;height:26px;border-radius:999px;background:var(--s2);position:relative;flex-shrink:0;transition:background .2s}
+.sw i{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(14,17,22,.25);transition:transform .2s cubic-bezier(.4,1.3,.5,1)}
+.sw.on{background:var(--g)}
+.sw.on i{transform:translateX(18px)}
 </style>
 </head>
 <body>
@@ -1097,6 +1110,15 @@ textarea.cs-in{resize:none;font-size:14px;line-height:1.4}
         <div class="settings-item-sub">Quitar la protección del capital</div>
       </div>
       <i class="ti ti-chevron-right settings-item-arrow"></i>
+    </div>
+    <div class="settings-section-lbl">Preferencias</div>
+    <div class="settings-item" onclick="cambiarSonidos()">
+      <div class="settings-item-icon"><i class="ti ti-volume"></i></div>
+      <div class="settings-item-info">
+        <div class="settings-item-title">Sonidos</div>
+        <div class="settings-item-sub" id="settings-snd-sub">Activados</div>
+      </div>
+      <span class="sw" id="settings-snd-sw"><i></i></span>
     </div>
     <div class="settings-section-lbl">Respaldos</div>
     <div class="settings-item" onclick="descargarCopiaActual()">
@@ -1596,6 +1618,10 @@ function showToast(msg, color='var(--t0)') {
   const tipo = /059669|13795b|--g\b/.test(c) ? 'ok' : /dc2626|c8423b|--r\b/.test(c) ? 'err' : /d97706|f59e0b|b7791f|--am/.test(c) ? 'warn' : 'info';
   const ico = {ok:'ti-circle-check', err:'ti-alert-circle', warn:'ti-alert-triangle', info:'ti-info-circle'}[tipo];
   t.className = 'toast t-'+tipo;
+  // Errores y advertencias siempre suenan; los avisos de éxito no se suman al sonido de la acción
+  const hace=Date.now()-SND.ultimo;
+  if(tipo==='err'||tipo==='warn'){ if(hace>80) sonido(tipo==='err'?'error':'aviso'); }
+  else if(hace>600) sonido(tipo==='ok'?'ok':'tap');
   t.innerHTML = `<i class="ti ${ico}" aria-hidden="true"></i><span></span>`;
   t.querySelector('span').textContent = msg.replace(/^[✓✔]\s*/,'');
   void t.offsetWidth;
@@ -1764,6 +1790,7 @@ async function loginEnviar(){
       return;
     }
     accessToken=d.session.access_token; usuario=d.session.user;
+    sonido('ok');
     const c=leerCache(); if(!c){ try{ localStorage.removeItem(MF_CACHE); }catch(e){} }
     document.getElementById('login-pass').value='';
     document.getElementById('login-overlay').style.display='none';
@@ -1939,6 +1966,7 @@ function renderLists() {
 
 // ── ANÁLISIS DIARIO — estilo mercado (línea con degradado) ──
 function setDailyTipo(tipo){
+  sonido('tap');
   window._dailyTipo=tipo;
   renderDailyAnalysis();
 }
@@ -2174,32 +2202,83 @@ function updDot(sel) {
 }
 
 // ── Add entries ──
-function playIngresoSound(){
+// ══ SONIDOS ═════════════════════════════════════════════════════════════════
+// Un solo motor de audio para toda la app. Antes cada sonido creaba el suyo y el iPhone
+// los silenciaba (permite muy pocos y bloquea los creados sin tocar la pantalla).
+// Se activa con el primer toque y se puede apagar en Ajustes → Sonidos.
+const SND={ctx:null, master:null, desbloqueado:false, ultimo:0,
+  on:(()=>{ try{ return localStorage.getItem('mf_sonidos')!=='0'; }catch(e){ return true; } })()};
+function audioCtx(){
+  const C=window.AudioContext||window.webkitAudioContext;
+  if(!C) return null;
+  if(!SND.ctx){
+    SND.ctx=new C();
+    SND.master=SND.ctx.createGain(); SND.master.gain.value=.9;
+    const comp=SND.ctx.createDynamicsCompressor(); comp.threshold.value=-14; comp.ratio.value=4;
+    SND.master.connect(comp); comp.connect(SND.ctx.destination);
+  }
+  if(SND.ctx.state!=='running') SND.ctx.resume().catch(()=>{});
+  return SND.ctx;
+}
+// En el iPhone el audio solo se activa con un toque: el primero lo desbloquea
+function desbloquearAudio(){
+  try{ if(navigator.audioSession) navigator.audioSession.type='playback'; }catch(e){}   // suena aunque el iPhone esté en silencio
+  const c=audioCtx(); if(!c || SND.desbloqueado) return;
+  const b=c.createBuffer(1,1,22050), src=c.createBufferSource();
+  src.buffer=b; src.connect(c.destination); src.start(0);
+  SND.desbloqueado=true;
+}
+['pointerdown','touchend','keydown'].forEach(ev=>document.addEventListener(ev, desbloquearAudio, {capture:true, passive:true}));
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible' && SND.ctx) SND.ctx.resume().catch(()=>{}); });
+
+function tono(c,{f,f2,t=0,d=.12,v=.18,tipo='sine'}){
+  const o=c.createOscillator(), g=c.createGain(), t0=c.currentTime+t;
+  o.type=tipo; o.frequency.setValueAtTime(f,t0);
+  if(f2) o.frequency.exponentialRampToValueAtTime(f2,t0+d*.9);
+  g.gain.setValueAtTime(0,t0); g.gain.linearRampToValueAtTime(v,t0+.006);
+  g.gain.exponentialRampToValueAtTime(.0001,t0+d);
+  o.connect(g); g.connect(SND.master); o.start(t0); o.stop(t0+d+.03);
+}
+// Catálogo: cada acción tiene su sonido, corto y suave
+const SONIDOS={
+  tap:      [{f:1650,d:.035,v:.06,tipo:'triangle'}],
+  abrir:    [{f:520,f2:860,d:.12,v:.09}],
+  ingreso:  [{f:659,d:.16,v:.2},{f:880,t:.08,d:.22,v:.2},{f:1319,t:.16,d:.28,v:.08}],
+  gasto:    [{f:392,f2:330,d:.16,v:.2},{f:196,d:.12,v:.08,tipo:'triangle'}],
+  ok:       [{f:784,d:.12,v:.14},{f:1175,t:.07,d:.2,v:.14}],
+  guardar:  [{f:660,d:.1,v:.14},{f:990,t:.06,d:.18,v:.14}],
+  eliminar: [{f:520,f2:170,d:.24,v:.16,tipo:'triangle'},{f:90,t:.05,d:.12,v:.1}],
+  deshacer: [{f:300,f2:640,d:.18,v:.14,tipo:'triangle'}],
+  error:    [{f:220,d:.12,v:.16,tipo:'triangle'},{f:185,t:.14,d:.18,v:.16,tipo:'triangle'}],
+  aviso:    [{f:740,d:.12,v:.14},{f:622,t:.13,d:.18,v:.14}],
+  copiar:   [{f:1568,d:.05,v:.09},{f:2093,t:.06,d:.08,v:.09}],
+  pagar:    [523,659,784,1047,1319].map((f,i)=>({f,t:i*.085,d:.32,v:.2})).concat([{f:2093,t:.42,d:.5,v:.06}]),
+  vencido:  [{f:440,d:.2,v:.16,tipo:'triangle'},{f:370,t:.18,d:.2,v:.16,tipo:'triangle'},{f:294,t:.36,d:.36,v:.16,tipo:'triangle'}],
+  urgente:  [{f:880,d:.12,v:.2},{f:740,t:.18,d:.12,v:.2},{f:600,t:.36,d:.2,v:.2}],
+  proximo:  [{f:523,d:.15,v:.2},{f:659,t:.2,d:.22,v:.2}],
+};
+function sonido(nombre){
+  if(!SND.on) return;
   try{
-    const ctx=new(window.AudioContext||window.webkitAudioContext)();
-    const notes=[659,880];
-    notes.forEach((freq,i)=>{
-      const o=ctx.createOscillator(),g=ctx.createGain();
-      o.connect(g);g.connect(ctx.destination);
-      o.type='sine';o.frequency.value=freq;
-      const t=ctx.currentTime+i*.08;
-      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.22,t+.01);
-      g.gain.exponentialRampToValueAtTime(.001,t+.18);
-      o.start(t);o.stop(t+.2);
-    });
+    const c=audioCtx(); const def=SONIDOS[nombre];
+    if(!c || !def) return;
+    SND.ultimo=Date.now();
+    def.forEach(n=>tono(c,n));
   }catch(e){}
 }
-function playGastoSound(){
-  try{
-    const ctx=new(window.AudioContext||window.webkitAudioContext)();
-    const o=ctx.createOscillator(),g=ctx.createGain();
-    o.connect(g);g.connect(ctx.destination);
-    o.type='sine';o.frequency.value=340;
-    g.gain.setValueAtTime(0,ctx.currentTime);g.gain.linearRampToValueAtTime(.18,ctx.currentTime+.01);
-    g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.18);
-    o.start(ctx.currentTime);o.stop(ctx.currentTime+.2);
-  }catch(e){}
+function cambiarSonidos(){
+  SND.on=!SND.on;
+  try{ localStorage.setItem('mf_sonidos', SND.on?'1':'0'); }catch(e){}
+  if(SND.on){ desbloquearAudio(); sonido('ok'); }
+  pintarAjusteSonidos();
 }
+function pintarAjusteSonidos(){
+  const sub=document.getElementById('settings-snd-sub'), sw=document.getElementById('settings-snd-sw');
+  if(sub) sub.textContent=SND.on?'Activados · suenan al guardar, pagar, borrar…':'Apagados';
+  if(sw) sw.classList.toggle('on', SND.on);
+}
+function playIngresoSound(){ sonido('ingreso'); }
+function playGastoSound(){ sonido('gasto'); }
 async function addIng() {
   const desc=document.getElementById('ing-desc').value.trim()||'Ingreso';
   const monto=parseFloat(document.getElementById('ing-m').value);
@@ -2255,6 +2334,7 @@ async function addGas() {
 // 5 segundos después, salvo que toques Deshacer.
 let eliminacionPendiente=null;
 function delE(id) {
+  sonido('eliminar');
   confirmarEliminacion();
   const item=data.find(d=>d.id===id);
   if(!item) return;
@@ -2267,6 +2347,7 @@ function delE(id) {
 }
 function deshacerEliminar(){
   if(!eliminacionPendiente) return;
+  sonido('deshacer');
   clearTimeout(eliminacionPendiente.timer);
   data.push(eliminacionPendiente.item);
   data.sort((a,b)=>a.id-b.id);
@@ -2311,6 +2392,7 @@ document.getElementById('sel-anio').addEventListener('change',()=>{sincronizarMe
 
 // El mes del encabezado manda en todas las pestañas (Análisis, Categorías y Compromisos)
 function cambiarMesGlobal(delta){
+  sonido('tap');
   let m=getMes()+delta, a=getAnio();
   if(m<0){ m=11; a--; } if(m>11){ m=0; a++; }
   ensureYearOption('sel-anio', a);
@@ -2706,7 +2788,7 @@ function avisoPresupuesto(cat, mes, anio){
 }
 
 function cambiarMesCat(delta){ cambiarMesGlobal(delta); }
-function setCatTipo(t){ catTipo=t; catAbierta=null; renderCats(); }
+function setCatTipo(t){ sonido('tap'); catTipo=t; catAbierta=null; renderCats(); }
 
 function renderCats() {
   if(donutInst){ donutInst.destroy(); donutInst=null; }
@@ -2861,6 +2943,7 @@ function detalleCat(e, mes, anio, tipo){
   </div>`;
 }
 function toggleCx(i){
+  sonido('tap');
   const e=window._cxEnts[i]; if(!e) return;
   catAbierta = catAbierta===e.name ? null : e.name;
   renderCats();
@@ -2868,6 +2951,7 @@ function toggleCx(i){
 
 // ── Hoja para crear o editar una categoría ──
 function abrirCatSheet(i){
+  sonido('abrir');
   const e = i===null ? null : window._cxEnts[i];
   const c = e ? catDe(e.name) : null;
   const tipo = c ? (c.tipo||'gasto') : catTipo;
@@ -2989,6 +3073,7 @@ function pedirBorrarCat(){
 }
 async function borrarCat(destino){
   const nombre=catSheet.original;
+  sonido('eliminar');
   try {
     setSyncDot('loading');
     if(destino) await moverMovimientos(nombre, destino);
@@ -3051,6 +3136,7 @@ function updatePinDots(){
   }
 }
 function pinKey(k){
+  sonido('tap');
   if(pinBuffer.length>=4) return;
   pinBuffer+=k;
   updatePinDots();
@@ -3059,6 +3145,7 @@ function pinKey(k){
 function pinDel(){ if(pinBuffer.length>0){ pinBuffer=pinBuffer.slice(0,-1); updatePinDots(); } }
 function pinClear(){ pinBuffer=''; updatePinDots(); }
 function pinShakeError(msg){
+  sonido('error');
   document.getElementById('pin-error').textContent=msg;
   for(let i=0;i<4;i++) document.getElementById('pd'+i).classList.add('error');
   setTimeout(()=>{ pinBuffer=''; updatePinDots(); document.getElementById('pin-error').textContent=''; },800);
@@ -3127,6 +3214,7 @@ function showConfirm(title, msg, danger){
 
 // ── AJUSTES ──
 function abrirAjustes(){
+  sonido('abrir'); pintarAjusteSonidos();
   const sub = document.getElementById('settings-pin-sub');
   sub.textContent = hasPin() ? 'PIN activo — toca para cambiarlo' : 'No hay PIN — toca para crear uno';
   cargarRespaldos();
@@ -3218,36 +3306,8 @@ function diasBadge(dias, completado){
 }
 
 // ── SONIDOS ──
-function playCelebrationSound(){
-  try{
-    const ctx=new(window.AudioContext||window.webkitAudioContext)();
-    const notes=[523,659,784,1047,1319];
-    notes.forEach((freq,i)=>{
-      const o=ctx.createOscillator(),g=ctx.createGain();
-      o.connect(g);g.connect(ctx.destination);
-      o.type='sine';o.frequency.value=freq;
-      const t=ctx.currentTime+i*.1;
-      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.28,t+.02);
-      g.gain.exponentialRampToValueAtTime(.001,t+.25);
-      o.start(t);o.stop(t+.3);
-    });
-  }catch(e){}
-}
-function playWarningSound(){
-  try{
-    const ctx=new(window.AudioContext||window.webkitAudioContext)();
-    const notes=[440,370,330,220];
-    notes.forEach((freq,i)=>{
-      const o=ctx.createOscillator(),g=ctx.createGain();
-      o.connect(g);g.connect(ctx.destination);
-      o.type='sawtooth';o.frequency.value=freq;
-      const t=ctx.currentTime+i*.18;
-      g.gain.setValueAtTime(.22,t);
-      g.gain.exponentialRampToValueAtTime(.001,t+.2);
-      o.start(t);o.stop(t+.25);
-    });
-  }catch(e){}
-}
+function playCelebrationSound(){ sonido('pagar'); }
+function playWarningSound(){ sonido('vencido'); }
 
 // ── CELEBRACIÓN Y ALERTAS ──
 const _celebMsgs=[
@@ -3441,6 +3501,7 @@ function renderCompromisos(){
 
 // ── Detalle de un compromiso (hoja inferior) ──
 function verComp(id){
+  sonido('abrir');
   const c=compromisos.find(x=>String(x.id)===String(id)); if(!c) return;
   const e=estadoComp(c), f=new Date(c.fecha+'T00:00:00');
   const box=document.getElementById('comp-det-box');
@@ -3508,6 +3569,7 @@ async function copiarNotaComp(id, btn){
     const t=document.createElement('textarea'); t.value=c.notas; t.style.position='fixed'; t.style.opacity='0';
     document.body.appendChild(t); t.select(); try{ ok=document.execCommand('copy'); }catch(e2){} t.remove();
   }
+  if(ok) sonido('copiar');
   if(ok && btn){ btn.classList.add('ok'); btn.innerHTML='<i class="ti ti-check"></i>Copiada'; setTimeout(()=>{ btn.classList.remove('ok'); btn.innerHTML='<i class="ti ti-copy"></i>Copiar'; },1800); }
   showToast(ok?'✓ Nota copiada':'No se pudo copiar', ok?'#13795B':'#C8423B');
 }
@@ -3517,6 +3579,7 @@ function compMontoInput(el){
   document.getElementById('comp-inp-monto').value=n||'';
 }
 function compFechaRapida(tipo){
+  sonido('tap');
   const h=new Date(); let d;
   if(tipo==='hoy') d=h;
   else if(tipo==='manana') d=new Date(h.getFullYear(),h.getMonth(),h.getDate()+1);
@@ -3538,6 +3601,7 @@ function marcarFechaRapida(){
 
 
 function abrirModalComp(id=null){
+  sonido('abrir');
   document.getElementById('comp-edit-id').value=id||'';
   document.getElementById('comp-modal-titulo-txt').textContent=id?'Editar compromiso':'Nuevo compromiso';
   if(id){
@@ -3646,6 +3710,7 @@ async function eliminarComp(id){
   const nombre=c?c.titulo:'este compromiso';
   const confirmado=await showConfirm('¿Eliminar compromiso?',`¿Estás seguro de eliminar "${nombre}"? Esta acción no se puede deshacer.`,true);
   if(!confirmado) return;
+  sonido('eliminar');
   compromisos=compromisos.filter(c=>c.id!==id);
   await deleteCompromiso(id);
   renderCompromisos();
@@ -3653,31 +3718,7 @@ async function eliminarComp(id){
 }
 
 // ── ALERTA COMPROMISO (al abrir app) ──
-function playAlertaSound(urgente){
-  try{
-    const Ctx=window.AudioContext||window.webkitAudioContext;
-    if(!Ctx) return;
-    const ctx=new Ctx();
-    const note=(freq,start,dur,vol=0.28)=>{
-      const osc=ctx.createOscillator();
-      const gain=ctx.createGain();
-      osc.connect(gain); gain.connect(ctx.destination);
-      osc.type='sine'; osc.frequency.value=freq;
-      gain.gain.setValueAtTime(0,ctx.currentTime+start);
-      gain.gain.linearRampToValueAtTime(vol,ctx.currentTime+start+0.01);
-      gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+start+dur);
-      osc.start(ctx.currentTime+start);
-      osc.stop(ctx.currentTime+start+dur+0.05);
-    };
-    if(urgente){
-      // 3 beeps descendentes — urgente/vencido
-      note(880,0,.12); note(740,.18,.12); note(600,.36,.2);
-    } else {
-      // 2 tonos ascendentes — próximo
-      note(523,0,.15); note(659,.2,.22);
-    }
-  }catch(e){}
-}
+function playAlertaSound(urgente){ sonido(urgente?'urgente':'proximo'); }
 
 function showAlertaCompromisos(){
   const hoy=new Date().toDateString();
@@ -3736,6 +3777,7 @@ function selectVbar(idx){
 // ── MAPA DE COMPROMISOS — panel interactivo ──
 // ── Tab switch ──
 function showTab(name) {
+  sonido('tap');
   ['registro','analisis','capital','resumen','compromisos','categorias'].forEach(n=>{
     document.getElementById('t-'+n).classList.toggle('active',n===name);
     document.getElementById('page-'+n).classList.toggle('active',n===name);
