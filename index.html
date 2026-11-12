@@ -1225,6 +1225,18 @@ html.txt-grande body{zoom:1.1}
   .rs-md-stats div:last-child{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between}
   .rs-md-stats b{font-size:15px}
 }
+
+.rs-tip{position:absolute;pointer-events:none;opacity:0;transition:opacity .15s,left .12s,top .12s;z-index:5;min-width:200px;background:rgba(14,17,22,.96);color:#fff;border-radius:14px;padding:11px 13px;box-shadow:0 14px 30px -12px rgba(14,17,22,.55)}
+.rs-tip-mes{font-size:13px;font-weight:700;margin-bottom:6px}
+.rs-tip-f{display:flex;align-items:center;gap:6px;font-size:12.5px;color:rgba(255,255,255,.75);margin-top:3px}
+.rs-tip-f i{width:8px;height:8px;border-radius:2px}
+.rs-tip-f b{margin-left:auto;color:#fff;font-weight:600;padding-left:10px}
+.rs-tip-bal{margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.14);display:flex;flex-direction:column}
+.rs-tip-bal span{font-size:11.5px;font-weight:600;color:rgba(255,255,255,.65)}
+.rs-tip-bal b{font-size:21px;font-weight:700;letter-spacing:-.02em;color:#3DDC97}
+.rs-tip-bal.mal b{color:#FF8A80}
+.rs-tip-acum{font-size:11px;color:rgba(255,255,255,.5);margin-top:6px}
+.rs-tip-acum b{color:rgba(255,255,255,.8);font-weight:600}
 </style>
 </head>
 <body>
@@ -2868,8 +2880,12 @@ function renderResumen() {
       {type:'bar',label:'Salió',data:st.map(x=>Math.round(x.gas)),backgroundColor:'rgba(200,66,59,.75)',borderRadius:6,borderSkipped:false,maxBarThickness:42,categoryPercentage:.72,barPercentage:.9,order:3},
       {type:'line',label:'Ahorro acumulado',data:acumulado.map(Math.round),borderColor:acc,backgroundColor:acc,borderWidth:2.5,tension:.35,pointRadius:3,pointHoverRadius:6,pointBackgroundColor:'#fff',pointBorderWidth:2,order:1,yAxisID:'y1'}
     ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},animation:{duration:700},
+      // En pantallas táctiles se ignora el "mouse salió" que el navegador envía tras tocar (cerraba el recuadro)
+      events: matchMedia('(hover: none)').matches ? ['click','touchstart','touchmove'] : ['mousemove','mouseout','click','touchstart','touchmove'],
       onClick:(ev,els)=>{ if(els&&els.length) mostrarMesResumen(els[0].index); },
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+fmt(c.raw)}}},
+      plugins:{legend:{display:false},tooltip:{enabled:false, filter:c=>c.dataset.type==='bar',
+        // Recuadro propio al tocar un mes: entró, salió, cuánto quedó (grande) y el acumulado aparte
+        external:ctx=>tooltipResumen(ctx, st, acumulado)}},
       scales:{y:{ticks:{callback:v=>'$'+Math.round(v).toLocaleString('es-CO',{notation:'compact',compactDisplay:'short'})},grid:{color:'rgba(0,0,0,.05)'},border:{display:false}},
               // La línea de ahorro acumulado tiene su propia escala para no aplastar las barras del mes
               y1:{position:'right',display:false,grace:'8%'},
@@ -2880,6 +2896,24 @@ function renderResumen() {
     const idxRef=st.findIndex(x=>x.mes===mesRef && x.anio===anioRef);
     mostrarMesResumen(rsMesSel!==null&&st[rsMesSel]?rsMesSel:(idxRef>=0?idxRef:st.length-1), true);
   }
+}
+function tooltipResumen(ctx, st, acumulado){
+  const {chart, tooltip}=ctx;
+  let el=chart.canvas.parentNode.querySelector('.rs-tip');
+  if(!el){ el=document.createElement('div'); el.className='rs-tip'; chart.canvas.parentNode.appendChild(el); }
+  if(!tooltip.opacity || !tooltip.dataPoints || !tooltip.dataPoints.length){ el.style.opacity=0; return; }
+  const i=tooltip.dataPoints[0].dataIndex, x=st[i]; if(!x) return;
+  const pos=x.bal>=0;
+  el.innerHTML=`<div class="rs-tip-mes">${MF[x.mes]} ${x.anio}</div>
+    <div class="rs-tip-f"><i style="background:var(--g)"></i>Entró<b>${fmt(x.ing)}</b></div>
+    <div class="rs-tip-f"><i style="background:var(--r)"></i>Salió<b>${fmt(x.gas)}</b></div>
+    <div class="rs-tip-bal ${pos?'ok':'mal'}"><span>${pos?'Quedó este mes':'Faltó este mes'}</span><b>${pos?'+':'−'}${fmt(Math.abs(x.bal))}</b></div>
+    <div class="rs-tip-acum">Ahorro acumulado hasta aquí: <b>${fmt(acumulado[i])}</b></div>`;
+  // Posición: encima de las barras del mes, sin salirse de la gráfica
+  const ancho=el.offsetWidth||200, caja=chart.canvas.parentNode.clientWidth;
+  let left=tooltip.caretX-ancho/2; left=Math.max(4, Math.min(left, caja-ancho-4));
+  el.style.left=left+'px'; el.style.top=Math.max(4, tooltip.caretY-el.offsetHeight-12)+'px';
+  el.style.opacity=1;
 }
 function mostrarMesResumen(i, silencioso){
   const st=window._rsSt||[], x=st[i]; if(!x) return;
@@ -2914,7 +2948,14 @@ function mostrarMesResumen(i, silencioso){
       ${boton}
     </div>`;
   }
-  if(barInst){ barInst.setActiveElements([{datasetIndex:0,index:i},{datasetIndex:1,index:i}]); barInst.update('none'); }
+  if(barInst){
+    const act=[{datasetIndex:0,index:i},{datasetIndex:1,index:i}];
+    barInst.setActiveElements(act);
+    // El recuadro queda abierto en el mes tocado (en el celular no hay "pasar el mouse")
+    const m=barInst.getDatasetMeta(0).data[i];
+    if(!silencioso && m) barInst.tooltip.setActiveElements(act,{x:m.x,y:m.y});
+    barInst.update('none');
+  }
 }
 
 // ── Categorías ──
