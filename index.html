@@ -7,6 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.47.0/dist/tabler-icons.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js"></script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mis Finanzas">
 <style>
 :root{
   --g:#059669;--gl:#d1fae5;--gm:#6ee7b7;--gd:#064e3b;
@@ -363,6 +366,25 @@ html,body{min-height:100vh;background:var(--bg);-webkit-tap-highlight-color:tran
 /* Toast */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--t0);color:#fff;padding:10px 18px;border-radius:20px;font-size:12px;font-weight:500;z-index:200;transition:transform .3s cubic-bezier(.4,0,.2,1);white-space:nowrap;box-shadow:var(--shadow-md)}
 .toast.show{transform:translateX(-50%) translateY(0)}
+.sync-dot.pending{background:var(--am)}
+
+/* Deshacer */
+.undo-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--t0);color:#fff;padding:6px 6px 6px 16px;border-radius:22px;font-size:12px;font-weight:500;z-index:210;transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-md);white-space:nowrap}
+.undo-bar.show{transform:translateX(-50%) translateY(0)}
+.undo-bar button{border:none;background:var(--g);color:#fff;font-family:inherit;font-size:12px;font-weight:700;padding:7px 14px;border-radius:16px;cursor:pointer}
+
+/* Inicio de sesión */
+.login-overlay{position:fixed;inset:0;background:var(--s1,#f1f5f9);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
+.login-box{width:100%;max-width:340px;background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);box-shadow:var(--shadow-md);padding:26px 22px;display:flex;flex-direction:column;gap:12px}
+.login-ico{width:46px;height:46px;border-radius:12px;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto}
+.login-title{font-size:17px;font-weight:700;text-align:center;color:var(--t0)}
+.login-sub{font-size:12px;color:var(--t2);text-align:center;line-height:1.45}
+.login-lbl{font-size:10px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.login-in{width:100%;padding:10px 12px;border-radius:var(--rads);border:1.5px solid var(--bdrm);font-size:16px;font-family:inherit;outline:none;color:var(--t0);background:#fff}
+.login-in:focus{border-color:var(--g)}
+.login-btn{width:100%;padding:11px;border:none;border-radius:var(--rads);background:var(--g);color:#fff;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer}
+.login-btn:disabled{opacity:.6}
+.login-msg{font-size:12px;text-align:center;line-height:1.4;display:none}
 
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-thumb{background:var(--t4);border-radius:2px}
@@ -592,6 +614,20 @@ html,body{min-height:100vh;background:var(--bg);-webkit-tap-highlight-color:tran
 
 <!-- Toast -->
 <div class="toast" id="toast"></div>
+<div class="undo-bar" id="undo-bar"><span id="undo-txt">Registro eliminado</span><button onclick="deshacerEliminar()">Deshacer</button></div>
+
+<!-- Inicio de sesión -->
+<div class="login-overlay" id="login-overlay">
+  <form class="login-box" onsubmit="event.preventDefault();loginEnviar()">
+    <div class="login-ico"><i class="ti ti-lock"></i></div>
+    <div class="login-title">Mis Finanzas</div>
+    <div class="login-sub">Inicia sesión para ver tus finanzas. Solo tu cuenta puede ver y cambiar tus datos.</div>
+    <div><div class="login-lbl">Correo</div><input class="login-in" id="login-email" type="email" autocomplete="username" required></div>
+    <div><div class="login-lbl">Contraseña</div><input class="login-in" id="login-pass" type="password" autocomplete="current-password" required></div>
+    <button class="login-btn" id="login-btn" type="submit">Iniciar sesión</button>
+    <div class="login-msg" id="login-msg"></div>
+  </form>
+</div>
 
 <!-- TOPBAR -->
 <header class="topbar">
@@ -634,6 +670,15 @@ html,body{min-height:100vh;background:var(--bg);-webkit-tap-highlight-color:tran
       <div class="settings-item-info">
         <div class="settings-item-title">Eliminar PIN</div>
         <div class="settings-item-sub">Quitar la protección del capital</div>
+      </div>
+      <i class="ti ti-chevron-right settings-item-arrow"></i>
+    </div>
+    <div class="settings-section-lbl">Cuenta</div>
+    <div class="settings-item" onclick="cerrarSesion()">
+      <div class="settings-item-icon" style="background:#e0f2fe">👤</div>
+      <div class="settings-item-info">
+        <div class="settings-item-title">Cerrar sesión</div>
+        <div class="settings-item-sub" id="settings-cuenta-sub">—</div>
       </div>
       <i class="ti ti-chevron-right settings-item-arrow"></i>
     </div>
@@ -992,40 +1037,110 @@ html,body{min-height:100vh;background:var(--bg);-webkit-tap-highlight-color:tran
 const SB_URL = 'https://hcwgtyjgscgdnxkrcjqf.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjd2d0eWpnc2NnZG54a3JjanFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMTE4MzcsImV4cCI6MjA5NTU4NzgzN30.4VOE5l_1cE6X8jOiZ2u2cGZ1rDiFKhQdYdivJQhESWM';
 
+// ── Sesión ──
+// Cada petición va con la sesión de tu cuenta: con las reglas de seguridad (supabase/seguridad.sql)
+// la base solo responde a tu usuario.
+let sb=null, accessToken=null, usuario=null;
+try {
+  sb = supabase.createClient(SB_URL, SB_KEY, {auth:{persistSession:true, autoRefreshToken:true, detectSessionInUrl:false, storageKey:'mf-auth'}});
+} catch(e){ console.log('Supabase no disponible:', e); }
+
+async function asegurarToken(){
+  if(!sb) return accessToken;
+  try {
+    // Con límite de tiempo: sin internet, renovar la sesión puede quedarse esperando
+    const {data} = await Promise.race([sb.auth.getSession(), new Promise((_,no)=>setTimeout(()=>no(new Error('tiempo')),5000))]);
+    if(data && data.session){ accessToken=data.session.access_token; usuario=data.session.user; }
+  } catch(e){}
+  return accessToken;
+}
 const hdrs = () => ({
   'Content-Type': 'application/json',
   'apikey': SB_KEY,
-  'Authorization': 'Bearer ' + SB_KEY,
-  'Prefer': 'return=representation'
+  'Authorization': 'Bearer ' + (accessToken || SB_KEY),
+  'Prefer': 'return=minimal'
 });
 
+// fetch que distingue "sin internet" (e.net) de un error de la base (e.status)
+async function sbFetch(path, opts){
+  await asegurarToken();
+  let r;
+  // Si la red no responde en 20 s se trata como "sin conexión" (el cambio queda en la cola)
+  const ctl = new AbortController(), limite = setTimeout(()=>ctl.abort(), 20000);
+  try { r = await fetch(`${SB_URL}/rest/v1/${path}`, {...opts, signal:ctl.signal, headers:{...hdrs(), ...(opts&&opts.headers||{})}}); }
+  catch(e){ const err=new Error('Sin conexión'); err.net=true; throw err; }
+  finally { clearTimeout(limite); }
+  if(!r.ok){ const err=new Error(await r.text().catch(()=>'')); err.status=r.status; throw err; }
+  return r;
+}
 async function sbGet(table, params='') {
-  const r = await fetch(`${SB_URL}/rest/v1/${table}?${params}`, {headers: hdrs()});
-  if (!r.ok) throw new Error(await r.text());
+  const r = await sbFetch(`${table}?${params}`, {method:'GET'});
   return r.json();
 }
-async function sbInsert(table, row) {
-  const r = await fetch(`${SB_URL}/rest/v1/${table}`, {method:'POST', headers:hdrs(), body:JSON.stringify(row)});
-  if (!r.ok) throw new Error(await r.text());
-  return r.json();
+
+// ── Cambios pendientes (sin internet) ──
+// Si no hay conexión, cada cambio se guarda en una cola en este dispositivo y se envía,
+// en el mismo orden, cuando vuelve internet.
+const MF_COLA='mf_cola_v1', MF_CACHE='mf_cache_v1';
+let cola=[];
+try { cola=JSON.parse(localStorage.getItem(MF_COLA)||'[]'); } catch(e){ cola=[]; }
+function guardarCola(){ try{ localStorage.setItem(MF_COLA, JSON.stringify(cola)); }catch(e){} }
+
+async function ejecutar(op){
+  const headers = op.m==='POST' ? {'Prefer':'resolution=merge-duplicates,return=minimal'} : {};
+  await sbFetch(op.q ? `${op.t}?${op.q}` : op.t, {method:op.m, headers, keepalive:true, body: op.b!==undefined ? JSON.stringify(op.b) : undefined});
 }
-async function sbUpdate(table, row, filter) {
-  const r = await fetch(`${SB_URL}/rest/v1/${table}?${filter}`, {method:'PATCH', headers:hdrs(), body:JSON.stringify(row)});
-  if (!r.ok) throw new Error(await r.text());
-  return r.json();
+async function sbWrite(op){
+  if(cola.length || !navigator.onLine){ encolar(op); return; }
+  try { await ejecutar(op); }
+  catch(e){ if(e.net){ encolar(op); return; } throw e; }
+  guardarCache();
 }
-async function sbDelete(table, filter) {
-  const r = await fetch(`${SB_URL}/rest/v1/${table}?${filter}`, {method:'DELETE', headers:hdrs()});
-  if (!r.ok) throw new Error(await r.text());
+function encolar(op){
+  cola.push(op); guardarCola(); guardarCache();
 }
-async function sbUpsert(table, row) {
-  const r = await fetch(`${SB_URL}/rest/v1/${table}`, {
-    method:'POST',
-    headers:{...hdrs(), 'Prefer':'resolution=merge-duplicates,return=representation'},
-    body:JSON.stringify(row)
-  });
-  if (!r.ok) throw new Error(await r.text());
-  return r.json();
+let vaciando=null;
+function vaciarCola(){
+  if(vaciando) return vaciando;
+  vaciando=(async ()=>{
+    while(cola.length){
+      if(!navigator.onLine) break;
+      try { await ejecutar(cola[0]); }
+      catch(e){
+        if(e.net) break;
+        if(e.status===401 || e.status===403){ await asegurarToken(); break; }
+        console.error('Cambio descartado:', cola[0], e);
+        showToast('Un cambio pendiente no se pudo guardar y se descartó','#dc2626');
+      }
+      cola.shift(); guardarCola();
+    }
+    setSyncDot(cola.length ? 'pending' : 'ok');
+    return cola.length===0;
+  })().finally(()=>{ vaciando=null; });
+  return vaciando;
+}
+window.addEventListener('online', ()=>{ if(cola.length) vaciarCola(); });
+setInterval(()=>{ if(cola.length && navigator.onLine) vaciarCola(); }, 30000);
+
+// Insertar = "upsert": si un reintento llega dos veces, no se duplica
+async function sbInsert(table, row){ return sbWrite({m:'POST', t:table, b:row}); }
+async function sbUpsert(table, row){ return sbWrite({m:'POST', t:table, b:row}); }
+async function sbUpdate(table, row, filter){ return sbWrite({m:'PATCH', t:table, q:filter, b:row}); }
+async function sbDelete(table, filter){ return sbWrite({m:'DELETE', t:table, q:filter}); }
+
+// ── Copia local de tus datos (para verlos sin internet) ──
+function guardarCache(){
+  if(!usuario) return;
+  try {
+    localStorage.setItem(MF_CACHE, JSON.stringify({uid:usuario.id, data, CATS, capCfg, compromisos, ajustes:ajustesNube, t:Date.now()}));
+  } catch(e){}
+}
+function leerCache(){
+  try {
+    const c=JSON.parse(localStorage.getItem(MF_CACHE)||'null');
+    if(c && (!usuario || c.uid===usuario.id)) return c;
+  } catch(e){}
+  return null;
 }
 
 // ── Constants ──
@@ -1055,12 +1170,14 @@ const today   = () => { const d=new Date(); return d.getFullYear()+'-'+String(d.
 
 function setSyncDot(state) { // 'ok' | 'loading' | 'error'
   const d = document.getElementById('sync-dot');
+  if(state==='ok' && cola.length) state='pending';
   d.className = 'sync-dot ' + state;
-  d.title = state==='ok'?'Sincronizado':state==='loading'?'Sincronizando…':'Error de conexión';
+  d.title = state==='ok'?'Sincronizado':state==='loading'?'Sincronizando…':state==='pending'?`${cola.length} cambio${cola.length>1?'s':''} esperando internet`:'Error de conexión';
 }
 
 function showToast(msg, color='var(--t0)') {
   const t = document.getElementById('toast');
+  if(cola.length && /^✓/.test(msg)) msg += ' · se subirá al volver internet';
   t.textContent = msg;
   t.style.background = color;
   t.classList.add('show');
@@ -1082,6 +1199,11 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     this.beginPath();this.moveTo(x+r,y);this.arcTo(x+w,y,x+w,y+h,r);this.arcTo(x+w,y+h,x,y+h,r);this.arcTo(x,y+h,x,y,r);this.arcTo(x,y,x+w,y,r);this.closePath();return this;
   };
 }
+// Si la librería de gráficas no cargó (sin internet), la app funciona igual, sin gráficas
+if (!window.Chart) {
+  window.Chart = function(){ return {destroy(){}}; };
+  Chart.defaults = {font:{}, plugins:{tooltip:{}}};
+}
 Chart.defaults.font.family="'DM Sans',-apple-system,sans-serif";
 Chart.defaults.font.size=10;
 Chart.defaults.color='#94a3b8';
@@ -1090,39 +1212,128 @@ Chart.defaults.plugins.tooltip.padding=8;
 Chart.defaults.plugins.tooltip.cornerRadius=8;
 
 // ── Load all data from Supabase ──
+// Ajustes que viajan entre dispositivos (tabla "ajustes"): presupuestos y PIN.
+// Si la tabla aún no existe, se usan los de este dispositivo.
+let ajustesNube={}, ajustesDisponibles=false;
+function aplicarFilas(regs, cats, cap, comps){
+  data = regs.map(r => ({
+    id: Number(r.id), mes: Number(r.mes), anio: Number(r.anio),
+    tipo: r.tipo, cat: r.cat,
+    desc: r.descripcion, monto: Number(r.monto)||0, fecha: r.fecha
+  }));
+  if (cats.length) CATS = cats;
+  if (cap.length) capCfg = {initial:Number(cap[0].initial)||0, mes:Number(cap[0].mes), anio:Number(cap[0].anio)};
+  compromisos = comps.map(c=>({
+    id: String(c.id), titulo: c.titulo, fecha: c.fecha,
+    monto: Number(c.monto)||0, notas: c.notas||'', completado: !!c.completado
+  }));
+}
 async function loadAll() {
   setSyncDot('loading');
+  if(cola.length) await vaciarCola();
+  let desdeCache=false;
   try {
+    if(cola.length) throw Object.assign(new Error('Cambios sin subir'), {net:true});
     const [regs, cats, cap, comps] = await Promise.all([
       sbGet('registros','order=id.asc'),
       sbGet('categorias','order=name.asc'),
       sbGet('capital','id=eq.1'),
       sbGet('compromisos','order=fecha.asc')
     ]);
-    // Se normalizan los tipos: la base puede devolver números como texto, y los botones
-    // buscan los registros por id numérico y los compromisos por id de texto
-    data = regs.map(r => ({
-      id: Number(r.id), mes: Number(r.mes), anio: Number(r.anio),
-      tipo: r.tipo, cat: r.cat,
-      desc: r.descripcion, monto: Number(r.monto)||0, fecha: r.fecha
-    }));
-    if (cats.length) CATS = cats;
-    if (cap.length) capCfg = {initial:Number(cap[0].initial)||0, mes:Number(cap[0].mes), anio:Number(cap[0].anio)};
-    compromisos = comps.map(c=>({
-      id: String(c.id), titulo: c.titulo, fecha: c.fecha,
-      monto: Number(c.monto)||0, notas: c.notas||'', completado: !!c.completado
-    }));
+    aplicarFilas(regs, cats, cap, comps);
+    try {
+      const filas = await sbGet('ajustes','select=clave,valor');
+      ajustesNube = {}; filas.forEach(f=>{ ajustesNube[f.clave]=f.valor; });
+      ajustesDisponibles = true;
+      migrarAjustesLocales();
+    } catch(e){ ajustesDisponibles=false; }
+    guardarCache();
     setSyncDot('ok');
   } catch(e) {
-    setSyncDot('error');
-    showToast('Error de conexión — verifica tu internet', '#dc2626');
+    const cache = leerCache();
+    if(cache && (e.net || cola.length)){
+      data=cache.data||[]; if(cache.CATS && cache.CATS.length) CATS=cache.CATS;
+      capCfg=cache.capCfg||null; compromisos=cache.compromisos||[]; ajustesNube=cache.ajustes||{};
+      desdeCache=true;
+      setSyncDot(cola.length ? 'pending' : 'error');
+      showToast('Sin conexión: mostrando tus datos guardados en este dispositivo','#d97706');
+    } else {
+      setSyncDot('error');
+      showToast(e.status===401||e.status===403 ? 'Tu sesión venció: inicia sesión de nuevo' : 'Error de conexión — verifica tu internet', '#dc2626');
+      if(e.status===401||e.status===403) mostrarLogin();
+    }
     console.error(e);
   }
   document.getElementById('loading').style.display='none';
   populateCatSelects();
   renderLists();
   updateCapKPI();
-  setTimeout(showAlertaCompromisos, 900);
+  if(!desdeCache) setTimeout(showAlertaCompromisos, 900);
+}
+
+// ── Inicio de sesión ──
+function mostrarLogin(msg, error){
+  document.getElementById('loading').style.display='none';
+  document.getElementById('login-overlay').style.display='flex';
+  loginMensaje(msg||'', error);
+}
+function loginMensaje(txt, error){
+  const m=document.getElementById('login-msg');
+  m.textContent=txt; m.style.display=txt?'block':'none';
+  m.style.color=error?'var(--rd)':'var(--t2)';
+}
+async function loginEnviar(){
+  if(!sb){ loginMensaje('No hay conexión. Revisa tu internet y recarga la página.', true); return; }
+  const btn=document.getElementById('login-btn');
+  const email=document.getElementById('login-email').value.trim();
+  const pass=document.getElementById('login-pass').value;
+  btn.disabled=true; loginMensaje('Entrando…');
+  try {
+    const {data:d, error} = await sb.auth.signInWithPassword({email, password:pass});
+    if(error){
+      loginMensaje(/invalid/i.test(error.message) ? 'Correo o contraseña incorrectos.'
+        : (!navigator.onLine || /fetch|network/i.test(error.message)) ? 'No se pudo conectar. Revisa tu internet e inténtalo de nuevo.'
+        : 'No se pudo iniciar sesión: '+error.message, true);
+      return;
+    }
+    accessToken=d.session.access_token; usuario=d.session.user;
+    const c=leerCache(); if(!c){ try{ localStorage.removeItem(MF_CACHE); }catch(e){} }
+    document.getElementById('login-pass').value='';
+    document.getElementById('login-overlay').style.display='none';
+    document.getElementById('loading').style.display='flex';
+    await loadAll();
+  } catch(e){ loginMensaje('No se pudo conectar. Revisa tu internet e inténtalo de nuevo.', true); }
+  finally { btn.disabled=false; }
+}
+async function cerrarSesion(){
+  document.getElementById('settings-overlay').style.display='none';
+  if(cola.length){ await vaciarCola(); }
+  if(cola.length){
+    showToast(`Tienes ${cola.length} cambio${cola.length>1?'s':''} sin subir: conéctate a internet antes de cerrar sesión`,'#dc2626');
+    return;
+  }
+  if(!(await showConfirm('¿Cerrar sesión?','Tus datos quedan guardados en la nube. Para verlos otra vez en este dispositivo tendrás que iniciar sesión.'))) return;
+  try{ await sb.auth.signOut(); }catch(e){}
+  ['mf-auth',MF_CACHE,MF_COLA].forEach(k=>{ try{ localStorage.removeItem(k); }catch(e){} });
+  location.reload();
+}
+async function iniciar(){
+  if(!sb){
+    // Sin la librería (sin internet al abrir): se muestran los datos guardados, si los hay
+    const c=leerCache();
+    if(c){ usuario={id:c.uid}; await loadAll(); } else mostrarLogin('No hay conexión. Revisa tu internet y recarga la página.', true);
+    return;
+  }
+  sb.auth.onAuthStateChange((ev, session)=>{
+    if(session){ accessToken=session.access_token; usuario=session.user; }
+  });
+  let session=null;
+  try { session=(await sb.auth.getSession()).data.session; } catch(e){}
+  if(session){ accessToken=session.access_token; usuario=session.user; await loadAll(); return; }
+  // Sin internet y con la sesión vencida: se muestran los datos guardados de la última vez
+  const c=JSON.parse((()=>{ try{ return localStorage.getItem(MF_CACHE)||'null'; }catch(e){ return 'null'; } })());
+  if(!navigator.onLine && c){ usuario={id:c.uid}; await loadAll(); return; }
+  mostrarLogin();
 }
 
 // ── KPIs ──
@@ -1256,6 +1467,7 @@ function renderLists() {
   document.getElementById('list-gas').innerHTML=gas.length?gas.map(buildEC).join(''):'<div class="empty-st"><i class="ti ti-inbox"></i><span>Sin gastos</span></div>';
   updateKPIs(); populateCatSelects();
   renderDailyAnalysis();
+  guardarCache();
 }
 
 // ── ANÁLISIS DIARIO — estilo mercado (línea con degradado) ──
@@ -1568,16 +1780,48 @@ async function addGas() {
   }
 }
 
-async function delE(id) {
+// Eliminar con "Deshacer": el registro se quita de la pantalla y se borra en la nube
+// 5 segundos después, salvo que toques Deshacer.
+let eliminacionPendiente=null;
+function delE(id) {
+  confirmarEliminacion();
+  const item=data.find(d=>d.id===id);
+  if(!item) return;
   data=data.filter(d=>d.id!==id);
   renderLists();
+  const timer=setTimeout(confirmarEliminacion, 5000);
+  eliminacionPendiente={item, timer};
+  document.getElementById('undo-txt').textContent=(item.tipo==='ingreso'?'Ingreso':'Gasto')+' eliminado';
+  document.getElementById('undo-bar').classList.add('show');
+}
+function deshacerEliminar(){
+  if(!eliminacionPendiente) return;
+  clearTimeout(eliminacionPendiente.timer);
+  data.push(eliminacionPendiente.item);
+  data.sort((a,b)=>a.id-b.id);
+  eliminacionPendiente=null;
+  document.getElementById('undo-bar').classList.remove('show');
+  renderLists();
+  showToast('Registro recuperado','#059669');
+}
+async function confirmarEliminacion(){
+  const p=eliminacionPendiente;
+  if(!p) return;
+  clearTimeout(p.timer);
+  eliminacionPendiente=null;
+  document.getElementById('undo-bar').classList.remove('show');
   try {
     setSyncDot('loading');
-    await sbDelete('registros',`id=eq.${id}`);
+    await sbDelete('registros',`id=eq.${p.item.id}`);
     setSyncDot('ok');
-    showToast('Eliminado');
-  } catch(e){ setSyncDot('error'); showToast('Error al eliminar','#dc2626'); }
+  } catch(e){
+    data.push(p.item); data.sort((a,b)=>a.id-b.id); renderLists();
+    setSyncDot('error'); showToast('No se pudo eliminar','#dc2626');
+  }
 }
+// Si cierras la app antes de los 5 segundos, se borra igual
+document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='hidden') confirmarEliminacion(); });
+window.addEventListener('pagehide', confirmarEliminacion);
 
 function populateCatSelects() {
   document.querySelectorAll('#gas-cat,.ecs').forEach(sel=>{
@@ -1847,12 +2091,36 @@ function catIcon(nombre){
   return 'ti-receipt-2';
 }
 
-// ── Presupuestos por categoría (localStorage) ──
-function getBudgets(){ return JSON.parse(localStorage.getItem('finanzas_presupuestos')||'{}'); }
+// ── Presupuestos por categoría (en la nube, tabla "ajustes"; copia en este dispositivo) ──
+function getBudgets(){
+  if(ajustesNube.presupuestos) return {...ajustesNube.presupuestos};
+  try { return JSON.parse(localStorage.getItem('finanzas_presupuestos')||'{}'); } catch(e){ return {}; }
+}
 function setBudget(cat, monto){
   const b=getBudgets();
   if(monto>0) b[cat]=monto; else delete b[cat];
-  localStorage.setItem('finanzas_presupuestos', JSON.stringify(b));
+  try{ localStorage.setItem('finanzas_presupuestos', JSON.stringify(b)); }catch(e){}
+  guardarAjuste('presupuestos', b);
+}
+function guardarAjuste(clave, valor){
+  if(valor===null) delete ajustesNube[clave]; else ajustesNube[clave]=valor;
+  guardarCache();
+  if(!ajustesDisponibles) return;
+  const op = valor===null ? sbDelete('ajustes',`clave=eq.${clave}`) : sbUpsert('ajustes',{clave, valor});
+  op.catch(()=>showToast('No se pudo guardar el ajuste en la nube','#dc2626'));
+}
+// Primera vez con la tabla "ajustes": se suben los presupuestos y el PIN de este dispositivo
+function migrarAjustesLocales(){
+  if(!ajustesNube.presupuestos){
+    let b={}; try{ b=JSON.parse(localStorage.getItem('finanzas_presupuestos')||'{}'); }catch(e){}
+    if(Object.keys(b).length) guardarAjuste('presupuestos', b);
+  }
+  if(!ajustesNube.pin){
+    const viejo=localStorage.getItem(PIN_KEY);
+    if(viejo) guardarAjuste('pin', {h:hashPin(viejo)});
+  }
+  // El PIN ya está en la nube como huella: no se deja el número en este dispositivo
+  if(ajustesNube.pin){ try{ localStorage.removeItem(PIN_KEY); }catch(e){} }
 }
 
 // ── Selector de color inteligente — evita colores parecidos ──
@@ -2127,8 +2395,30 @@ async function delCat(i) {
 const PIN_KEY='finanzas_pin';
 let pinBuffer='', pinCallback=null, pinMode='verify';
 
-function getPin(){ return localStorage.getItem(PIN_KEY); }
-function hasPin(){ return !!getPin(); }
+// El PIN se guarda en la nube como una huella (no el número), así sirve en todos tus dispositivos
+function hashPin(p){
+  const s='mf-pin:'+p; let h1=0xdeadbeef, h2=0x41c6ce57;
+  for(let i=0;i<s.length;i++){ const c=s.charCodeAt(i); h1=Math.imul(h1^c,2654435761); h2=Math.imul(h2^c,1597334677); }
+  h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);
+  h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
+  return (h2>>>0).toString(36)+(h1>>>0).toString(36);
+}
+function getPinHash(){
+  if(ajustesNube.pin && ajustesNube.pin.h) return ajustesNube.pin.h;
+  const viejo=localStorage.getItem(PIN_KEY);
+  return viejo ? hashPin(viejo) : null;
+}
+function hasPin(){ return !!getPinHash(); }
+function pinCoincide(p){ return hashPin(p)===getPinHash(); }
+function guardarPin(p){
+  try{ localStorage.removeItem(PIN_KEY); }catch(e){}
+  if(ajustesDisponibles) guardarAjuste('pin',{h:hashPin(p)});
+  else { try{ localStorage.setItem(PIN_KEY,p); }catch(e){} }
+}
+function borrarPin(){
+  try{ localStorage.removeItem(PIN_KEY); }catch(e){}
+  if(ajustesNube.pin || ajustesDisponibles) guardarAjuste('pin', null);
+}
 
 function showPinModal(mode, subtitle, callback){
   pinBuffer=''; pinMode=mode; pinCallback=callback;
@@ -2174,7 +2464,7 @@ function processPinInput(){
   } else if(pinMode==='confirm'){
     const temp=localStorage.getItem(PIN_KEY+'_temp')||'';
     if(pinBuffer===temp){
-      localStorage.setItem(PIN_KEY,pinBuffer);
+      guardarPin(pinBuffer);
       localStorage.removeItem(PIN_KEY+'_temp');
       const cb=pinCallback;
       closePinModal();
@@ -2182,7 +2472,7 @@ function processPinInput(){
       if(cb) cb();
     } else { pinShakeError('Los PINs no coinciden, intenta de nuevo'); pinMode='confirm'; }
   } else {
-    if(pinBuffer===getPin()){
+    if(pinCoincide(pinBuffer)){
       const cb=pinCallback;
       closePinModal();
       if(cb) cb();
@@ -2229,6 +2519,8 @@ function showConfirm(title, msg, danger){
 function abrirAjustes(){
   const sub = document.getElementById('settings-pin-sub');
   sub.textContent = hasPin() ? 'PIN activo — toca para cambiarlo' : 'No hay PIN — toca para crear uno';
+  const cu=document.getElementById('settings-cuenta-sub');
+  if(cu) cu.textContent = usuario && usuario.email ? 'Conectado como '+usuario.email : 'Sin sesión';
   document.getElementById('settings-overlay').style.display='flex';
 }
 function cerrarAjustes(e){
@@ -2260,7 +2552,7 @@ function eliminarPin(){
   document.getElementById('settings-overlay').style.display='none';
   if(!hasPin()){ showToast('No hay PIN configurado','#6b7280'); return; }
   showPinModal('verify','Ingresa tu PIN para eliminarlo', ()=>{
-    localStorage.removeItem(PIN_KEY);
+    borrarPin();
     capitalUnlocked=true;
     setCapVisibility(false);
     showToast('PIN eliminado — capital sin protección','#f59e0b');
@@ -2979,7 +3271,11 @@ fillYearSelect('analisis-anio', now.getFullYear());
 document.getElementById('sel-mes').value=now.getMonth();
 document.getElementById('cat-mes').value=now.getMonth();
 document.getElementById('analisis-mes').value=now.getMonth();
-loadAll();
+iniciar();
+// App instalable y disponible sin internet (solo en la versión publicada en internet)
+if('serviceWorker' in navigator && location.protocol==='https:'){
+  navigator.serviceWorker.register('sw.js').catch(e=>console.log('Sin modo sin conexión:', e));
+}
 </script>
 </body>
 </html>
