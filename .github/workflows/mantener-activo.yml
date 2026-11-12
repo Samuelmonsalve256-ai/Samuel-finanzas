@@ -1,0 +1,36 @@
+# Visita la base de datos de Supabase cada 3 días para que el plan gratuito no pause el
+# proyecto por falta de uso (lo pausa tras unos 7 días sin actividad).
+# Para probarlo a mano: pestaña Actions → "Mantener Supabase activo" → Run workflow.
+name: Mantener Supabase activo
+
+on:
+  schedule:
+    - cron: '17 13 */3 * *'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  visitar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Visitar la base de datos
+        env:
+          # Llave pública del proyecto (la misma que usa index.html). No da acceso a tus datos:
+          # las reglas de supabase/seguridad.sql solo dejan entrar a tu usuario.
+          SB_URL: https://hcwgtyjgscgdnxkrcjqf.supabase.co
+          SB_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjd2d0eWpnc2NnZG54a3JjanFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMTE4MzcsImV4cCI6MjA5NTU4NzgzN30.4VOE5l_1cE6X8jOiZ2u2cGZ1rDiFKhQdYdivJQhESWM
+        run: |
+          codigo=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$SB_URL/rest/v1/rpc/mantener_activo" \
+            -H "apikey: $SB_KEY" -H "Authorization: Bearer $SB_KEY" -H 'Content-Type: application/json' -d '{}')
+          echo "mantener_activo: $codigo"
+          if [ "$codigo" != "200" ]; then
+            # Antes de ejecutar seguridad.sql la función no existe: se consulta una tabla
+            codigo=$(curl -s -o /dev/null -w '%{http_code}' "$SB_URL/rest/v1/categorias?select=name&limit=1" \
+              -H "apikey: $SB_KEY" -H "Authorization: Bearer $SB_KEY")
+            echo "categorias: $codigo"
+          fi
+          if [ "$codigo" != "200" ]; then
+            echo "::error::Supabase no respondió ($codigo). Revisa si el proyecto está pausado en supabase.com/dashboard"
+            exit 1
+          fi
