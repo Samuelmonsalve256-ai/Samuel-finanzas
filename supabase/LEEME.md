@@ -47,6 +47,30 @@ Tu proyecto de Supabase es **"Finanzas de RICH"** (`https://hcwgtyjgscgdnxkrcjqf
 
 ---
 
+## Automático: cambios de la base de datos y respaldos
+
+Con una llave de Supabase guardada en GitHub (una sola vez), ya no hay que ejecutar SQL a mano:
+
+- **Aplicar cambios en Supabase** (`.github/workflows/aplicar-sql.yml`): cuando se publica un archivo
+  nuevo en `supabase/migraciones/`, se aplica solo. También revisa una vez al día. Cada archivo se
+  aplica una sola vez (quedan anotados en la tabla `_migraciones`) y en una transacción: si falla,
+  no queda nada a medias y la tarea sale en rojo.
+- **Respaldo semanal** (`.github/workflows/respaldo.yml`): cada domingo guarda una copia de todas
+  tus finanzas en el bucket privado `respaldos` de Supabase. Se conservan los últimos 12.
+  En la app: **Ajustes → Respaldos** para verlos y descargarlos, o **Descargar copia de hoy**.
+
+### Configurar la llave (una sola vez)
+
+1. En Supabase, abre tu cuenta: <https://supabase.com/dashboard/account/tokens>.
+2. Pulsa **Generate new token**, ponle de nombre `GitHub Mis Finanzas` y cópialo (solo se muestra una vez).
+3. En GitHub abre el repositorio **Samuel-finanzas → Settings → Secrets and variables → Actions**.
+4. Pulsa **New repository secret**. En **Name** escribe `SUPABASE_ACCESS_TOKEN` y en **Secret** pega la llave.
+   Pulsa **Add secret**.
+
+> La llave da acceso de administración a tus proyectos de Supabase. GitHub la guarda cifrada y
+> no se muestra en los registros. Si algún día crees que se filtró, bórrala en la misma página de
+> Supabase y crea otra.
+
 ## La tarea que evita que Supabase se pause
 
 El archivo `.github/workflows/mantener-activo.yml` visita la base de datos cada 3 días.

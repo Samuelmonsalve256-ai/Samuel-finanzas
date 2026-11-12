@@ -373,6 +373,13 @@ html,body{min-height:100vh;background:var(--bg);-webkit-tap-highlight-color:tran
 .undo-bar.show{transform:translateX(-50%) translateY(0)}
 .undo-bar button{border:none;background:var(--g);color:#fff;font-family:inherit;font-size:12px;font-weight:700;padding:7px 14px;border-radius:16px;cursor:pointer}
 
+/* Respaldos */
+.resp-lista{display:flex;flex-direction:column;gap:6px;margin-bottom:6px}
+.resp-nota{font-size:11px;color:var(--t3);line-height:1.45;padding:2px 2px 4px}
+.resp-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--bdr);border-radius:var(--rads);background:var(--s1)}
+.resp-fecha{flex:1;font-size:12px;font-weight:600;color:var(--t1)}
+.resp-btn{border:1px solid var(--bdrm);background:#fff;color:var(--t1);border-radius:8px;padding:5px 10px;font-size:11px;font-weight:600;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:4px}
+
 /* Inicio de sesión */
 .login-overlay{position:fixed;inset:0;background:var(--s1,#f1f5f9);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
 .login-box{width:100%;max-width:340px;background:#fff;border:1px solid var(--bdr);border-radius:var(--rad);box-shadow:var(--shadow-md);padding:26px 22px;display:flex;flex-direction:column;gap:12px}
@@ -541,7 +548,7 @@ html,body{min-height:100vh;background:var(--bg);-webkit-tap-highlight-color:tran
 
 /* ── Ajustes ── */
 .settings-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:250;display:flex;align-items:center;justify-content:center;padding:20px}
-.settings-panel{background:var(--s0);border-radius:var(--rad);padding:22px 20px 28px;width:100%;max-width:400px;box-sizing:border-box}
+.settings-panel{background:var(--s0);border-radius:var(--rad);padding:22px 20px 28px;width:100%;max-width:400px;box-sizing:border-box;max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .settings-title{font-size:15px;font-weight:700;color:var(--t0);margin-bottom:20px;display:flex;justify-content:space-between;align-items:center}
 .settings-close{width:28px;height:28px;border-radius:7px;border:none;background:var(--s1);color:var(--t2);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;font-weight:700}
 .settings-section-lbl{font-size:9px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
@@ -673,6 +680,16 @@ html,body{min-height:100vh;background:var(--bg);-webkit-tap-highlight-color:tran
       </div>
       <i class="ti ti-chevron-right settings-item-arrow"></i>
     </div>
+    <div class="settings-section-lbl">Respaldos</div>
+    <div class="settings-item" onclick="descargarCopiaActual()">
+      <div class="settings-item-icon" style="background:#dcfce7">💾</div>
+      <div class="settings-item-info">
+        <div class="settings-item-title">Descargar copia de hoy</div>
+        <div class="settings-item-sub">Guarda tus finanzas en un archivo en este dispositivo</div>
+      </div>
+      <i class="ti ti-download settings-item-arrow"></i>
+    </div>
+    <div class="resp-lista" id="respaldos-lista"></div>
     <div class="settings-section-lbl">Cuenta</div>
     <div class="settings-item" onclick="cerrarSesion()">
       <div class="settings-item-icon" style="background:#e0f2fe">👤</div>
@@ -1269,6 +1286,54 @@ async function loadAll() {
   renderLists();
   updateCapKPI();
   if(!desdeCache) setTimeout(showAlertaCompromisos, 900);
+}
+
+// ── Respaldos ──
+// La tarea de GitHub "Respaldo semanal" guarda cada domingo una copia en Supabase Storage
+// (bucket privado "respaldos", carpeta con el id de tu usuario). Aquí se listan y descargan.
+function bajarArchivo(nombre, contenido){
+  const url=URL.createObjectURL(contenido instanceof Blob ? contenido : new Blob([contenido],{type:'application/json'}));
+  const a=document.createElement('a'); a.href=url; a.download=nombre;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 10000);
+}
+function descargarCopiaActual(){
+  const copia={app:'Mis Finanzas', creado:new Date().toISOString(), origen:'dispositivo',
+    registros:data.map(d=>({id:d.id, mes:d.mes, anio:d.anio, tipo:d.tipo, cat:d.cat, descripcion:d.desc, monto:d.monto, fecha:d.fecha})),
+    categorias:CATS, capital:capCfg?[{id:1,...capCfg}]:[], compromisos, ajustes:Object.entries(ajustesNube).map(([clave,valor])=>({clave,valor}))};
+  bajarArchivo(`finanzas_${today()}.json`, JSON.stringify(copia,null,2));
+  showToast('✓ Copia descargada','#059669');
+}
+async function storageFetch(path, opts){
+  await asegurarToken();
+  const r=await fetch(`${SB_URL}/storage/v1/${path}`, {...opts, headers:{apikey:SB_KEY, Authorization:'Bearer '+accessToken, 'Content-Type':'application/json', ...(opts&&opts.headers||{})}});
+  if(!r.ok) throw new Error(r.status+' '+await r.text().catch(()=>''));
+  return r;
+}
+async function cargarRespaldos(){
+  const cont=document.getElementById('respaldos-lista');
+  if(!cont) return;
+  if(!usuario || !accessToken || !navigator.onLine){ cont.innerHTML='<div class="resp-nota">Conéctate a internet para ver los respaldos semanales.</div>'; return; }
+  cont.innerHTML='<div class="resp-nota">Buscando respaldos…</div>';
+  try {
+    const r=await storageFetch('object/list/respaldos', {method:'POST', body:JSON.stringify({prefix:usuario.id, limit:100, sortBy:{column:'name', order:'desc'}})});
+    const lista=(await r.json()).filter(f=>/^finanzas_.*\.json$/.test(f.name)).sort((a,b)=>b.name.localeCompare(a.name));
+    if(!lista.length){ cont.innerHTML='<div class="resp-nota">Aún no hay respaldos semanales. Se guarda uno cada domingo automáticamente.</div>'; return; }
+    cont.innerHTML='<div class="resp-nota">Copia automática cada domingo · se guardan los últimos 12</div>'+lista.map(f=>{
+      const fecha=f.name.replace(/^finanzas_|\.json$/g,'');
+      return `<div class="resp-item"><span class="resp-fecha">📦 ${fmtFecha(fecha)}</span>
+        <button class="resp-btn" onclick="descargarRespaldo('${esc(f.name)}')"><i class="ti ti-download"></i>Descargar</button></div>`;
+    }).join('');
+  } catch(e){
+    console.log('No se pudieron cargar los respaldos:', e);
+    cont.innerHTML='<div class="resp-nota">No se pudieron cargar los respaldos ahora.</div>';
+  }
+}
+async function descargarRespaldo(nombre){
+  try {
+    const r=await storageFetch(`object/authenticated/respaldos/${usuario.id}/${encodeURIComponent(nombre)}`, {method:'GET'});
+    bajarArchivo(nombre, await r.blob());
+  } catch(e){ showToast('No se pudo descargar el respaldo','#dc2626'); }
 }
 
 // ── Inicio de sesión ──
@@ -2519,6 +2584,7 @@ function showConfirm(title, msg, danger){
 function abrirAjustes(){
   const sub = document.getElementById('settings-pin-sub');
   sub.textContent = hasPin() ? 'PIN activo — toca para cambiarlo' : 'No hay PIN — toca para crear uno';
+  cargarRespaldos();
   const cu=document.getElementById('settings-cuenta-sub');
   if(cu) cu.textContent = usuario && usuario.email ? 'Conectado como '+usuario.email : 'Sin sesión';
   document.getElementById('settings-overlay').style.display='flex';
