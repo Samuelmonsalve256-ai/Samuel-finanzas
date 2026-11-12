@@ -1000,6 +1000,31 @@ textarea.cs-in{resize:none;font-size:14px;line-height:1.4}
 .comp-alerta-monto-val{font-weight:700;color:var(--t0)}
 .comp-alerta-btn{border-radius:12px;font-size:13.5px;font-weight:650;padding:13px}
 .comp-alerta-btn.primary,.comp-alerta-btn.primary.warn,.comp-alerta-btn.primary.ok{background:var(--ink)}
+
+/* Compromisos: notas y categoría */
+.cp-cat{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:550;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.cp-cat i{font-size:13px;color:var(--cc)}
+.cp-cat.grande{font-size:12.5px;padding:4px 10px 4px 8px;border-radius:999px;background:#fff;border:1px solid var(--bdr);color:var(--t1)}
+.cp-cat.grande i{font-size:15px}
+.cp-item-meta .cp-chip+.cp-cat::before{content:'·';color:var(--t4);margin-right:3px}
+.cp-nota-tag{display:flex;align-items:flex-start;gap:6px;margin-top:7px;padding:6px 9px;border-radius:9px;background:#FFF6D6;border:1px solid #F3E2A6;color:#5E4A0E;font-size:12px;font-weight:500;line-height:1.35;max-width:100%}
+.cp-nota-tag i{font-size:14px;color:#B7891F;flex-shrink:0;margin-top:1px}
+.cp-nota-tag span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+.cp-nota-tag.mini{margin-top:6px;font-size:11.5px;padding:5px 8px}
+.cp-nota-tag.mini span{-webkit-line-clamp:1}
+.cp-item{align-items:flex-start}
+.cp-item .cp-fecha,.cp-item .cp-check{margin-top:2px}
+.cp-item .cp-item-monto{margin-top:12px}
+.cpd-notas{display:block;margin:0 20px;padding:12px 14px;border-radius:14px;background:#FFF6D6;border:1px solid #F3E2A6;box-shadow:0 6px 16px -10px rgba(183,137,31,.45)}
+.cpd-notas-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.cpd-notas-hd span{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#8A6A12}
+.cpd-notas-hd span i{font-size:15px}
+.cpd-notas-txt{font-size:15px;font-weight:550;color:#3F320A;line-height:1.45;white-space:pre-wrap;word-break:break-word;user-select:text;-webkit-user-select:text}
+.cpd-copiar{display:flex;align-items:center;gap:4px;border:1px solid #E6CF85;background:#fff;color:#6B530F;font-family:inherit;font-size:12px;font-weight:650;padding:5px 10px;border-radius:999px;cursor:pointer;transition:all .2s}
+.cpd-copiar.ok{background:var(--g);border-color:var(--g);color:#fff}
+.cpf-cat{display:flex;align-items:center;gap:8px}
+.cpf-cat-ico{width:44px;height:44px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c)}
+.cp-item.k-ok .cp-nota-tag{opacity:.55}
 </style>
 </head>
 <body>
@@ -1362,7 +1387,7 @@ textarea.cs-in{resize:none;font-size:14px;line-height:1.4}
       <button class="cs-x" onclick="cerrarModalComp()">✕</button>
     </div>
     <label class="cs-lbl" for="comp-inp-titulo">¿Qué vas a pagar?</label>
-    <input class="cs-in" type="text" id="comp-inp-titulo" placeholder="Ej: Cuota del banco, arriendo, tarjeta…" maxlength="60">
+    <input class="cs-in" type="text" id="comp-inp-titulo" placeholder="Ej: Cuota del banco, arriendo, tarjeta…" maxlength="60" oninput="sugerirCatComp(this.value)">
     <label class="cs-lbl" for="comp-inp-monto-v">Monto</label>
     <div class="cpf-monto"><span>$</span><input type="text" inputmode="numeric" id="comp-inp-monto-v" placeholder="0" oninput="compMontoInput(this)"></div>
     <input type="hidden" id="comp-inp-monto">
@@ -1374,6 +1399,8 @@ textarea.cs-in{resize:none;font-size:14px;line-height:1.4}
       <button type="button" data-k="fin" onclick="compFechaRapida('fin')">Fin de mes</button>
     </div>
     <input class="cs-in" type="date" id="comp-inp-fecha" onchange="marcarFechaRapida()">
+    <label class="cs-lbl" for="comp-inp-cat">Categoría del gasto <span>(al pagarlo se registra aquí)</span></label>
+    <div class="cpf-cat"><span class="cpf-cat-ico" id="comp-cat-ico"></span><select class="cs-in" id="comp-inp-cat" onchange="this.dataset.auto='';pintarCatComp()"></select></div>
     <label class="cs-lbl" for="comp-inp-notas">Notas <span>(opcional)</span></label>
     <textarea class="cs-in" id="comp-inp-notas" rows="2" placeholder="Número de cuenta, referencia, a quién se paga…"></textarea>
     <input type="hidden" id="comp-edit-id" value="">
@@ -1617,7 +1644,7 @@ function aplicarFilas(regs, cats, cap, comps){
   if (cap.length) capCfg = {initial:Number(cap[0].initial)||0, mes:Number(cap[0].mes), anio:Number(cap[0].anio)};
   compromisos = comps.map(c=>({
     id: String(c.id), titulo: c.titulo, fecha: c.fecha,
-    monto: Number(c.monto)||0, notas: c.notas||'', completado: !!c.completado
+    monto: Number(c.monto)||0, notas: c.notas||'', completado: !!c.completado, categoria: c.categoria||''
   }));
 }
 async function loadAll() {
@@ -3145,9 +3172,25 @@ function eliminarPin(){
 
 // ── COMPROMISOS ──
 let compromisos=[];
-async function saveCompromisos(comp){ 
+async function saveCompromisos(comp){
   try{ await sbUpsert('compromisos', comp); }
-  catch(e){ showToast('Error al guardar compromiso','#C8423B'); }
+  catch(e){
+    // Si la base aún no tiene la columna "categoria", se guarda sin ella
+    if(e.status===400 && /categoria/i.test(e.message||'')){
+      const {categoria, ...resto}=comp;
+      try{ await sbUpsert('compromisos', resto); return; }catch(e2){}
+    }
+    showToast('Error al guardar compromiso','#C8423B');
+  }
+}
+// Categoría de gasto de un compromiso: la elegida, o una que coincida con el nombre, u "Otros"
+function catDeComp(c){
+  const lista=catsDe('gasto');
+  if(c && c.categoria && lista.some(x=>x.name===c.categoria)) return c.categoria;
+  const t=String(c&&c.titulo||'').toLowerCase();
+  const porNombre=lista.find(x=>t.includes(x.name.toLowerCase()) || x.name.toLowerCase().split(/\s+/).some(w=>w.length>3 && t.includes(w)));
+  if(porNombre) return porNombre.name;
+  return (lista.find(x=>/^otros?$/i.test(x.name))||lista[0]||{name:'Otros'}).name;
 }
 async function deleteCompromiso(id){
   try{ await sbDelete('compromisos',`id=eq.${id}`); }
@@ -3327,6 +3370,7 @@ function renderCompromisos(){
         <div class="cp-foco-lbl">${e.d<0?'Pago vencido':'Próximo pago'}</div>
         <div class="cp-foco-tit">${esc(siguiente.titulo)}</div>
         <div class="cp-foco-sub">${fmt(siguiente.monto)} · ${fmtFecha(siguiente.fecha)}</div>
+        ${siguiente.notas?`<div class="cp-nota-tag mini"><i class="ti ti-note"></i><span>${esc(siguiente.notas)}</span></div>`:''}
       </div>
       <button class="cp-pagar" onclick="pagarComp('${siguiente.id}')" aria-label="Marcar como pagado"><i class="ti ti-check"></i></button>
     </div>`;
@@ -3359,7 +3403,8 @@ function renderCompromisos(){
       <div class="cp-fecha"><b>${f.getDate()}</b><span>${MS[f.getMonth()]}</span></div>
       <div class="cp-item-body">
         <div class="cp-item-tit">${esc(c.titulo)}</div>
-        <div class="cp-item-meta"><span class="cp-chip">${e.txt}</span>${c.notas?`<span class="cp-nota"><i class="ti ti-note"></i>${esc(c.notas)}</span>`:''}</div>
+        <div class="cp-item-meta"><span class="cp-chip">${e.txt}</span><span class="cp-cat" style="--cc:${catClr(catDeComp(c))}">${catIcoHTML(catDeComp(c))}${esc(catDeComp(c))}</span></div>
+        ${c.notas?`<div class="cp-nota-tag"><i class="ti ti-note"></i><span>${esc(c.notas)}</span></div>`:''}
       </div>
       <div class="cp-item-monto">${fmt(c.monto)}</div>
       ${c.completado
@@ -3405,8 +3450,11 @@ function verComp(id){
       <div class="cpd-tit">${esc(c.titulo)}</div>
       <div class="cpd-monto">${fmt(c.monto)}</div>
       <div class="cpd-fecha"><i class="ti ti-calendar"></i>${f.getDate()} de ${MF[f.getMonth()].toLowerCase()} de ${f.getFullYear()}</div>
+      <div class="cpd-fecha"><span class="cp-cat grande" style="--cc:${catClr(catDeComp(c))}">${catIcoHTML(catDeComp(c))}${esc(catDeComp(c))}</span></div>
     </div>
-    ${c.notas?`<div class="cpd-notas"><i class="ti ti-note"></i><span>${esc(c.notas)}</span></div>`:''}
+    ${c.notas?`<div class="cpd-notas"><div class="cpd-notas-hd"><span><i class="ti ti-note"></i>Nota</span>
+        <button class="cpd-copiar" onclick="copiarNotaComp('${c.id}',this)"><i class="ti ti-copy"></i>Copiar</button></div>
+        <div class="cpd-notas-txt">${esc(c.notas)}</div></div>`:''}
     <div class="cpd-acciones">
       ${c.completado
         ? `<button class="cpd-btn sec" onclick="cerrarVerComp();deshacerPagoComp('${c.id}')"><i class="ti ti-arrow-back-up"></i>Devolver a pendiente</button>`
@@ -3415,7 +3463,7 @@ function verComp(id){
         <button class="cpd-btn sec" onclick="cerrarVerComp();editarComp('${c.id}')"><i class="ti ti-pencil"></i>Editar</button>
         <button class="cpd-btn del" onclick="cerrarVerComp();eliminarComp('${c.id}')"><i class="ti ti-trash"></i>Eliminar</button>
       </div>
-      ${c.completado?'<div class="cpd-nota-pago">Al pagarlo se registró como gasto del mes.</div>':'<div class="cpd-nota-pago">Al marcarlo como pagado se agrega a tus gastos del mes.</div>'}
+      ${c.completado?`<div class="cpd-nota-pago">Al pagarlo se registró como gasto en <b>${esc(catDeComp(c))}</b>.</div>`:`<div class="cpd-nota-pago">Al marcarlo como pagado se agrega a tus gastos en <b>${esc(catDeComp(c))}</b>.</div>`}
     </div>`;
   document.getElementById('comp-det').style.display='flex';
 }
@@ -3441,6 +3489,28 @@ const markAndCelebrate=pagarComp, markCompFromPanel=pagarComp, showCompDetail=ve
 function closeCompDetail(){ cerrarVerComp(); }
 
 // ── Formulario: monto con formato y fechas rápidas ──
+function pintarCatComp(){
+  const sel=document.getElementById('comp-inp-cat'), ico=document.getElementById('comp-cat-ico');
+  if(!sel||!ico) return;
+  ico.style.setProperty('--c', catClr(sel.value)); ico.innerHTML=catIcoHTML(sel.value);
+}
+// Mientras escribes el nombre, se sugiere la categoría (si no la elegiste tú)
+function sugerirCatComp(titulo){
+  const sel=document.getElementById('comp-inp-cat');
+  if(!sel || sel.dataset.auto!=='1') return;
+  sel.value=catDeComp({titulo}); pintarCatComp();
+}
+async function copiarNotaComp(id, btn){
+  const c=compromisos.find(x=>String(x.id)===String(id)); if(!c||!c.notas) return;
+  let ok=false;
+  try{ await navigator.clipboard.writeText(c.notas); ok=true; }
+  catch(e){
+    const t=document.createElement('textarea'); t.value=c.notas; t.style.position='fixed'; t.style.opacity='0';
+    document.body.appendChild(t); t.select(); try{ ok=document.execCommand('copy'); }catch(e2){} t.remove();
+  }
+  if(ok && btn){ btn.classList.add('ok'); btn.innerHTML='<i class="ti ti-check"></i>Copiada'; setTimeout(()=>{ btn.classList.remove('ok'); btn.innerHTML='<i class="ti ti-copy"></i>Copiar'; },1800); }
+  showToast(ok?'✓ Nota copiada':'No se pudo copiar', ok?'#13795B':'#C8423B');
+}
 function compMontoInput(el){
   const raw=el.value.replace(/\D/g,''), n=parseInt(raw||'0',10);
   el.value=raw?n.toLocaleString('es-CO'):'';
@@ -3485,6 +3555,13 @@ function abrirModalComp(id=null){
     document.getElementById('comp-inp-monto-v').value='';
     document.getElementById('comp-inp-notas').value='';
   }
+  // Categoría: la del compromiso o una sugerida por el nombre
+  const cEd = id ? compromisos.find(x=>x.id===id) : null;
+  const selCat=document.getElementById('comp-inp-cat');
+  selCat.innerHTML=catsDe('gasto').map(x=>`<option value="${esc(x.name)}">${esc(x.name)}</option>`).join('');
+  selCat.value = cEd ? catDeComp(cEd) : catDeComp({titulo:''});
+  selCat.dataset.auto = cEd && cEd.categoria ? '' : '1';
+  pintarCatComp();
   marcarFechaRapida();
   document.getElementById('comp-modal-overlay').style.display='flex';
   if(!id) setTimeout(()=>document.getElementById('comp-inp-titulo').focus(),60);
@@ -3502,10 +3579,11 @@ async function guardarComp(){
   if(!titulo){showToast('Escribe una descripción','#C8423B');return;}
   if(!fecha){showToast('Selecciona una fecha','#C8423B');return;}
   if(monto<=0){showToast('Ingresa un monto válido','#C8423B');return;}
-  const row={id:editId||String(Date.now()),titulo,fecha,monto,notas,completado:false};
+  const categoria=document.getElementById('comp-inp-cat').value||'';
+  const row={id:editId||String(Date.now()),titulo,fecha,monto,notas,categoria,completado:false};
   if(editId){
     const idx=compromisos.findIndex(c=>c.id===editId);
-    if(idx>-1) compromisos[idx]={...compromisos[idx],titulo,fecha,monto,notas};
+    if(idx>-1) compromisos[idx]={...compromisos[idx],titulo,fecha,monto,notas,categoria};
     row.completado=compromisos.find(c=>c.id===editId)?.completado||false;
   } else {
     compromisos.push({...row});
@@ -3530,7 +3608,7 @@ async function toggleComp(id){
       mes:hoy.getMonth(),
       anio:hoy.getFullYear(),
       tipo:'gasto',
-      cat:catsDe('gasto')[0]?.name||'Otros',
+      cat:catDeComp(c),
       descripcion:`[COMP] ${c.titulo}`,
       monto:c.monto,
       fecha:today()
@@ -3541,7 +3619,7 @@ async function toggleComp(id){
       setSyncDot('ok');
       data.push({id:row.id,mes:row.mes,anio:row.anio,tipo:'gasto',cat:row.cat,desc:row.descripcion,monto:row.monto,fecha:row.fecha});
       renderLists();
-      showToast('✓ Pagado — agregado a gastos del mes','#13795B');
+      showToast(`✓ Pagado — gasto agregado en ${row.cat}`,'#13795B');
     }catch(e){ setSyncDot('error'); showToast('Compromiso pagado pero error al agregar a gastos','#f59e0b'); }
   } else {
     // Deshacer: eliminar el gasto asociado de registros
