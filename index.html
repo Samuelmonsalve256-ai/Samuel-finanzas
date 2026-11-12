@@ -1051,6 +1051,91 @@ textarea.cs-in{resize:none;font-size:14px;line-height:1.4}
 .cal-otro-d{font-size:11.5px;color:rgba(255,255,255,.55);white-space:nowrap}
 .cal-otro b{font-size:13.5px;font-weight:700;white-space:nowrap}
 .cal-otros-mas{font-size:12px;color:rgba(255,255,255,.45);margin:4px 4px 0}
+
+/* ══ Color principal (acento) ══ */
+:root{--acc:#13795B}
+.nav-tab.active{border-bottom-color:var(--acc)}
+@media(max-width:700px){.nav-tab.active i{color:var(--acc)}}
+.sw.on{background:var(--acc)}
+.cpf-rapidas button.on{background:var(--acc);border-color:var(--acc)}
+.cx-seg button.on{color:var(--acc)}
+.tb-icon svg circle{fill:color-mix(in srgb,var(--acc) 55%,#fff)}
+.fi:focus,.pw:focus-within,.cs-in:focus,.cpf-monto:focus-within,.login-in:focus,.z-gas .fi:focus,.z-gas .pw:focus-within{border-color:var(--acc)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 16%,transparent)!important}
+.cs-emojis button.on{border-color:var(--acc);color:var(--acc)}
+.cs-colores button.on{box-shadow:0 0 0 2.5px var(--acc)}
+.cx-nueva:hover,.cp-check:hover{border-color:var(--acc)}
+html.txt-grande body{zoom:1.1}
+
+/* ══ Ajustes ══ */
+.st-ov{align-items:flex-end;padding:0;background:rgba(14,17,22,.45);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+@media(min-width:600px){.st-ov{align-items:center;padding:20px}}
+.st{max-width:460px;border-radius:24px 24px 0 0;padding:16px 16px calc(22px + env(safe-area-inset-bottom));background:var(--bg);max-height:92vh;animation:csUp .25s cubic-bezier(.4,0,.2,1)}
+@media(min-width:600px){.st{border-radius:24px}}
+.st-hd{display:flex;align-items:center;justify-content:space-between;padding:2px 2px 12px}
+.st-hd span{font-size:20px;font-weight:700;letter-spacing:-.02em}
+.st-perfil{display:flex;align-items:center;gap:12px;background:var(--ink);color:#fff;border-radius:18px;padding:14px;position:relative;overflow:hidden}
+.st-perfil::after{content:'';position:absolute;width:180px;height:180px;right:-60px;top:-90px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--acc) 55%,transparent),transparent 70%)}
+.st-avatar{width:46px;height:46px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;background:var(--acc);color:#fff;position:relative;z-index:1}
+.st-perfil-info{min-width:0;position:relative;z-index:1}
+.st-correo{font-size:14.5px;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.st-sync{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.65);margin-top:3px}
+.st-sync i{width:7px;height:7px;border-radius:50%;background:#3DDC97;box-shadow:0 0 0 3px rgba(61,220,151,.18)}
+.st-sync.pend i{background:#F6C35B;box-shadow:0 0 0 3px rgba(246,195,91,.18)}
+.st-sync.mal i{background:#FF8A80;box-shadow:0 0 0 3px rgba(255,138,128,.18)}
+.st-lbl{font-size:12.5px;font-weight:600;color:var(--t2);margin:18px 6px 7px}
+.st-grupo{background:#fff;border:1px solid var(--bdr);border-radius:16px;overflow:hidden}
+.st-fila{display:flex;align-items:center;gap:12px;padding:12px 14px;min-height:56px}
+.st-fila+.st-fila{border-top:1px solid var(--bdr)}
+.st-fila.tocable{cursor:pointer;transition:background .15s}
+.st-fila.tocable:active{background:var(--s1)}
+.st-fila.col{flex-direction:column;align-items:stretch;gap:12px}
+.st-fila-top{display:flex;align-items:center;gap:12px}
+.st-ico{width:34px;height:34px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;background:color-mix(in srgb,var(--acc) 12%,#fff);color:var(--acc)}
+.st-ico.rojo{background:var(--rl);color:var(--r)}
+.st-txt{flex:1;min-width:0;display:flex;flex-direction:column}
+.st-txt b{font-size:14px;font-weight:600;color:var(--t0)}
+.st-txt b.rojo{color:var(--r)}
+.st-txt small{font-size:12px;color:var(--t3);margin-top:1px}
+.st-flecha{color:var(--t4);font-size:16px}
+.st-chip{font-size:11.5px;font-weight:650;padding:3px 9px;border-radius:999px;background:var(--s2);color:var(--t2)}
+.st-chip.ok{background:color-mix(in srgb,var(--acc) 14%,#fff);color:var(--acc)}
+.st-colores{display:flex;flex-wrap:wrap;gap:10px;padding:0 0 2px 46px}
+.st-color{width:34px;height:34px;border-radius:50%;border:none;background:var(--sc);cursor:pointer;position:relative;transition:transform .15s;padding:0}
+.st-color:active{transform:scale(.9)}
+.st-color.on::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:2.5px solid var(--sc)}
+.st-color.on::before{content:'\2713';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700}
+.st-color.libre{display:flex;align-items:center;justify-content:center;background:conic-gradient(#ef4444,#f59e0b,#10b981,#3b82f6,#8b5cf6,#ef4444);color:#fff;font-size:15px;overflow:visible}
+.st-color.libre.on{background:var(--sc)}
+.st-color.libre.on i{display:none}
+.st-color.libre input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.st-seg{flex-shrink:0}
+.st-seg button{padding:6px 12px;font-size:12px}
+.st .resp-lista{margin:0}
+.st .resp-item{background:var(--s1)}
+.st-pie{text-align:center;font-size:11.5px;color:var(--t3);margin-top:18px}
+
+/* ══ PIN ══ */
+.pn-ov{background:radial-gradient(circle at 50% 22%,color-mix(in srgb,var(--acc) 28%,#0E1116) 0%,#0B0E13 70%);padding:20px;z-index:650;animation:celEntra .25s ease both}
+.pn{width:100%;max-width:330px;text-align:center;color:#fff}
+.pn-ico{width:64px;height:64px;border-radius:20px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:30px;background:rgba(255,255,255,.1);color:#fff;transition:all .3s;animation:celPop .4s cubic-bezier(.3,1.5,.5,1) both}
+.pn-ico.ok{background:#3DDC97;color:#0B2A1E;transform:scale(1.08)}
+.pn-tit{font-size:20px;font-weight:700;letter-spacing:-.02em}
+.pn-sub{font-size:13px;color:rgba(255,255,255,.6);margin-top:4px;min-height:18px}
+.pn-puntos{display:flex;justify-content:center;gap:18px;margin:26px 0 8px}
+.pn-puntos .pin-dot{width:15px;height:15px;border-radius:50%;border:2px solid rgba(255,255,255,.35);background:transparent;transition:all .18s cubic-bezier(.3,1.6,.5,1)}
+.pn-puntos .pin-dot.filled{background:#fff;border-color:#fff;transform:scale(1.15)}
+.pn-puntos .pin-dot.error{background:#FF8A80;border-color:#FF8A80}
+.pn-puntos.ok .pin-dot{background:#3DDC97;border-color:#3DDC97;transform:scale(1.2)}
+.pn-puntos.tiembla{animation:pnTiembla .45s ease}
+@keyframes pnTiembla{0%,100%{transform:translateX(0)}20%{transform:translateX(-12px)}40%{transform:translateX(10px)}60%{transform:translateX(-7px)}80%{transform:translateX(4px)}}
+.pn-error{font-size:13px;font-weight:600;color:#FF8A80;min-height:20px;margin-bottom:10px}
+.pn-teclado{display:grid;grid-template-columns:repeat(3,72px);justify-content:center;gap:14px 22px}
+.pn-k{width:72px;height:72px;border-radius:50%;border:none;background:rgba(255,255,255,.09);color:#fff;font-family:inherit;font-size:28px;font-weight:500;cursor:pointer;transition:background .12s,transform .12s;-webkit-tap-highlight-color:transparent;display:flex;align-items:center;justify-content:center}
+.pn-k:active,.pn-k.pulsada{background:rgba(255,255,255,.28);transform:scale(.94)}
+.pn-k.pn-txt{background:transparent;font-size:14px;font-weight:600;color:rgba(255,255,255,.75)}
+.pn-k.pn-txt i{font-size:24px}
+.pn-ayuda{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:rgba(255,255,255,.4);margin-top:22px}
+@media(hover:none){.pn-ayuda{display:none}}
 </style>
 </head>
 <body>
@@ -1101,57 +1186,73 @@ textarea.cs-in{resize:none;font-size:14px;line-height:1.4}
 </header>
 
 <!-- AJUSTES PANEL -->
-<div class="settings-overlay" id="settings-overlay" style="display:none" onclick="cerrarAjustes(event)">
-  <div class="settings-panel" onclick="event.stopPropagation()">
-    <div class="settings-title">
-      <span>Ajustes</span>
-      <button class="settings-close" onclick="cerrarAjustes()">✕</button>
-    </div>
-    <div class="settings-section-lbl">Seguridad</div>
-    <div class="settings-item" onclick="cambiarPin()">
-      <div class="settings-item-icon"><i class="ti ti-key"></i></div>
-      <div class="settings-item-info">
-        <div class="settings-item-title">Cambiar PIN</div>
-        <div class="settings-item-sub" id="settings-pin-sub">Toca para cambiar tu PIN de seguridad</div>
+<div class="settings-overlay st-ov" id="settings-overlay" style="display:none" onclick="cerrarAjustes(event)">
+  <div class="settings-panel st" onclick="event.stopPropagation()">
+    <div class="st-hd"><span>Ajustes</span><button class="cs-x" onclick="cerrarAjustes()" aria-label="Cerrar">✕</button></div>
+
+    <div class="st-perfil">
+      <div class="st-avatar" id="st-avatar">?</div>
+      <div class="st-perfil-info">
+        <div class="st-correo" id="settings-cuenta-sub">—</div>
+        <div class="st-sync" id="st-sync"><i></i><span>Sincronizado</span></div>
       </div>
-      <i class="ti ti-chevron-right settings-item-arrow"></i>
     </div>
-    <div class="settings-item" onclick="eliminarPin()">
-      <div class="settings-item-icon"><i class="ti ti-lock-open"></i></div>
-      <div class="settings-item-info">
-        <div class="settings-item-title">Eliminar PIN</div>
-        <div class="settings-item-sub">Quitar la protección del capital</div>
+
+    <div class="st-lbl">Apariencia</div>
+    <div class="st-grupo">
+      <div class="st-fila col">
+        <div class="st-fila-top"><span class="st-ico"><i class="ti ti-palette"></i></span><div class="st-txt"><b>Color principal</b><small id="st-acento-nombre">Bosque</small></div></div>
+        <div class="st-colores" id="st-colores"></div>
       </div>
-      <i class="ti ti-chevron-right settings-item-arrow"></i>
-    </div>
-    <div class="settings-section-lbl">Preferencias</div>
-    <div class="settings-item" onclick="cambiarSonidos()">
-      <div class="settings-item-icon"><i class="ti ti-volume"></i></div>
-      <div class="settings-item-info">
-        <div class="settings-item-title">Sonidos</div>
-        <div class="settings-item-sub" id="settings-snd-sub">Activados</div>
+      <div class="st-fila">
+        <span class="st-ico"><i class="ti ti-text-size"></i></span><div class="st-txt"><b>Tamaño del texto</b></div>
+        <div class="cx-seg st-seg" id="st-texto">
+          <button data-v="normal" onclick="cambiarApariencia({texto:'normal'})">Normal</button>
+          <button data-v="grande" onclick="cambiarApariencia({texto:'grande'})">Grande</button>
+        </div>
       </div>
-      <span class="sw" id="settings-snd-sw"><i></i></span>
     </div>
-    <div class="settings-section-lbl">Respaldos</div>
-    <div class="settings-item" onclick="descargarCopiaActual()">
-      <div class="settings-item-icon"><i class="ti ti-database-export"></i></div>
-      <div class="settings-item-info">
-        <div class="settings-item-title">Descargar copia de hoy</div>
-        <div class="settings-item-sub">Guarda tus finanzas en un archivo en este dispositivo</div>
+
+    <div class="st-lbl">Preferencias</div>
+    <div class="st-grupo">
+      <div class="st-fila tocable" onclick="cambiarSonidos()">
+        <span class="st-ico"><i class="ti ti-volume"></i></span><div class="st-txt"><b>Sonidos</b><small id="settings-snd-sub">Activados</small></div>
+        <span class="sw" id="settings-snd-sw"><i></i></span>
       </div>
-      <i class="ti ti-download settings-item-arrow"></i>
-    </div>
-    <div class="resp-lista" id="respaldos-lista"></div>
-    <div class="settings-section-lbl">Cuenta</div>
-    <div class="settings-item" onclick="cerrarSesion()">
-      <div class="settings-item-icon"><i class="ti ti-user"></i></div>
-      <div class="settings-item-info">
-        <div class="settings-item-title">Cerrar sesión</div>
-        <div class="settings-item-sub" id="settings-cuenta-sub">—</div>
+      <div class="st-fila tocable" onclick="cambiarAvisoPagos()">
+        <span class="st-ico"><i class="ti ti-bell-ringing"></i></span><div class="st-txt"><b>Aviso de pagos al abrir</b><small id="st-aviso-sub">Pagos vencidos o que vencen en 5 días</small></div>
+        <span class="sw" id="st-aviso-sw"><i></i></span>
       </div>
-      <i class="ti ti-chevron-right settings-item-arrow"></i>
     </div>
+
+    <div class="st-lbl">Seguridad</div>
+    <div class="st-grupo">
+      <div class="st-fila tocable" onclick="cambiarPin()">
+        <span class="st-ico"><i class="ti ti-lock"></i></span><div class="st-txt"><b id="st-pin-tit">PIN del capital</b><small id="settings-pin-sub">—</small></div>
+        <span class="st-chip" id="st-pin-chip">—</span><i class="ti ti-chevron-right st-flecha"></i>
+      </div>
+      <div class="st-fila tocable" id="st-pin-borrar" onclick="eliminarPin()">
+        <span class="st-ico rojo"><i class="ti ti-lock-open"></i></span><div class="st-txt"><b class="rojo">Quitar PIN</b><small>El capital quedará visible sin PIN</small></div>
+        <i class="ti ti-chevron-right st-flecha"></i>
+      </div>
+    </div>
+
+    <div class="st-lbl">Respaldos</div>
+    <div class="st-grupo">
+      <div class="st-fila tocable" onclick="descargarCopiaActual()">
+        <span class="st-ico"><i class="ti ti-database-export"></i></span><div class="st-txt"><b>Descargar copia de hoy</b><small>Un archivo con todas tus finanzas</small></div>
+        <i class="ti ti-download st-flecha"></i>
+      </div>
+      <div class="st-fila col"><div class="resp-lista" id="respaldos-lista"></div></div>
+    </div>
+
+    <div class="st-lbl">Cuenta</div>
+    <div class="st-grupo">
+      <div class="st-fila tocable" onclick="cerrarSesion()">
+        <span class="st-ico rojo"><i class="ti ti-logout"></i></span><div class="st-txt"><b class="rojo">Cerrar sesión</b></div>
+      </div>
+    </div>
+    <div class="st-pie">Mis Finanzas · versión <span id="st-version"></span></div>
   </div>
 </div>
 
@@ -1354,31 +1455,23 @@ textarea.cs-in{resize:none;font-size:14px;line-height:1.4}
 </div>
 
 <!-- PIN MODAL -->
-<div class="pin-overlay" id="pin-overlay" style="display:none">
-  <div class="pin-box">
-    <div class="pin-icon" id="pin-icon"><i class="ti ti-lock"></i></div>
-    <div class="pin-title" id="pin-title">Ingresa tu PIN</div>
-    <div class="pin-sub" id="pin-sub">Para ver el capital necesitas tu PIN</div>
-    <div class="pin-dots" id="pin-dots">
-      <div class="pin-dot" id="pd0"></div><div class="pin-dot" id="pd1"></div>
-      <div class="pin-dot" id="pd2"></div><div class="pin-dot" id="pd3"></div>
+<div class="pin-overlay pn-ov" id="pin-overlay" style="display:none">
+  <div class="pn">
+    <div class="pn-ico" id="pin-icon"><i class="ti ti-lock"></i></div>
+    <div class="pn-tit" id="pin-title">Ingresa tu PIN</div>
+    <div class="pn-sub" id="pin-sub">Para ver el capital necesitas tu PIN</div>
+    <div class="pn-puntos" id="pin-dots">
+      <i class="pin-dot" id="pd0"></i><i class="pin-dot" id="pd1"></i><i class="pin-dot" id="pd2"></i><i class="pin-dot" id="pd3"></i>
     </div>
-    <div class="pin-error-msg" id="pin-error"></div>
-    <div class="pin-keypad">
-      <button class="pin-key" onclick="pinKey('1')">1</button>
-      <button class="pin-key" onclick="pinKey('2')">2</button>
-      <button class="pin-key" onclick="pinKey('3')">3</button>
-      <button class="pin-key" onclick="pinKey('4')">4</button>
-      <button class="pin-key" onclick="pinKey('5')">5</button>
-      <button class="pin-key" onclick="pinKey('6')">6</button>
-      <button class="pin-key" onclick="pinKey('7')">7</button>
-      <button class="pin-key" onclick="pinKey('8')">8</button>
-      <button class="pin-key" onclick="pinKey('9')">9</button>
-      <button class="pin-key del" onclick="pinDel()"><i class="ti ti-backspace"></i></button>
-      <button class="pin-key" onclick="pinKey('0')">0</button>
-      <button class="pin-key del" onclick="pinClear()"><i class="ti ti-x"></i></button>
-      <button class="pin-key cancel-btn" onclick="closePinModal()">Cancelar</button>
+    <div class="pn-error" id="pin-error"></div>
+    <div class="pn-teclado">
+      <button class="pn-k" onclick="pinKey('1')">1</button><button class="pn-k" onclick="pinKey('2')">2</button><button class="pn-k" onclick="pinKey('3')">3</button>
+      <button class="pn-k" onclick="pinKey('4')">4</button><button class="pn-k" onclick="pinKey('5')">5</button><button class="pn-k" onclick="pinKey('6')">6</button>
+      <button class="pn-k" onclick="pinKey('7')">7</button><button class="pn-k" onclick="pinKey('8')">8</button><button class="pn-k" onclick="pinKey('9')">9</button>
+      <button class="pn-k pn-txt" onclick="closePinModal()">Cancelar</button><button class="pn-k" onclick="pinKey('0')">0</button>
+      <button class="pn-k pn-txt" onclick="pinDel()" aria-label="Borrar"><i class="ti ti-backspace"></i></button>
     </div>
+    <div class="pn-ayuda"><i class="ti ti-keyboard"></i>También puedes escribirlo con el teclado</div>
   </div>
 </div>
 
@@ -1680,6 +1773,8 @@ async function loadAll() {
       ajustesNube = {}; filas.forEach(f=>{ ajustesNube[f.clave]=f.valor; });
       ajustesDisponibles = true;
       migrarAjustesLocales();
+      // La apariencia elegida en otro dispositivo se aplica aquí
+      if(ajustesNube.apariencia){ apariencia={...apariencia, ...ajustesNube.apariencia}; aplicarApariencia(); try{ localStorage.setItem('mf_apariencia', JSON.stringify(apariencia)); }catch(e){} }
     } catch(e){ ajustesDisponibles=false; }
     guardarCache();
     setSyncDot('ok');
@@ -2254,6 +2349,41 @@ function sonido(nombre){
     SND.ultimo=Date.now();
     def.forEach(n=>tono(c,n));
   }catch(e){}
+}
+// ── Apariencia: color principal y tamaño del texto (se guardan en la nube) ──
+const ACENTOS=[['Bosque','#13795B'],['Océano','#2D5BD0'],['Violeta','#6D4AD6'],['Coral','#D9572F'],['Frambuesa','#C2416B'],['Ámbar','#B7791F'],['Turquesa','#0E8A8A'],['Grafito','#3A4250']];
+let apariencia={acento:'#13795B', texto:'normal'};
+try{ apariencia={...apariencia, ...JSON.parse(localStorage.getItem('mf_apariencia')||'{}')}; }catch(e){}
+function aplicarApariencia(){
+  const r=document.documentElement;
+  r.style.setProperty('--acc', apariencia.acento);
+  r.classList.toggle('txt-grande', apariencia.texto==='grande');
+}
+function cambiarApariencia(cambio, guardar=true){
+  apariencia={...apariencia, ...cambio};
+  aplicarApariencia();
+  try{ localStorage.setItem('mf_apariencia', JSON.stringify(apariencia)); }catch(e){}
+  // Mientras se arrastra el selector de color no se redibuja (cerraría el selector)
+  if(guardar){ pintarApariencia(); sonido('tap'); guardarAjuste('apariencia', apariencia); }
+}
+function pintarApariencia(){
+  const cont=document.getElementById('st-colores'); if(!cont) return;
+  const ac=String(apariencia.acento).toLowerCase(), propio=!ACENTOS.some(([,c])=>c.toLowerCase()===ac);
+  cont.innerHTML=ACENTOS.map(([n,c])=>`<button class="st-color${c.toLowerCase()===ac?' on':''}" style="--sc:${c}" onclick="cambiarApariencia({acento:'${c}'})" aria-label="${n}" title="${n}"></button>`).join('')+
+    `<label class="st-color libre${propio?' on':''}" title="Otro color" style="${propio?'--sc:'+apariencia.acento:''}"><i class="ti ti-plus"></i><input type="color" value="${apariencia.acento}" oninput="cambiarApariencia({acento:this.value},false)" onchange="cambiarApariencia({acento:this.value})"></label>`;
+  document.getElementById('st-acento-nombre').textContent=(ACENTOS.find(([,c])=>c.toLowerCase()===ac)||['Personalizado'])[0];
+  document.querySelectorAll('#st-texto button').forEach(b=>b.classList.toggle('on', b.dataset.v===apariencia.texto));
+}
+aplicarApariencia();
+let avisoPagosOn=(()=>{ try{ return localStorage.getItem('mf_aviso_pagos')!=='0'; }catch(e){ return true; } })();
+function cambiarAvisoPagos(){
+  avisoPagosOn=!avisoPagosOn;
+  try{ localStorage.setItem('mf_aviso_pagos', avisoPagosOn?'1':'0'); }catch(e){}
+  sonido('tap'); pintarAvisoPagos();
+}
+function pintarAvisoPagos(){
+  const sw=document.getElementById('st-aviso-sw'); if(sw) sw.classList.toggle('on', avisoPagosOn);
+  const sub=document.getElementById('st-aviso-sub'); if(sub) sub.textContent=avisoPagosOn?'Pagos vencidos o que vencen en 5 días':'Apagado';
 }
 function cambiarSonidos(){
   SND.on=!SND.on;
@@ -3111,11 +3241,34 @@ function showPinModal(mode, subtitle, callback){
   document.getElementById('pin-title').textContent = mode==='setup' ? 'Crear PIN' : mode==='change' ? 'Ingresa PIN actual' : 'Ingresa tu PIN';
   document.getElementById('pin-sub').textContent = subtitle || (mode==='setup'?'Elige un PIN de 4 dígitos':'Necesitas tu PIN para continuar');
   document.getElementById('pin-icon').innerHTML = `<i class="ti ${mode==='setup'?'ti-key':'ti-lock'}"></i>`;
+  document.getElementById('pin-icon').className='pn-ico';
+  document.getElementById('pin-dots').className='pn-puntos';
+  if(document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  sonido('abrir');
   document.getElementById('pin-overlay').style.display='flex';
 }
 function closePinModal(){
   document.getElementById('pin-overlay').style.display='none';
   pinBuffer=''; pinCallback=null;
+}
+// PIN correcto: los puntos se ponen verdes y el candado se abre antes de seguir
+function pinExito(siguiente){
+  sonido('ok');
+  document.getElementById('pin-dots').classList.add('ok');
+  const ico=document.getElementById('pin-icon'); ico.classList.add('ok'); ico.innerHTML='<i class="ti ti-lock-open"></i>';
+  setTimeout(siguiente, 420);
+}
+// Teclado físico: números, borrar, Enter y Esc
+document.addEventListener('keydown', ev=>{
+  const ov=document.getElementById('pin-overlay');
+  if(!ov || ov.style.display==='none') return;
+  if(/^[0-9]$/.test(ev.key)){ ev.preventDefault(); pinKey(ev.key); marcarTecla(ev.key); }
+  else if(ev.key==='Backspace'||ev.key==='Delete'){ ev.preventDefault(); pinDel(); }
+  else if(ev.key==='Escape'){ ev.preventDefault(); closePinModal(); }
+});
+function marcarTecla(k){
+  const b=[...document.querySelectorAll('.pn-k')].find(x=>x.textContent.trim()===k);
+  if(b){ b.classList.add('pulsada'); setTimeout(()=>b.classList.remove('pulsada'),140); }
 }
 function updatePinDots(){
   for(let i=0;i<4;i++){
@@ -3135,9 +3288,12 @@ function pinDel(){ if(pinBuffer.length>0){ pinBuffer=pinBuffer.slice(0,-1); upda
 function pinClear(){ pinBuffer=''; updatePinDots(); }
 function pinShakeError(msg){
   sonido('error');
+  try{ if(navigator.vibrate) navigator.vibrate([60,40,60]); }catch(e){}
   document.getElementById('pin-error').textContent=msg;
+  const pts=document.getElementById('pin-dots'); pts.classList.remove('tiembla'); void pts.offsetWidth; pts.classList.add('tiembla');
   for(let i=0;i<4;i++) document.getElementById('pd'+i).classList.add('error');
-  setTimeout(()=>{ pinBuffer=''; updatePinDots(); document.getElementById('pin-error').textContent=''; },800);
+  setTimeout(()=>{ pinBuffer=''; updatePinDots(); pts.classList.remove('tiembla'); },700);
+  setTimeout(()=>{ document.getElementById('pin-error').textContent=''; },2200);
 }
 function processPinInput(){
   if(pinMode==='setup' || pinMode==='setup_new'){
@@ -3153,15 +3309,12 @@ function processPinInput(){
       guardarPin(pinBuffer);
       localStorage.removeItem(PIN_KEY+'_temp');
       const cb=pinCallback;
-      closePinModal();
-      showToast('✓ PIN guardado correctamente','#13795B');
-      if(cb) cb();
+      pinExito(()=>{ closePinModal(); showToast('✓ PIN guardado correctamente','#13795B'); if(cb) cb(); });
     } else { pinShakeError('Los PINs no coinciden, intenta de nuevo'); pinMode='confirm'; }
   } else {
     if(pinCoincide(pinBuffer)){
       const cb=pinCallback;
-      closePinModal();
-      if(cb) cb();
+      pinExito(()=>{ closePinModal(); if(cb) cb(); });
     } else { pinShakeError('PIN incorrecto'); }
   }
 }
@@ -3202,13 +3355,22 @@ function showConfirm(title, msg, danger){
 }
 
 // ── AJUSTES ──
+const APP_VERSION='2.5';
 function abrirAjustes(){
-  sonido('abrir'); pintarAjusteSonidos();
-  const sub = document.getElementById('settings-pin-sub');
-  sub.textContent = hasPin() ? 'PIN activo — toca para cambiarlo' : 'No hay PIN — toca para crear uno';
+  sonido('abrir'); pintarAjusteSonidos(); pintarApariencia(); pintarAvisoPagos();
+  const pin=hasPin();
+  document.getElementById('settings-pin-sub').textContent = pin ? 'Toca para cambiarlo' : 'Protege la vista de tu capital';
+  document.getElementById('st-pin-tit').textContent = pin ? 'Cambiar PIN' : 'Crear PIN';
+  const chip=document.getElementById('st-pin-chip'); chip.textContent = pin ? 'Activo' : 'Sin PIN'; chip.className='st-chip'+(pin?' ok':'');
+  document.getElementById('st-pin-borrar').style.display = pin ? '' : 'none';
   cargarRespaldos();
-  const cu=document.getElementById('settings-cuenta-sub');
-  if(cu) cu.textContent = usuario && usuario.email ? 'Conectado como '+usuario.email : 'Sin sesión';
+  const correo = usuario && usuario.email || '';
+  document.getElementById('settings-cuenta-sub').textContent = correo || 'Sin sesión';
+  document.getElementById('st-avatar').textContent = (correo[0]||'?').toUpperCase();
+  const dot=document.getElementById('sync-dot'), st=document.getElementById('st-sync');
+  const est = dot.classList.contains('error') ? ['mal','Sin conexión con la nube'] : dot.classList.contains('pending') ? ['pend',`${cola.length} cambio${cola.length!==1?'s':''} por subir`] : ['ok','Sincronizado con la nube'];
+  st.className='st-sync '+est[0]; st.querySelector('span').textContent=est[1];
+  document.getElementById('st-version').textContent=APP_VERSION;
   document.getElementById('settings-overlay').style.display='flex';
 }
 function cerrarAjustes(e){
@@ -3228,6 +3390,8 @@ function cambiarPin(){
       // PIN actual correcto, ahora crear nuevo
       pinBuffer=''; pinMode='setup_new';
       document.getElementById('pin-icon').innerHTML='<i class="ti ti-key"></i>';
+      document.getElementById('pin-icon').className='pn-ico';
+      document.getElementById('pin-dots').className='pn-puntos';
       document.getElementById('pin-title').textContent='Nuevo PIN';
       document.getElementById('pin-sub').textContent='Elige tu nuevo PIN de 4 dígitos';
       document.getElementById('pin-error').textContent='';
@@ -3713,7 +3877,7 @@ function playAlertaSound(urgente){ sonido(urgente?'urgente':'proximo'); }
 function showAlertaCompromisos(forzar){
   const hoy=new Date().toDateString();
   const key='comp_alerta_'+hoy;
-  if(!forzar && localStorage.getItem(key)) return;
+  if(!forzar && (localStorage.getItem(key) || !avisoPagosOn)) return;
   const urgentes=compromisos.filter(c=>!c.completado && diasHasta(c.fecha)<=5)
     .sort((a,b)=>diasHasta(a.fecha)-diasHasta(b.fecha));
   if(!urgentes.length) return;
