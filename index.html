@@ -549,29 +549,6 @@ html,body{min-height:100vh;background:var(--bg);-webkit-tap-highlight-color:tran
 .ca-bar-fill{height:100%;border-radius:20px;transition:width .9s cubic-bezier(.4,0,.2,1)}
 .ca-bar-sub{display:flex;justify-content:space-between;margin-top:5px;font-size:10px;color:var(--t3)}
 /* ── Alerta compromiso (al abrir app) ── */
-.comp-alerta-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:500;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.comp-alerta-box{background:var(--s0);border-radius:22px;padding:0;width:100%;max-width:360px;box-shadow:0 32px 80px rgba(0,0,0,.5);overflow:hidden;border:1px solid var(--bdrm)}
-.comp-alerta-header{padding:20px 22px 16px;background:linear-gradient(135deg,#1a0a0a,#2d0f0f);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between}
-.comp-alerta-header.ok{background:linear-gradient(135deg,#0a1a0f,#0f2d18)}
-.comp-alerta-header.warn{background:linear-gradient(135deg,#1a150a,#2d220f)}
-.comp-alerta-badge{font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:4px}
-.comp-alerta-close{width:28px;height:28px;border-radius:8px;border:none;background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700}
-.comp-alerta-body{padding:22px}
-.comp-alerta-countdown{text-align:center;margin-bottom:18px}
-.comp-alerta-dias-num{font-size:64px;font-weight:800;font-family:var(--fnum);line-height:1;letter-spacing:-.04em}
-.comp-alerta-dias-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-top:2px}
-.comp-alerta-titulo{font-size:17px;font-weight:800;color:var(--t0);text-align:center;margin-bottom:6px;line-height:1.2}
-.comp-alerta-fecha{font-size:12px;color:var(--t3);text-align:center;margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:4px}
-.comp-alerta-monto{background:var(--s1);border-radius:12px;padding:14px;text-align:center;margin-bottom:18px;border:1px solid var(--bdr)}
-.comp-alerta-monto-lbl{font-size:10px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
-.comp-alerta-monto-val{font-size:24px;font-weight:800;font-family:var(--fnum);color:var(--rd)}
-.comp-alerta-extra{font-size:11px;color:var(--t3);text-align:center;margin-bottom:18px}
-.comp-alerta-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.comp-alerta-btn{padding:12px;border-radius:10px;border:none;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;transition:.14s}
-.comp-alerta-btn.primary{background:var(--rd);color:#fff}
-.comp-alerta-btn.primary.ok{background:var(--g)}
-.comp-alerta-btn.primary.warn{background:#f59e0b}
-.comp-alerta-btn.secondary{background:var(--s1);color:var(--t2);border:1px solid var(--bdr)}
 /* ── Comp cards rediseñadas ── */
 .comp-card-v2{background:var(--s0);border-radius:14px;margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--bdr);display:flex}
 .comp-card-v2-bar{width:5px;flex-shrink:0}
@@ -996,17 +973,6 @@ textarea.cs-in{resize:none;font-size:14px;line-height:1.4}
 @keyframes celSube{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.cp-hero-glow,.cp-foco-cuenta,.cp-marca,.cel-confeti{animation:none!important}}
 
-/* Alerta al abrir: mismo lenguaje visual */
-.comp-alerta-overlay{background:rgba(14,17,22,.6)}
-.comp-alerta-box{border:none;border-radius:24px;animation:celPop .35s cubic-bezier(.3,1.4,.5,1) both}
-.comp-alerta-header,.comp-alerta-header.warn,.comp-alerta-header.ok{background:var(--ink);border:none;padding:16px 18px}
-.comp-alerta-badge{font-size:11.5px;font-weight:700;letter-spacing:0;text-transform:none;padding:5px 11px}
-.comp-alerta-dias-num{font-weight:700}
-.comp-alerta-dias-lbl{text-transform:none;letter-spacing:0;font-size:13px;font-weight:600}
-.comp-alerta-titulo{font-weight:700}
-.comp-alerta-monto-val{font-weight:700;color:var(--t0)}
-.comp-alerta-btn{border-radius:12px;font-size:13.5px;font-weight:650;padding:13px}
-.comp-alerta-btn.primary,.comp-alerta-btn.primary.warn,.comp-alerta-btn.primary.ok{background:var(--ink)}
 
 /* Compromisos: notas y categoría */
 .cp-cat{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:550;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
@@ -1038,6 +1004,53 @@ textarea.cs-in{resize:none;font-size:14px;line-height:1.4}
 .sw i{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(14,17,22,.25);transition:transform .2s cubic-bezier(.4,1.3,.5,1)}
 .sw.on{background:var(--g)}
 .sw.on i{transform:translateX(18px)}
+
+/* ══ Aviso de pago al abrir la app ══ */
+.cal-ov{position:fixed;inset:0;z-index:600;display:flex;align-items:center;justify-content:center;padding:18px;overflow-y:auto;
+  background:radial-gradient(circle at 50% 30%,color-mix(in srgb,var(--c) 26%,#0E1116) 0%,#0B0E13 72%);animation:celEntra .3s ease both}
+.cal-ov.saliendo{animation:calSale .22s ease forwards}
+@keyframes calSale{to{opacity:0;transform:scale(.98)}}
+.cal{position:relative;width:100%;max-width:380px;color:#fff;text-align:center;padding:8px 4px calc(10px + env(safe-area-inset-bottom))}
+.cal-x{position:absolute;top:0;right:0;width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,.1);color:rgba(255,255,255,.75);font-size:15px;cursor:pointer}
+.cal-anillo{position:relative;width:132px;height:132px;margin:14px auto 14px;animation:celPop .5s cubic-bezier(.3,1.5,.5,1) both}
+.cal-anillo svg{position:relative;width:100%;height:100%}
+.cal-anillo::before{content:'';position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--c) 30%,transparent) 0%,transparent 68%)}
+.cal-fondo{fill:none;stroke:rgba(255,255,255,.1);stroke-width:10}
+.cal-val{fill:none;stroke:var(--c);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1.2s cubic-bezier(.3,.8,.2,1) .2s}
+.t-rojo .cal-anillo{animation:celPop .5s cubic-bezier(.3,1.5,.5,1) both,calLatido 1.6s ease-in-out .6s infinite}
+@keyframes calLatido{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.cal-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--c)}
+.cal-num i{font-size:20px;margin-bottom:1px}
+.cal-num b{font-size:38px;font-weight:700;letter-spacing:-.04em;line-height:1;color:#fff}
+.cal-num span{font-size:11.5px;font-weight:600;margin-top:2px}
+.t-rojo .cal-num i{animation:celTiembla .5s ease .7s 2}
+.cal-lbl{font-size:14px;font-weight:650;color:var(--c);animation:celSube .4s ease .25s both}
+.cal-tit{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-top:6px;line-height:1.2;animation:celSube .4s ease .32s both}
+.cal-monto{font-size:40px;font-weight:700;letter-spacing:-.04em;margin-top:2px;animation:celSube .4s ease .38s both}
+.cal-meta{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:10px;animation:celSube .4s ease .44s both}
+.cal-meta span{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:rgba(255,255,255,.75);background:rgba(255,255,255,.08);padding:5px 10px;border-radius:999px}
+.cal-meta i{font-size:14px}
+.cal-nota{display:flex;align-items:center;gap:8px;text-align:left;margin:14px auto 0;padding:10px 10px 10px 12px;border-radius:14px;background:#FFF6D6;color:#3F320A;font-size:13.5px;font-weight:550;animation:celSube .4s ease .5s both}
+.cal-nota i{color:#B7891F;font-size:16px;flex-shrink:0}
+.cal-nota span{flex:1;min-width:0;word-break:break-word}
+.cal-nota button{display:flex;align-items:center;gap:4px;border:1px solid #E6CF85;background:#fff;color:#6B530F;font-family:inherit;font-size:12px;font-weight:650;padding:6px 10px;border-radius:999px;cursor:pointer;flex-shrink:0}
+.cal-nota button.ok{background:var(--g);border-color:var(--g);color:#fff}
+.cal-pagar{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:20px;border:none;border-radius:16px;padding:16px;background:#3DDC97;color:#0B2A1E;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;
+  box-shadow:0 12px 30px -12px rgba(61,220,151,.7);transition:transform .15s;animation:celSube .4s ease .56s both}
+.cal-pagar:active{transform:scale(.97)}
+.cal-pagar i{font-size:20px}
+.cal-fila{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;animation:celSube .4s ease .62s both}
+.cal-fila button{display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;font-family:inherit;font-size:13px;font-weight:600;padding:12px 8px;border-radius:14px;cursor:pointer}
+.cal-fila i{font-size:16px;opacity:.8}
+.cal-otros{margin-top:18px;text-align:left;border-top:1px solid rgba(255,255,255,.08);padding-top:12px;animation:celSube .4s ease .7s both}
+.cal-otros-hd{font-size:12px;font-weight:600;color:rgba(255,255,255,.55);margin:0 4px 6px}
+.cal-otro{display:flex;align-items:center;gap:9px;width:100%;border:none;background:transparent;color:#fff;font-family:inherit;padding:9px 4px;border-radius:10px;cursor:pointer;text-align:left}
+.cal-otro:active{background:rgba(255,255,255,.06)}
+.cal-otro-dot{width:8px;height:8px;border-radius:50%;background:var(--k);flex-shrink:0}
+.cal-otro-t{flex:1;min-width:0;font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cal-otro-d{font-size:11.5px;color:rgba(255,255,255,.55);white-space:nowrap}
+.cal-otro b{font-size:13.5px;font-weight:700;white-space:nowrap}
+.cal-otros-mas{font-size:12px;color:rgba(255,255,255,.45);margin:4px 4px 0}
 </style>
 </head>
 <body>
@@ -1437,31 +1450,7 @@ textarea.cs-in{resize:none;font-size:14px;line-height:1.4}
 
 <!-- EDITAR CATEGORÍAS -->
 <!-- ALERTA COMPROMISO -->
-<div class="comp-alerta-overlay" id="comp-alerta-overlay" style="display:none">
-  <div class="comp-alerta-box">
-    <div class="comp-alerta-header" id="comp-alerta-header">
-      <span class="comp-alerta-badge" id="comp-alerta-badge"></span>
-      <button class="comp-alerta-close" onclick="cerrarAlerta()">✕</button>
-    </div>
-    <div class="comp-alerta-body">
-      <div class="comp-alerta-countdown">
-        <div class="comp-alerta-dias-num" id="comp-alerta-dias-num"></div>
-        <div class="comp-alerta-dias-lbl" id="comp-alerta-dias-lbl"></div>
-      </div>
-      <div class="comp-alerta-titulo" id="comp-alerta-titulo"></div>
-      <div class="comp-alerta-fecha" id="comp-alerta-fecha"></div>
-      <div class="comp-alerta-monto">
-        <div class="comp-alerta-monto-lbl">Monto a pagar</div>
-        <div class="comp-alerta-monto-val" id="comp-alerta-monto"></div>
-      </div>
-      <div class="comp-alerta-extra" id="comp-alerta-extra"></div>
-      <div class="comp-alerta-btns">
-        <button class="comp-alerta-btn secondary" onclick="cerrarAlerta()">Ahora no</button>
-        <button class="comp-alerta-btn primary" id="comp-alerta-primary-btn" onclick="irACompromisos()">Ver compromisos</button>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="cal-ov" id="comp-alerta-overlay" style="display:none" onclick="if(event.target===this)cerrarAlerta()"></div>
 
 
 </main>
@@ -3492,7 +3481,7 @@ function renderCompromisos(){
   // Alerta de vencidos: solo en el mes actual y una vez al día
   if(esMesActual){
     const hoyKey='comp_venc_'+hoy.toDateString();
-    if(!localStorage.getItem(hoyKey) && venc.length){
+    if(!localStorage.getItem(hoyKey) && !localStorage.getItem('comp_alerta_'+hoy.toDateString()) && venc.length){
       localStorage.setItem(hoyKey,'1');
       setTimeout(()=>showOverdueWarning(venc.length),700);
     }
@@ -3720,46 +3709,58 @@ async function eliminarComp(id){
 // ── ALERTA COMPROMISO (al abrir app) ──
 function playAlertaSound(urgente){ sonido(urgente?'urgente':'proximo'); }
 
-function showAlertaCompromisos(){
+// ── Aviso al abrir la app: pago vencido o por vencer (una vez al día) ──
+function showAlertaCompromisos(forzar){
   const hoy=new Date().toDateString();
   const key='comp_alerta_'+hoy;
-  if(localStorage.getItem(key)) return;
-  const urgentes=compromisos.filter(c=>{
-    if(c.completado) return false;
-    return diasHasta(c.fecha)<=5;
-  }).sort((a,b)=>diasHasta(a.fecha)-diasHasta(b.fecha));
+  if(!forzar && localStorage.getItem(key)) return;
+  const urgentes=compromisos.filter(c=>!c.completado && diasHasta(c.fecha)<=5)
+    .sort((a,b)=>diasHasta(a.fecha)-diasHasta(b.fecha));
   if(!urgentes.length) return;
-  const c=urgentes[0];
-  const dias=diasHasta(c.fecha);
-  const resto=urgentes.length-1;
-  const header=document.getElementById('comp-alerta-header');
-  const badge=document.getElementById('comp-alerta-badge');
-  const primaryBtn=document.getElementById('comp-alerta-primary-btn');
-  let color,headerCls,badgeTxt,badgeBg,badgeCol,diasColor;
-  if(dias<0){
-    color='var(--rd)'; headerCls=''; badgeTxt='Vencido'; badgeBg='rgba(200,66,59,.2)'; badgeCol='#fca5a5'; diasColor='var(--rd)';
-  } else if(dias===0){
-    color='var(--rd)'; headerCls=''; badgeTxt='Vence hoy'; badgeBg='rgba(200,66,59,.2)'; badgeCol='#fca5a5'; diasColor='var(--rd)';
-  } else if(dias<=2){
-    color='#f59e0b'; headerCls='warn'; badgeTxt='Muy pronto'; badgeBg='rgba(245,158,11,.2)'; badgeCol='#fcd34d'; diasColor='#f59e0b';
-  } else {
-    color='#f59e0b'; headerCls='warn'; badgeTxt='Próximo'; badgeBg='rgba(245,158,11,.15)'; badgeCol='#fcd34d'; diasColor='#f59e0b';
-  }
-  header.className='comp-alerta-header'+(headerCls?' '+headerCls:'');
-  badge.style.background=badgeBg; badge.style.color=badgeCol; badge.textContent=badgeTxt;
-  primaryBtn.className='comp-alerta-btn primary'+(headerCls?' '+headerCls:'');
-  document.getElementById('comp-alerta-dias-num').textContent=dias<0?Math.abs(dias):dias;
-  document.getElementById('comp-alerta-dias-num').style.color=diasColor;
-  document.getElementById('comp-alerta-dias-lbl').textContent=dias<0?'días vencido'+(Math.abs(dias)===1?'':'s'):dias===0?'¡vence hoy!':'día'+(dias===1?'':'s');
-  document.getElementById('comp-alerta-titulo').textContent=c.titulo;
-  document.getElementById('comp-alerta-fecha').innerHTML=`<i class="ti ti-calendar" style="font-size:12px"></i> ${fmtFecha(c.fecha)}`;
-  document.getElementById('comp-alerta-monto').textContent=fmt(c.monto);
-  document.getElementById('comp-alerta-extra').textContent=resto>0?`+ ${resto} compromiso${resto===1?'':'s'} pendiente${resto===1?'':'s'} más`:'';
-  document.getElementById('comp-alerta-overlay').style.display='flex';
+  const c=urgentes[0], e=estadoComp(c), dias=e.d;
+  const tono = dias<0||dias===0 ? 'rojo' : dias<=2 ? 'ambar' : 'verde';
+  const col = {rojo:'#FF8A80', ambar:'#F6C35B', verde:'#3DDC97'}[tono];
+  const num = Math.abs(dias);
+  const titulo = dias<0 ? `Pago vencido hace ${num} día${num===1?'':'s'}` : dias===0 ? 'Este pago vence hoy' : dias===1 ? 'Este pago vence mañana' : `Este pago vence en ${dias} días`;
+  // Anillo: cuánto falta de una semana (lleno = vence ya)
+  const r=56, cir=2*Math.PI*r, lleno = dias<=0 ? 1 : Math.max(.12, 1-dias/7);
+  const cat=catDeComp(c), resto=urgentes.slice(1,4), masN=urgentes.length-1-resto.length;
+  const ov=document.getElementById('comp-alerta-overlay');
+  ov.className='cal-ov t-'+tono;
+  ov.style.setProperty('--c', col);
+  ov.innerHTML=`<div class="cal">
+    <button class="cal-x" onclick="cerrarAlerta()" aria-label="Cerrar">✕</button>
+    <div class="cal-anillo">
+      <svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="${r}" class="cal-fondo"/>
+        <circle cx="66" cy="66" r="${r}" class="cal-val" stroke-dasharray="${cir.toFixed(1)}" stroke-dashoffset="${cir.toFixed(1)}" data-off="${(cir*(1-lleno)).toFixed(1)}" transform="rotate(-90 66 66)"/></svg>
+      <div class="cal-num">${dias<0?`<i class="ti ti-alert-triangle"></i><b>${num}</b><span>día${num===1?'':'s'} tarde</span>`:dias===0?`<i class="ti ti-bell-ringing"></i><b>Hoy</b>`:`<b>${dias}</b><span>día${dias===1?'':'s'}</span>`}</div>
+    </div>
+    <div class="cal-lbl">${titulo}</div>
+    <div class="cal-tit">${esc(c.titulo)}</div>
+    <div class="cal-monto">${fmt(c.monto)}</div>
+    <div class="cal-meta"><span><i class="ti ti-calendar"></i>${fmtFecha(c.fecha)}</span><span>${catIcoHTML(cat)}${esc(cat)}</span></div>
+    ${c.notas?`<div class="cal-nota"><i class="ti ti-note"></i><span>${esc(c.notas)}</span><button onclick="copiarNotaComp('${c.id}',this)"><i class="ti ti-copy"></i>Copiar</button></div>`:''}
+    <button class="cal-pagar" onclick="cerrarAlerta();pagarComp('${c.id}')"><i class="ti ti-check"></i>Ya lo pagué</button>
+    <div class="cal-fila">
+      <button onclick="irACompromisos()"><i class="ti ti-list-details"></i>Ver compromisos</button>
+      <button onclick="cerrarAlerta()"><i class="ti ti-clock"></i>Recordarme luego</button>
+    </div>
+    ${resto.length?`<div class="cal-otros"><div class="cal-otros-hd">También pendientes</div>
+      ${resto.map(o=>{ const eo=estadoComp(o); return `<button class="cal-otro" style="--k:${eo.col}" onclick="cerrarAlerta();showTab('compromisos');setTimeout(()=>verComp('${o.id}'),250)">
+        <span class="cal-otro-dot"></span><span class="cal-otro-t">${esc(o.titulo)}</span><span class="cal-otro-d">${eo.txt}</span><b>${fmt(o.monto)}</b></button>`; }).join('')}
+      ${masN>0?`<div class="cal-otros-mas">y ${masN} más</div>`:''}</div>`:''}
+  </div>`;
+  ov.style.display='flex';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ const v=ov.querySelector('.cal-val'); if(v) v.style.strokeDashoffset=v.dataset.off; }));
   localStorage.setItem(key,'1');
   playAlertaSound(dias<=0);
 }
-function cerrarAlerta(){ document.getElementById('comp-alerta-overlay').style.display='none'; }
+function cerrarAlerta(){
+  const ov=document.getElementById('comp-alerta-overlay');
+  if(ov.style.display==='none') return;
+  ov.classList.add('saliendo');
+  setTimeout(()=>{ ov.style.display='none'; ov.classList.remove('saliendo'); },220);
+}
 function irACompromisos(){ cerrarAlerta(); showTab('compromisos'); }
 let vbarDetails=[];
 function selectVbar(idx){
