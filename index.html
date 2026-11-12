@@ -1136,6 +1136,63 @@ html.txt-grande body{zoom:1.1}
 .pn-k.pn-txt i{font-size:24px}
 .pn-ayuda{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:rgba(255,255,255,.4);margin-top:22px}
 @media(hover:none){.pn-ayuda{display:none}}
+
+/* ══ Resumen ══ */
+.rs-top{display:flex;justify-content:center;margin-bottom:12px}
+.rs-hero .cp-hero-main{margin-top:2px}
+.rs-racha{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--bdr);border-radius:18px;padding:12px 14px;margin-bottom:12px;box-shadow:var(--shadow)}
+.rs-racha-ico{width:42px;height:42px;border-radius:13px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--gl);color:var(--g)}
+.rs-racha.mal .rs-racha-ico{background:var(--rl);color:var(--r)}
+.rs-racha.ok .rs-racha-ico i{animation:rsLlama 1.8s ease-in-out infinite}
+@keyframes rsLlama{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.12) rotate(-4deg)}}
+.rs-racha>div:nth-child(2){flex:1;min-width:0;display:flex;flex-direction:column}
+.rs-racha b{font-size:14px;color:var(--t0)}
+.rs-racha span{font-size:12px;color:var(--t2);margin-top:1px}
+.rs-racha-pts{display:flex;gap:4px}
+.rs-racha-pts i{width:8px;height:22px;border-radius:4px;background:var(--g);opacity:.85}
+.rs-racha-pts i.mal{background:var(--r)}
+.rs-card{background:#fff;border:1px solid var(--bdr);border-radius:18px;padding:14px 16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.rs-card-hd{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;font-weight:650;color:var(--t0);margin-bottom:12px}
+.rs-card-hd>span+span{font-size:12.5px;font-weight:600;color:var(--t2)}
+.rs-leyenda{display:flex!important;align-items:center;gap:5px;font-size:11px!important;font-weight:500!important;color:var(--t3)!important;flex-wrap:wrap;justify-content:flex-end}
+.rs-leyenda i{width:8px;height:8px;border-radius:2px;margin-left:4px}
+.rs-leyenda i.lin{width:12px;height:2.5px;border-radius:2px;background:var(--acc)}
+.rs-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;margin:0 -6px;padding:0 6px;scrollbar-width:none}
+.rs-scroll::-webkit-scrollbar{display:none}
+.rs-mes-det{margin-top:10px;font-size:12px;color:var(--t3);display:flex;align-items:center;gap:6px}
+.rs-md{width:100%;background:var(--s1);border-radius:14px;padding:12px;animation:cpEntra .3s ease both}
+.rs-md-hd{display:flex;justify-content:space-between;align-items:center}
+.rs-md-hd b{font-size:14px;color:var(--t0)}
+.rs-md-hd span{font-size:14px;font-weight:700;color:var(--t2)}
+.rs-md-hd span.ok{color:var(--g)} .rs-md-hd span.mal{color:var(--r)}
+.rs-md-fila{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--t2);margin-top:6px}
+.rs-md-fila b{color:var(--t0)}
+.rs-md button{margin-top:10px;width:100%;display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--bdrm);background:#fff;color:var(--t0);font-family:inherit;font-size:12.5px;font-weight:650;padding:9px;border-radius:10px;cursor:pointer}
+.rs-cat{display:flex;align-items:center;gap:11px;padding:7px 0}
+.rs-cat .cx-ico{width:36px;height:36px;font-size:17px}
+.rs-cat-b{flex:1;min-width:0}
+.rs-cat-r{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.rs-cat-r b{font-weight:600;color:var(--t0);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rs-cat-r span{font-weight:650;color:var(--t1);white-space:nowrap}
+.rs-cat .cx-bar{margin:6px 0 0}
+.rs-cat-pct{width:38px;text-align:right;font-size:12.5px;font-weight:700;color:var(--c)}
+.rs-cat-mas{font-size:12px;color:var(--t3);margin-top:6px;padding-left:47px}
+.rs-prom{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.rs-prom div{background:var(--s1);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.rs-prom i{font-size:17px}
+.rs-prom span{font-size:11.5px;color:var(--t2)}
+.rs-prom b{font-size:14px;font-weight:700;color:var(--t0);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rs-prom b.neg{color:var(--r)}
+.rs-proy{display:flex;align-items:center;gap:10px;margin-top:10px;padding:11px 12px;border-radius:12px;background:color-mix(in srgb,var(--acc) 9%,#fff);color:var(--t1);font-size:13px;line-height:1.4}
+.rs-proy i{font-size:20px;color:var(--acc);flex-shrink:0}
+.rs-proy b{color:var(--t0)}
+.rs-sec{font-size:14px;font-weight:650;color:var(--t0);margin:16px 4px 10px}
+.rs-datos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.rs-dato{background:#fff;border:1px solid var(--bdr);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:2px;box-shadow:var(--shadow);min-width:0;animation:cpEntra .4s ease both}
+.rs-dato-ico{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:6px;background:color-mix(in srgb,var(--c) 12%,#fff);color:var(--c)}
+.rs-dato span{font-size:11.5px;color:var(--t2)}
+.rs-dato b{font-size:15px;font-weight:700;color:var(--t0);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rs-dato small{font-size:11.5px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -2603,166 +2660,205 @@ function renderCapital() {
 }
 
 // ── Resumen ──
-function renderResumen() {
-  const stats=getStats();
-  const wrap=document.getElementById('res-wrap');
+// ══ RESUMEN ═════════════════════════════════════════════════════════════════
+// Período (este año, últimos 12 meses o todo), tarjeta de ahorro con anillo,
+// gráfica con ahorro acumulado, categorías, promedios con proyección, racha y
+// datos curiosos. El año y el mes de referencia los da el encabezado.
+let rsPeriodo='anio', rsMesSel=null;
+const DIAS_SEM=['domingos','lunes','martes','miércoles','jueves','viernes','sábados'];
+function setRsPeriodo(p){ sonido('tap'); rsPeriodo=p; rsMesSel=null; renderResumen(); }
+// Lista de meses {mes,anio} del período, en orden
+function mesesDelPeriodo(p, mes, anio){
+  const l=[];
+  if(p==='anio'){
+    const hoy=new Date(), hasta = anio===hoy.getFullYear() ? hoy.getMonth() : 11;
+    for(let m=0;m<=Math.max(hasta, mes);m++) l.push({mes:m, anio});
+  } else if(p==='12m'){
+    let m=mes, a=anio;
+    for(let i=0;i<12;i++){ l.unshift({mes:m, anio:a}); m--; if(m<0){ m=11; a--; } }
+  } else {
+    const claves=data.map(d=>d.anio*12+d.mes); if(!claves.length) return l;
+    const ini=Math.min(...claves), fin=Math.max(Math.max(...claves), anio*12+mes);
+    for(let k=ini;k<=fin;k++) l.push({mes:k%12, anio:Math.floor(k/12)});
+  }
+  return l;
+}
+function statsMeses(meses){
+  return meses.map(({mes,anio})=>{
+    const m=data.filter(d=>d.mes===mes && d.anio===anio);
+    const ing=m.filter(d=>d.tipo==='ingreso').reduce((s,d)=>s+d.monto,0);
+    const gas=m.filter(d=>d.tipo==='gasto').reduce((s,d)=>s+d.monto,0);
+    return {mes, anio, ing, gas, bal:ing-gas, n:m.length};
+  });
+}
+function irAMesDesdeResumen(mes, anio){
+  ensureYearOption('sel-anio', anio);
+  document.getElementById('sel-mes').value=mes; document.getElementById('sel-anio').value=anio;
+  sincronizarMes(); renderLists(); showTab('registro');
+}
 
-  if(!stats.length){
-    wrap.innerHTML='<div class="empty-st"><i class="ti ti-inbox"></i><span>Sin datos aún</span></div>';
+function renderResumen() {
+  const wrap=document.getElementById('res-wrap');
+  if(barInst){ barInst.destroy(); barInst=null; }
+  const mesRef=getMes(), anioRef=getAnio();
+  const meses=mesesDelPeriodo(rsPeriodo, mesRef, anioRef);
+  const st=statsMeses(meses);
+  const enPeriodo=d=>meses.some(m=>m.mes===d.mes && m.anio===d.anio);
+  const movs=data.filter(enPeriodo);
+  const tI=st.reduce((s,x)=>s+x.ing,0), tG=st.reduce((s,x)=>s+x.gas,0), bal=tI-tG;
+  const tasa=tI>0?Math.round(bal/tI*100):0;
+  const conDatos=st.filter(x=>x.n>0);
+  const nombrePer={anio:`en ${anioRef}`, '12m':'en los últimos 12 meses', todo:'en total'}[rsPeriodo];
+
+  const selector=`<div class="rs-top"><div class="cx-seg">
+      <button class="${rsPeriodo==='anio'?'on':''}" onclick="setRsPeriodo('anio')">${anioRef}</button>
+      <button class="${rsPeriodo==='12m'?'on':''}" onclick="setRsPeriodo('12m')">12 meses</button>
+      <button class="${rsPeriodo==='todo'?'on':''}" onclick="setRsPeriodo('todo')">Todo</button>
+    </div></div>`;
+
+  if(!movs.length){
+    wrap.innerHTML=selector+`<div class="cp-vacio"><div class="cp-vacio-ico"><i class="ti ti-chart-bar-off"></i></div>
+      <b>Sin movimientos ${nombrePer}</b><span>Cuando registres ingresos y gastos, aquí verás cuánto ahorras, en qué se va tu plata y cómo vas mes a mes.</span></div>`;
     return;
   }
 
-  const tI=data.filter(d=>d.tipo==='ingreso').reduce((s,d)=>s+d.monto,0);
-  const tG=data.filter(d=>d.tipo==='gasto').reduce((s,d)=>s+d.monto,0);
-  const bal=tI-tG, aho=tI>0?Math.round(bal/tI*100):0, n=stats.length||1;
-  const avgI=Math.round(stats.reduce((s,m)=>s+m.ingresos,0)/n);
-  const avgG=Math.round(stats.reduce((s,m)=>s+m.gastos,0)/n);
+  // ── Comparación con el período anterior ──
+  let deltaHTML='';
+  if(rsPeriodo!=='todo'){
+    const prev=meses.map(({mes,anio})=>rsPeriodo==='anio'?{mes,anio:anio-1}:{mes,anio:anio-1});
+    // Se compara el ahorro promedio por mes (justo aunque los períodos tengan distinta cantidad de meses con datos)
+    const sp=statsMeses(prev).filter(x=>x.n>0);
+    if(sp.length){
+      const promP=sp.reduce((s,x)=>s+x.bal,0)/sp.length, promA=bal/Math.max(conDatos.length,1);
+      const dif=promA-promP, pct=promP!==0?Math.round(dif/Math.abs(promP)*100):null;
+      deltaHTML=`<span class="cx-hero-chip ${dif>=0?'ok':'mal'}" title="Ahorro promedio por mes">${dif>=0?'▲':'▼'} ${pct!==null&&Math.abs(pct)<1000?Math.abs(pct)+'%':fmt(Math.abs(dif))} ahorro/mes vs ${rsPeriodo==='anio'?anioRef-1:'año anterior'}</span>`;
+    }
+  }
+  const ringCol = tasa>=20?'#3DDC97':tasa>=0?'#F6C35B':'#FF8A80';
+  const hero=`<div class="cp-hero rs-hero">
+    <div class="cp-hero-glow" style="--c:${ringCol}"></div>
+    <div class="cp-hero-main">
+      <div class="cp-hero-txt">
+        <div class="cp-hero-lbl">${bal>=0?'Ahorraste':'Gastaste de más'} ${nombrePer}</div>
+        <div class="cp-hero-val">${fmt(Math.abs(bal))}</div>
+        <div class="cp-hero-sub">Entró <b>${fmt(tI)}</b> · salió <b>${fmt(tG)}</b></div>
+      </div>
+      <div class="cp-hero-ring">${anilloSVG(Math.max(0,tasa),96,9,ringCol)}<div class="cp-ring-c"><b>${tasa}%</b><span>ahorro</span></div></div>
+    </div>
+    <div class="cp-hero-chips">${deltaHTML}<span><b>${conDatos.length}</b> mes${conDatos.length!==1?'es':''} con movimientos</span></div>
+    <div class="cp-hero-estado"><i class="ti ${tasa>=20?'ti-mood-happy':tasa>=0?'ti-scale':'ti-alert-triangle'}"></i>${tasa>=20?'Finanzas saludables: ahorras más del 20 % de lo que entra':tasa>=0?'En equilibrio: intenta ahorrar al menos el 20 %':'Estás gastando más de lo que entra'}</div>
+  </div>`;
 
-  // ── Racha de meses consecutivos ──
+  // ── Racha de meses con ahorro (hasta el mes de referencia) ──
   let rachaHTML='';
-  if(stats.length>=2){
-    const balances=stats.map(s=>s.ingresos-s.gastos);
-    const ultimoSigno=balances[balances.length-1]>=0;
-    let racha=0;
-    for(let i=balances.length-1;i>=0;i--){
-      const esPositivo=balances[i]>=0;
-      if(esPositivo===ultimoSigno) racha++; else break;
-    }
-    if(racha>=2){
-      const inicioIdx=stats.length-racha;
-      const mesInicio=stats[inicioIdx], mesFin=stats[stats.length-1];
-      const rango=`${MF[mesInicio.mes]}-${MF[mesFin.mes]}`;
-      rachaHTML=ultimoSigno
-        ?`<div class="racha-card" style="background:var(--gl);border-color:#a7f3d0">
-            <div class="racha-emoji"><i class="ti ti-flame"></i></div>
-            <div><div class="racha-title" style="color:var(--gd)">${racha} meses seguidos con superávit</div>
-            <div class="racha-sub">${rango} · vas ganando más de lo que gastas</div></div>
-          </div>`
-        :`<div class="racha-card" style="background:var(--rl);border-color:#fca5a5">
-            <div class="racha-emoji"><i class="ti ti-alert-triangle"></i></div>
-            <div><div class="racha-title" style="color:var(--rd)">${racha} meses seguidos en déficit</div>
-            <div class="racha-sub">${rango} · gastando más de lo que ganas</div></div>
-          </div>`;
-    }
+  const hist=statsMeses(mesesDelPeriodo('todo',mesRef,anioRef)).filter(x=>x.anio*12+x.mes<=anioRef*12+mesRef && x.n>0);
+  if(hist.length>=2){
+    const ultimo=hist[hist.length-1].bal>=0; let racha=0;
+    for(let i=hist.length-1;i>=0;i--){ if((hist[i].bal>=0)===ultimo) racha++; else break; }
+    if(racha>=2) rachaHTML=`<div class="rs-racha ${ultimo?'ok':'mal'}"><div class="rs-racha-ico"><i class="ti ${ultimo?'ti-flame':'ti-trending-down'}"></i></div>
+      <div><b>${racha} meses seguidos ${ultimo?'ahorrando':'en déficit'}</b><span>${ultimo?'Sigue así: cada mes cuenta.':'Revisa tus gastos más grandes abajo.'}</span></div>
+      <div class="rs-racha-pts">${hist.slice(-6).map(x=>`<i class="${x.bal>=0?'ok':'mal'}" title="${MS[x.mes]} ${x.anio}"></i>`).join('')}</div></div>`;
   }
 
-  // ── Header ejecutivo ──
-  let hSt,hBg,hCol;
-  if(bal>=0&&aho>=15){hSt='Finanzas saludables';hBg='var(--gl)';hCol='var(--gd)';}
-  else if(bal>=0){hSt='En equilibrio';hBg='var(--bl)';hCol='var(--bd)';}
-  else{hSt='En déficit';hBg='var(--rl)';hCol='var(--rd)';}
-  const headerHTML=`<div class="res-header">
-    <div>
-      <div class="res-header-lbl">Balance neto histórico</div>
-      <div class="res-header-total" style="color:${bal>=0?'var(--bd)':'var(--rd)'}">${fmt(bal)}</div>
-    </div>
-    <div class="res-badge" style="background:${hBg};color:${hCol}">${hSt}</div>
+  // ── Gráfica ──
+  const ancho=Math.max(meses.length*58, 300);
+  const grafica=`<div class="rs-card">
+    <div class="rs-card-hd"><span>Mes a mes</span><span class="rs-leyenda"><i style="background:var(--g)"></i>Entró<i style="background:var(--r)"></i>Salió<i class="lin"></i>Ahorro acumulado</span></div>
+    <div class="rs-scroll" id="rs-scroll"><div style="width:${ancho}px;height:230px;position:relative"><canvas id="barChart"></canvas></div></div>
+    <div class="rs-mes-det" id="rs-mes-det"><i class="ti ti-hand-click"></i>Toca un mes para ver su detalle</div>
   </div>`;
 
-  // ── 4 estadísticas con íconos ──
-  const statsHTML=`<div class="stat-row">
-    <div class="res-stat sg">
-      <div class="res-stat-icon" style="background:var(--gl);color:var(--gd)"><i class="ti ti-arrow-up" aria-hidden="true"></i></div>
-      <div><div class="res-stat-lbl">Total ingresos</div><div class="res-stat-val" style="color:var(--gd)">${fmt(tI)}</div><div class="res-stat-sub">Prom. ${fmt(avgI)}/mes</div></div>
-    </div>
-    <div class="res-stat sr">
-      <div class="res-stat-icon" style="background:var(--rl);color:var(--rd)"><i class="ti ti-arrow-down" aria-hidden="true"></i></div>
-      <div><div class="res-stat-lbl">Total gastos</div><div class="res-stat-val" style="color:var(--rd)">${fmt(tG)}</div><div class="res-stat-sub">Prom. ${fmt(avgG)}/mes</div></div>
-    </div>
-    <div class="res-stat sb">
-      <div class="res-stat-icon" style="background:var(--bl);color:var(--bd)"><i class="ti ti-scale" aria-hidden="true"></i></div>
-      <div><div class="res-stat-lbl">Balance neto</div><div class="res-stat-val" style="color:${bal>=0?'var(--bd)':'var(--rd)'}">${fmt(bal)}</div><div class="res-stat-sub">${bal>=0?'superávit':'déficit'}</div></div>
-    </div>
-    <div class="res-stat sa">
-      <div class="res-stat-icon" style="background:var(--aml);color:var(--amd)"><i class="ti ti-pig-money" aria-hidden="true"></i></div>
-      <div><div class="res-stat-lbl">Tasa de ahorro</div><div class="res-stat-val" style="color:var(--amd)">${aho}%</div><div class="res-stat-sub">${stats.length} meses</div></div>
-    </div>
-  </div>`;
-
-  // ── Gráfica de barras ──
-  const mejorMes=stats.reduce((a,b)=>(b.ingresos-b.gastos)>(a.ingresos-a.gastos)?b:a);
-  const peorMes=stats.reduce((a,b)=>(b.ingresos-b.gastos)<(a.ingresos-a.gastos)?b:a);
-  const chartHTML=`<div class="res-section">
-    <div class="res-section-hd">
-      <span class="res-section-title"><i class="ti ti-chart-bar" aria-hidden="true"></i>Ingresos vs gastos por mes</span>
-    </div>
-    <div class="chart-legend-v2">
-      <span class="chart-chip" style="background:var(--gl);color:var(--gd)"><span class="chart-chip-dot" style="background:var(--g)"></span>Ingresos</span>
-      <span class="chart-chip" style="background:var(--rl);color:var(--rd)"><span class="chart-chip-dot" style="background:var(--r)"></span>Gastos</span>
-    </div>
-    <div style="position:relative;width:100%;height:240px">
-      <canvas id="barChart" role="img" aria-label="Barras mensuales">Evolución.</canvas>
-    </div>
-    <div class="chart-insights">
-      <div class="chart-insight">
-        <div class="chart-insight-icon" style="background:var(--gl);color:var(--gd)"><i class="ti ti-trophy" aria-hidden="true"></i></div>
-        <div><div class="chart-insight-lbl">Mejor balance</div><div class="chart-insight-val" style="color:var(--gd)">${MS[mejorMes.mes]} ${mejorMes.anio}</div></div>
-      </div>
-      <div class="chart-insight">
-        <div class="chart-insight-icon" style="background:${(peorMes.ingresos-peorMes.gastos)<0?'var(--rl)':'var(--s1)'};color:${(peorMes.ingresos-peorMes.gastos)<0?'var(--rd)':'var(--t2)'}"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div>
-        <div><div class="chart-insight-lbl">Menor balance</div><div class="chart-insight-val" style="color:${(peorMes.ingresos-peorMes.gastos)<0?'var(--rd)':'var(--t1)'}">${MS[peorMes.mes]} ${peorMes.anio}</div></div>
-      </div>
-    </div>
-  </div>`;
-
-  // ── Destacados históricos ──
-  const mxI=stats.reduce((a,b)=>b.ingresos>a.ingresos?b:a);
-  const iP=stats.filter(s=>s.ingresos>0);const mnI=iP.length?iP.reduce((a,b)=>b.ingresos<a.ingresos?b:a):null;
-  const mxG=stats.reduce((a,b)=>b.gastos>a.gastos?b:a);
-  const gP=stats.filter(s=>s.gastos>0);const mnG=gP.length?gP.reduce((a,b)=>b.gastos<a.gastos?b:a):null;
-  const diffTag=(val,avg)=>{const d=val-avg;const sign=d>=0?'+':'';return `vs promedio: ${sign}${fmt(d)}`;};
-  const hlC=(medal,bg,col,icon,title,mes,anio,amount,amtC,vsText)=>
-    `<div class="hl-v2">
-      ${medal?`<span class="hl-v2-medal">${medal}</span>`:''}
-      <div class="hl-v2-top">
-        <div class="hl-v2-icon" style="background:${bg};color:${col}"><i class="ti ${icon}" aria-hidden="true"></i></div>
-        <div class="hl-v2-title" style="color:${col}">${title}</div>
-      </div>
-      <div class="hl-v2-body">
-        <div class="hl-v2-month" style="color:${col}">${MF[mes]}</div>
-        <div class="hl-v2-year">${anio}</div>
-        <div class="hl-v2-amt" style="color:${amtC}">${amount}</div>
-        ${vsText?`<div class="hl-v2-vs">${vsText}</div>`:''}
-      </div>
+  // ── Categorías ──
+  const bloqueCats=(tipo)=>{
+    const l=movs.filter(d=>d.tipo===tipo), tot=l.reduce((s,d)=>s+d.monto,0);
+    if(!tot) return '';
+    const mapa={}; l.forEach(d=>{ mapa[d.cat]=(mapa[d.cat]||0)+d.monto; });
+    const ents=Object.entries(mapa).sort((a,b)=>b[1]-a[1]), top=ents.slice(0,5), resto=ents.slice(5);
+    return `<div class="rs-card">
+      <div class="rs-card-hd"><span>${tipo==='gasto'?'¿En qué se te va la plata?':'¿De dónde viene tu plata?'}</span><span>${fmt(tot)}</span></div>
+      ${top.map(([c,v],i)=>{ const pct=Math.round(v/tot*100), col=catClr(c); return `<div class="rs-cat" style="--c:${col}">
+        <div class="cx-ico">${catIcoHTML(c)}</div>
+        <div class="rs-cat-b"><div class="rs-cat-r"><b>${esc(c)}</b><span>${fmt(v)}</span></div>
+          <div class="cx-bar"><div class="cx-fill" style="width:${pct}%;background:${col}"></div></div></div>
+        <div class="rs-cat-pct">${pct}%</div></div>`; }).join('')}
+      ${resto.length?`<div class="rs-cat-mas">y ${resto.length} categoría${resto.length!==1?'s':''} más · ${fmt(resto.reduce((s,[,v])=>s+v,0))}</div>`:''}
     </div>`;
-  const hlHTML=`<div class="res-section">
-    <div class="res-section-hd">
-      <span class="res-section-title"><i class="ti ti-stars" aria-hidden="true"></i>Destacados históricos</span>
+  };
+
+  // ── Promedios y proyección ──
+  const n=Math.max(conDatos.length,1);
+  const pI=Math.round(tI/n), pG=Math.round(tG/n), pB=pI-pG;
+  let proy='';
+  const hoy=new Date();
+  if(rsPeriodo==='anio' && anioRef===hoy.getFullYear()){
+    const restantes=11-hoy.getMonth();
+    const fin=bal+pB*restantes;
+    proy=`Si sigues así, en ${anioRef} ${fin>=0?'ahorrarás':'tendrás un déficit de'} <b>${fmt(Math.abs(fin))}</b>`;
+  } else proy=`A este ritmo ${pB>=0?'ahorras':'pierdes'} <b>${fmt(Math.abs(pB*12))}</b> al año`;
+  const promedios=`<div class="rs-card">
+    <div class="rs-card-hd"><span>Tu mes promedio</span><span>${conDatos.length} mes${conDatos.length!==1?'es':''}</span></div>
+    <div class="rs-prom">
+      <div><i class="ti ti-arrow-down-left" style="color:var(--g)"></i><span>Entra</span><b>${fmt(pI)}</b></div>
+      <div><i class="ti ti-arrow-up-right" style="color:var(--r)"></i><span>Sale</span><b>${fmt(pG)}</b></div>
+      <div><i class="ti ti-pig-money" style="color:var(--acc)"></i><span>Ahorras</span><b class="${pB<0?'neg':''}">${fmt(pB)}</b></div>
     </div>
-    <div class="hl-grid">
-      ${hlC('','var(--gl)','var(--gd)','ti-trending-up','Mes con más ingresos',mxI.mes,mxI.anio,fmt(mxI.ingresos),'var(--gd)',diffTag(mxI.ingresos,avgI))}
-      ${mnI?hlC('','var(--bl)','var(--bd)','ti-trending-down','Mes con menos ingresos',mnI.mes,mnI.anio,fmt(mnI.ingresos),'var(--bd)',diffTag(mnI.ingresos,avgI)):''}
-      ${hlC('','var(--rl)','var(--rd)','ti-arrow-up','Mes con más gastos',mxG.mes,mxG.anio,fmt(mxG.gastos),'var(--rd)',diffTag(mxG.gastos,avgG))}
-      ${mnG?hlC('','var(--gl)','var(--gd)','ti-arrow-down','Mes con menos gastos',mnG.mes,mnG.anio,fmt(mnG.gastos),'var(--gd)',diffTag(mnG.gastos,avgG)):''}
-    </div>
+    <div class="rs-proy"><i class="ti ti-crystal-ball"></i><span>${proy}</span></div>
   </div>`;
 
-  wrap.innerHTML=rachaHTML+headerHTML+statsHTML+chartHTML+hlHTML;
+  // ── Datos curiosos ──
+  const mejor=conDatos.reduce((a,b)=>b.bal>a.bal?b:a);
+  const caro=conDatos.reduce((a,b)=>b.gas>a.gas?b:a);
+  const gastos=movs.filter(d=>d.tipo==='gasto');
+  const grande=gastos.reduce((a,b)=>!a||b.monto>a.monto?b:a,null);
+  const porDia=[0,0,0,0,0,0,0];
+  gastos.forEach(d=>{ if(d.fecha){ const w=new Date(d.fecha+'T00:00:00').getDay(); if(!isNaN(w)) porDia[w]+=d.monto; } });
+  const diaMax=porDia.indexOf(Math.max(...porDia));
+  const dato=(ico,col,lbl,val,sub)=>`<div class="rs-dato" style="--c:${col}"><div class="rs-dato-ico"><i class="ti ${ico}"></i></div><span>${lbl}</span><b>${val}</b><small>${sub}</small></div>`;
+  const datos=`<div class="rs-sec">Datos curiosos</div><div class="rs-datos">
+    ${dato('ti-trophy','#13795B','Tu mejor mes',`${MF[mejor.mes]} ${mejor.anio}`,`Ahorraste ${fmt(mejor.bal)}`)}
+    ${dato('ti-flame','#C8423B','Tu mes más caro',`${MF[caro.mes]} ${caro.anio}`,`Gastaste ${fmt(caro.gas)}`)}
+    ${grande?dato('ti-receipt','#B7791F','Tu gasto más grande',fmt(grande.monto),esc((grande.desc||'').replace('[COMP] ',''))+(grande.fecha?' · '+fechaCorta(grande.fecha):'')):''}
+    ${Math.max(...porDia)>0?dato('ti-calendar-week','#2D5BD0','Día que más gastas',DIAS_SEM[diaMax][0].toUpperCase()+DIAS_SEM[diaMax].slice(1),`${fmt(porDia[diaMax])} en total`):''}
+  </div>`;
 
-  // ── Chart.js ──
-  const labels=stats.map(s=>MS[s.mes]+' '+s.anio);
-  if(barInst)barInst.destroy();
-  const barCanvas=document.getElementById('barChart');
-  if(barCanvas){
-    const ctx2d=barCanvas.getContext('2d');
-    const gradI=ctx2d.createLinearGradient(0,0,0,240);
-    gradI.addColorStop(0,'rgba(19,121,91,.95)');
-    gradI.addColorStop(1,'rgba(19,121,91,.45)');
-    const gradG=ctx2d.createLinearGradient(0,0,0,240);
-    gradG.addColorStop(0,'rgba(200,66,59,.9)');
-    gradG.addColorStop(1,'rgba(200,66,59,.35)');
-    barInst=new Chart(barCanvas,{type:'bar',data:{labels,datasets:[
-      {label:'Ingresos',data:stats.map(s=>Math.round(s.ingresos)),backgroundColor:gradI,borderRadius:7,borderSkipped:false},
-      {label:'Gastos',  data:stats.map(s=>Math.round(s.gastos)),  backgroundColor:gradG, borderRadius:7,borderSkipped:false}
-    ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
-      animation:{duration:900,easing:'easeOutQuart'},
-      plugins:{legend:{display:false},
-        tooltip:{
-          backgroundColor:'rgba(15,23,42,.94)',titleFont:{size:11,weight:'700'},bodyFont:{size:11},padding:10,boxPadding:5,cornerRadius:8,displayColors:true,
-          callbacks:{label:ctx=>' '+ctx.dataset.label+': '+fmt(ctx.raw),afterBody:its=>{const b=its[0].raw-its[1].raw;return[' ───',' Balance: '+fmt(b)];} }}},
-      scales:{y:{ticks:{callback:v=>'$'+Math.round(v).toLocaleString('es-CO',{notation:'compact',compactDisplay:'short'})},grid:{color:'rgba(0,0,0,.045)'},border:{display:false}},
-              x:{ticks:{autoSkip:false,maxRotation:45},grid:{display:false},border:{display:false}}}}});
+  wrap.innerHTML=selector+hero+rachaHTML+grafica+bloqueCats('gasto')+bloqueCats('ingreso')+promedios+datos;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ wrap.querySelectorAll('.cp-ring-val').forEach(c=>c.style.strokeDashoffset=c.dataset.off); }));
+
+  // Gráfica: barras de ingresos y gastos + línea de ahorro acumulado
+  const canvas=document.getElementById('barChart');
+  if(canvas){
+    let acum=0; const acumulado=st.map(x=>(acum+=x.bal));
+    const acc=getComputedStyle(document.documentElement).getPropertyValue('--acc').trim()||'#13795B';
+    const etiquetas=st.map(x=>MS[x.mes]+(rsPeriodo==='anio'?'':' '+String(x.anio).slice(2)));
+    barInst=new Chart(canvas,{data:{labels:etiquetas,datasets:[
+      {type:'bar',label:'Entró',data:st.map(x=>Math.round(x.ing)),backgroundColor:'rgba(19,121,91,.85)',borderRadius:6,borderSkipped:false,maxBarThickness:18,order:2},
+      {type:'bar',label:'Salió',data:st.map(x=>Math.round(x.gas)),backgroundColor:'rgba(200,66,59,.75)',borderRadius:6,borderSkipped:false,maxBarThickness:18,order:3},
+      {type:'line',label:'Ahorro acumulado',data:acumulado.map(Math.round),borderColor:acc,backgroundColor:acc,borderWidth:2.5,tension:.35,pointRadius:3,pointHoverRadius:6,pointBackgroundColor:'#fff',pointBorderWidth:2,order:1,yAxisID:'y1'}
+    ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},animation:{duration:700},
+      onClick:(ev,els)=>{ if(els&&els.length) mostrarMesResumen(els[0].index); },
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+fmt(c.raw)}}},
+      scales:{y:{ticks:{callback:v=>'$'+Math.round(v).toLocaleString('es-CO',{notation:'compact',compactDisplay:'short'})},grid:{color:'rgba(0,0,0,.05)'},border:{display:false}},
+              // La línea de ahorro acumulado tiene su propia escala para no aplastar las barras del mes
+              y1:{position:'right',display:false,grace:'8%'},
+              x:{grid:{display:false},border:{display:false},ticks:{autoSkip:false,maxRotation:0}}}}});
+    window._rsSt=st;
+    // Se muestra el final (los meses más recientes)
+    const sc=document.getElementById('rs-scroll'); if(sc) sc.scrollLeft=sc.scrollWidth;
+    const idxRef=st.findIndex(x=>x.mes===mesRef && x.anio===anioRef);
+    mostrarMesResumen(rsMesSel!==null&&st[rsMesSel]?rsMesSel:(idxRef>=0?idxRef:st.length-1), true);
   }
+}
+function mostrarMesResumen(i, silencioso){
+  const x=(window._rsSt||[])[i]; if(!x) return;
+  if(!silencioso) sonido('tap');
+  rsMesSel=i;
+  const tasa=x.ing>0?Math.round(x.bal/x.ing*100):0;
+  document.getElementById('rs-mes-det').innerHTML=`<div class="rs-md">
+    <div class="rs-md-hd"><b>${MF[x.mes]} ${x.anio}</b>${x.n?`<span class="${x.bal>=0?'ok':'mal'}">${x.bal>=0?'+':'−'}${fmt(Math.abs(x.bal))}</span>`:'<span>Sin movimientos</span>'}</div>
+    ${x.n?`<div class="rs-md-fila"><span>Entró <b>${fmt(x.ing)}</b></span><span>Salió <b>${fmt(x.gas)}</b></span><span>Ahorro <b>${tasa}%</b></span></div>`:''}
+    <button onclick="irAMesDesdeResumen(${x.mes},${x.anio})">Ver movimientos de ${MF[x.mes].toLowerCase()} <i class="ti ti-arrow-right"></i></button>
+  </div>`;
+  if(barInst){ barInst.setActiveElements([{datasetIndex:0,index:i},{datasetIndex:1,index:i}]); barInst.update('none'); }
 }
 
 // ── Categorías ──
