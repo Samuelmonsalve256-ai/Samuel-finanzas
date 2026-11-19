@@ -1452,89 +1452,76 @@ html.txt-grande body{zoom:1.1}
 @media(min-width:900px){.bv-hero{padding:26px 28px 22px}.bv-h-tira{max-width:680px}.bv .cap-lienzo{height:340px}}
 @media(max-width:380px){.bv-h-tira b{font-size:14px}.bv-mes{gap:9px}.bv-mes-c b{font-size:13px}}
 
-/* ══ Análisis ══ */
-.an{--ok-cl:color-mix(in srgb,var(--g) 50%,#fff);max-width:1100px;margin:0 auto;overflow-x:clip}
-.an-hero{position:relative;overflow:hidden;background:var(--ink);color:#fff;border-radius:26px;padding:18px 20px 18px;margin-bottom:14px;box-shadow:0 24px 50px -26px rgba(14,17,22,.65)}
-.an-h-top{position:relative;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.an-h-lbl{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:650;color:rgba(255,255,255,.7);letter-spacing:.05em;text-transform:uppercase}
-.an-h-lbl i{font-size:16px}
-.an-seg{display:flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:3px}
-.an-seg button{border:none;background:transparent;color:rgba(255,255,255,.65);font-family:inherit;font-size:12.5px;font-weight:650;padding:6px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
-.an-seg button.on{background:#fff;color:var(--ink)}
-.an-h-val{position:relative;font-size:clamp(36px,10vw,56px);font-weight:700;letter-spacing:-.045em;line-height:1.05;margin:12px 0 10px;white-space:nowrap}
-.an-h-comp{position:relative;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.6);min-height:26px}
-.an-chip{display:inline-flex;align-items:center;gap:3px;font-size:13.5px;font-weight:700;padding:4px 10px;border-radius:999px}
-.an-chip i{font-size:15px}
-.an-chip.ok{background:rgba(61,220,151,.16);color:#8FEBC2} .an-chip.mal{background:rgba(255,138,128,.16);color:#FFB3AB} .an-chip.neu{background:rgba(255,255,255,.1);color:#fff}
-.an-h-tira{position:relative;display:grid;grid-template-columns:repeat(3,1fr);margin-top:16px;border-top:1px solid rgba(255,255,255,.09);padding-top:13px}
-.an-h-tira>div{display:flex;flex-direction:column;gap:2px;min-width:0;padding:0 10px;border-left:1px solid rgba(255,255,255,.09)}
-.an-h-tira>div:first-child{border-left:none;padding-left:0}
-.an-h-tira span{font-size:11.5px;color:rgba(255,255,255,.5);font-weight:550}
-.an-h-tira b{font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.an-h-tira small{font-size:11px;color:rgba(255,255,255,.45);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.an .bv-card-hd>span:first-child i,.an .bv-sec i{color:var(--tc)}
-.an-mini{display:flex;background:var(--s1);border:1px solid var(--bdr);border-radius:999px;padding:2px}
-.an-mini button{white-space:nowrap;border:none;background:transparent;color:var(--t2);font-family:inherit;font-size:11.5px;font-weight:650;padding:5px 10px;border-radius:999px;cursor:pointer}
-.an-mini button.on{background:#fff;color:var(--t0);box-shadow:0 1px 3px rgba(0,0,0,.1)}
-.an-lienzo{position:relative;height:230px}
-@media(min-width:900px){.an-lienzo{height:300px}}
-.an-ley{justify-content:center;margin-top:8px}
-.an-ley i{width:12px;height:2.5px;border-radius:2px;margin-left:6px}
-.an-tip-mov{grid-template-columns:auto 1fr!important}
-.an-tip-mov b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right}
-/* Calendario */
-.an-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
-.an-cal-sem{margin-bottom:5px}
-.an-cal-sem span{text-align:center;font-size:11px;font-weight:650;color:var(--t3)}
-.an-cal-d{position:relative;aspect-ratio:1/1.05;min-height:40px;border:none;border-radius:11px;padding:4px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-family:inherit;cursor:pointer;
-  background:var(--s1);color:var(--t2);transition:transform .15s}
-.an-cal-d:active{transform:scale(.94)}
-.an-cal-d b{font-size:13px;font-weight:650;line-height:1}
-.an-cal-d small{font-size:9.5px;font-weight:650;line-height:1;min-height:9.5px;opacity:.85}
-.an-cal-d.con{background:color-mix(in srgb,var(--tc) var(--p),#fff);color:var(--t0)}
-.an-cal-d.fuerte{color:#fff}
-.an-cal-d.fut{opacity:.4}
-.an-cal-d.hoy::after{content:'';position:absolute;top:4px;right:5px;width:5px;height:5px;border-radius:50%;background:var(--tc);box-shadow:0 0 0 1.5px #fff}
-.an-cal-d.sel{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ink);z-index:1}
-@media(min-width:700px){.an-cal-d{aspect-ratio:auto;height:58px}.an-cal-d b{font-size:14px}.an-cal-d small{font-size:11px}}
-.an-dia{margin-top:14px;border-top:1px solid var(--bdr);padding-top:12px}
-.an-dia-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;margin-bottom:4px}
-.an-dia-hd span{display:block;font-size:12px;color:var(--t2);font-weight:600}
-.an-dia-hd b{font-size:20px;font-weight:700;letter-spacing:-.02em;color:var(--t0)}
-.an-dia-hd em{font-style:normal;font-size:11.5px;font-weight:650;color:var(--t2);background:var(--s1);padding:4px 9px;border-radius:999px}
-.an-dia-vacio{display:flex;align-items:center;justify-content:center;gap:6px;padding:14px;font-size:13px;color:var(--t2)}
-.an-dia-vacio i{font-size:17px;color:var(--tc)}
-/* Movimientos */
-.an-mov{width:100%;display:grid;grid-template-columns:36px 1fr auto;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--bdr);text-align:left;font-family:inherit;background:none;border-left:none;border-right:none;border-bottom:none;color:inherit}
-.an-dia-hd+.an-mov,.bv-card-hd+.an-mov{border-top:none}
-.an-mov-btn{cursor:pointer}
-.an-mov-ico{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:17px;background:color-mix(in srgb,var(--c) 13%,#fff);color:var(--c)}
-.an-mov-ico i{color:var(--c)}
-.an-mov-t{min-width:0;display:flex;flex-direction:column;gap:1px}
-.an-mov-t b{font-size:13.5px;font-weight:650;color:var(--t0);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.an-mov-t small{font-size:11.5px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.an-mov-t>i{display:block;height:4px;border-radius:999px;margin-top:5px;background:var(--s2);position:relative;overflow:hidden}
-.an-mov-t>i::before{content:'';position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--tc);border-radius:999px}
-.an-mov-v{display:flex;flex-direction:column;align-items:flex-end}
-.an-mov-v b{font-size:14px;font-weight:700;color:var(--t0);white-space:nowrap}
-.an-mov-v b.mal{color:var(--r)} .an-mov-v b.ok{color:var(--g)}
-.an-mov-v small{font-size:11px;color:var(--t3)}
-/* Semana */
-.an-sem-frase{font-size:13px;color:var(--t1);margin:-2px 0 14px;line-height:1.45}
-.an-sem-frase b{color:var(--t0)}
-.an-sem{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;height:130px;align-items:end}
-.an-sem>div{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;height:100%}
-.an-sem em{font-style:normal;font-size:10px;font-weight:650;color:var(--t3);min-height:12px}
-.an-sem i{display:block;width:100%;max-width:34px;height:var(--h);border-radius:8px 8px 4px 4px;background:color-mix(in srgb,var(--tc) 22%,#fff);animation:anSube .7s cubic-bezier(.3,.8,.3,1) both;transform-origin:bottom}
-.an-sem .top i{background:var(--tc)}
-.an-sem .top em{color:var(--t0)}
-.an-sem span{font-size:11.5px;font-weight:650;color:var(--t2)}
-@keyframes anSube{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-.an-vacio{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:28px 20px}
-.an-vacio>i{font-size:30px;color:var(--t3)}
-.an-vacio b{font-size:15px;color:var(--t0)}
-.an-vacio span{font-size:13px;color:var(--t2);max-width:300px;line-height:1.45}
-.an .rs-datos{margin-bottom:14px}
+
+/* ══ Análisis diario · versión actualizada (misma estructura) ══ */
+.day-wrap{border-radius:22px;margin-top:0;box-shadow:var(--shadow);max-width:1100px;margin-left:auto;margin-right:auto}
+.day-hd{position:relative;padding:18px 18px 14px;border-bottom:1px solid var(--bdr);flex-wrap:wrap;overflow:hidden}
+.day-hd::before{content:'';position:absolute;width:220px;height:220px;right:-90px;top:-120px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--tc) 16%,transparent),transparent 70%);pointer-events:none}
+.day-hd>div:first-child{position:relative}
+.day-hd-lbl{font-size:12px;font-weight:650;color:var(--t2);text-transform:none;letter-spacing:0;margin-bottom:8px;gap:6px}
+.day-hd-lbl i{font-size:16px;color:var(--tc)}
+.day-hd-total{font-size:34px;font-weight:700;letter-spacing:-.04em;line-height:1.05}
+.day-hd-sub{font-size:12.5px;color:var(--t2);margin-top:6px}
+.day-toggle{position:relative;gap:2px;background:var(--s1);border:1px solid var(--bdr);border-radius:999px;padding:3px}
+.day-toggle-btn{display:flex;align-items:center;gap:4px;padding:7px 12px;border-radius:999px;font-size:12.5px;font-weight:650;color:var(--t2)}
+.day-toggle-btn i{font-size:14px}
+.day-toggle-btn.active{background:var(--tc)!important;color:#fff;box-shadow:0 4px 12px -4px color-mix(in srgb,var(--tc) 70%,transparent)!important}
+.day-chart-box{padding:16px 10px 6px}
+.day-chart-box>div{height:220px}
+@media(min-width:900px){.day-chart-box>div{height:300px!important}}
+.day-legend{padding:2px 16px 14px;gap:8px}
+.day-chip{font-size:11.5px;color:var(--t1);font-weight:600;background:var(--s1);padding:5px 10px;border-radius:999px}
+.day-chip.suave{background:none;color:var(--t3);font-weight:500;padding-left:2px}
+.day-chip.suave i{font-size:13px}
+.day-chip-dot.pico{background:#fff;box-shadow:inset 0 0 0 2.5px var(--tc)}
+.day-insights{gap:10px;padding:14px 14px 4px;border-top:1px solid var(--bdr)}
+.day-insight{padding:12px;border:1px solid var(--bdr);border-radius:16px;background:var(--s1);flex-direction:column;align-items:flex-start;gap:8px}
+.day-insight:first-child{border-right:1px solid var(--bdr)}
+.day-insight-icon{width:36px;height:36px;font-size:18px;border-radius:11px!important}
+.day-insight-lbl{font-size:11.5px;color:var(--t2);font-weight:550;text-transform:none;letter-spacing:0;margin-bottom:2px}
+.day-insight-val{font-size:14px;font-weight:700}
+.day-rank-hd{display:flex;align-items:center;gap:6px;padding:16px 16px 6px;border-top:none;font-size:14px;font-weight:650;color:var(--t0);text-transform:none;letter-spacing:0}
+.day-rank-hd i{color:#C9971C;font-size:17px}
+.day-rank-row{width:100%;display:flex;align-items:center;gap:12px;padding:11px 16px;background:none;border:none;border-top:1px solid var(--bdr);font-family:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s}
+.day-rank-row:active{background:var(--s1)}
+.day-rank-row:last-child{padding-bottom:16px}
+.day-rank-medal{width:34px;height:34px;border-radius:11px!important;font-size:14px!important;font-weight:750!important}
+.day-rank-medal.m1{background:linear-gradient(145deg,#F6C35B,#C9971C)!important;color:#2A1E04!important}
+.day-rank-medal.m2{background:linear-gradient(145deg,#E3E7EC,#AEB6C0)!important;color:#2B3138!important}
+.day-rank-medal.m3{background:linear-gradient(145deg,#EBC2A0,#B87A4B)!important;color:#3A2312!important}
+.day-rank-date{font-size:13.5px;font-weight:650}
+.day-rank-count{font-size:11.5px;color:var(--t3);margin-top:1px}
+.day-rank-barra{height:4px;border-radius:999px;background:var(--s2);margin-top:6px;overflow:hidden}
+.day-rank-barra i{display:block;height:100%;border-radius:999px;opacity:.8}
+.day-rank-amt{font-size:14px;font-weight:700}
+.day-rank-ir{color:var(--t4);font-size:16px;flex-shrink:0}
+.day-vacio{display:flex;flex-direction:column;align-items:center;gap:6px;padding:30px 16px;color:var(--t2);font-size:13px}
+.day-vacio i{font-size:28px;color:var(--t3)}
+.dia-tip-mov{grid-template-columns:auto 1fr!important}
+.dia-tip-mov b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right}
+.dia-tip-ir{margin-top:8px;font-size:10.5px;color:rgba(255,255,255,.45);text-align:center}
+.dia-tip .bv-tip-hd em.ok{background:rgba(61,220,151,.16);color:#8FEBC2}
+/* Detalle del día */
+.day-modal-overlay{background:rgba(14,17,22,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);align-items:flex-end;padding:0}
+.day-modal{max-width:460px;border-radius:24px 24px 0 0;max-height:85vh;padding-bottom:env(safe-area-inset-bottom);animation:csSube .28s cubic-bezier(.3,.8,.3,1) both}
+@media(min-width:700px){.day-modal-overlay{align-items:center;padding:20px}.day-modal{border-radius:24px}}
+@keyframes csSube{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.day-modal-top{padding:22px 20px 16px;text-align:left;border-bottom:1px solid var(--bdr)}
+.day-modal-top::before{content:'';display:block;width:38px;height:4px;border-radius:999px;background:var(--s2);margin:-10px auto 14px}
+.day-modal-close{top:16px;right:16px;width:32px;height:32px;border-radius:50%;font-size:16px}
+.day-modal-date{font-size:13px;font-weight:600;color:var(--t2);margin-bottom:6px}
+.day-modal-total{font-size:32px;font-weight:700;letter-spacing:-.04em}
+.day-modal-count{font-size:12.5px;color:var(--t2);margin-top:6px}
+.day-modal-list{padding:4px 20px 18px}
+.day-modal-txn{display:grid;grid-template-columns:36px 1fr auto;gap:11px;padding:11px 0}
+.day-modal-ico{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:17px;background:color-mix(in srgb,var(--c) 13%,#fff);color:var(--c)}
+.day-modal-ico i{color:var(--c)}
+.day-modal-txt{min-width:0;display:flex;flex-direction:column}
+.day-modal-desc{font-size:13.5px;font-weight:650;color:var(--t0);margin:0}
+.day-modal-txt small{font-size:11.5px;color:var(--t3)}
+.day-modal-amt{font-size:14px;font-weight:700}
+.day-modal-empty{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;color:var(--t2)}
+.day-modal-empty i{font-size:22px}
 </style>
 </head>
 <body>
@@ -1855,7 +1842,7 @@ html.txt-grande body{zoom:1.1}
 <div class="day-modal-overlay" id="day-modal-overlay" style="display:none" onclick="closeDayDetail(event)">
   <div class="day-modal" onclick="event.stopPropagation()">
     <div class="day-modal-top">
-      <button class="day-modal-close" onclick="closeDayDetail()">✕</button>
+      <button class="day-modal-close" onclick="closeDayDetail()" aria-label="Cerrar"><i class="ti ti-x"></i></button>
       <div class="day-modal-date" id="day-modal-date"></div>
       <div class="day-modal-total" id="day-modal-total"></div>
       <div class="day-modal-count" id="day-modal-count"></div>
@@ -2406,249 +2393,203 @@ function renderLists() {
   guardarCache();
 }
 
-// ══ ANÁLISIS ════════════════════════════════════════════════════════════════
-// Cómo se movió la plata dentro del mes: total y comparación con el mes anterior,
-// gráfica día a día o acumulada, calendario del mes, días de la semana y los movimientos más grandes.
-let anaVista='dia', anaDiaSel=null, anaClave='', anaInfo=null;
-const ANA_SEM=['L','M','M','J','V','S','D'];
-const fmtK=v=>{ const a=Math.abs(v); return a>=1e6 ? (a/1e6).toFixed(a>=1e7?0:1).replace('.',',').replace(/,0$/,'')+'M' : a>=1e3 ? Math.round(a/1e3)+'k' : String(Math.round(a)); };
-function diaDeMov(d){ const n=new Date(d.fecha+'T00:00:00').getDate(); return isNaN(n)?1:n; }
-function setDailyTipo(tipo){ sonido('tap'); window._dailyTipo=tipo; anaDiaSel=null; anaClave=''; renderDailyAnalysis(); }
-function setAnaVista(v){ if(anaVista===v) return; sonido('tap'); anaVista=v; renderDailyAnalysis(); }
-function anaSelDia(d, desdeGrafica){
-  if(!desdeGrafica) sonido('tap');
-  anaDiaSel=d; pintarAnaDia();
-  document.querySelectorAll('.an-cal-d').forEach(e=>e.classList.toggle('sel', +e.dataset.d===d));
+// ── ANÁLISIS DIARIO — estilo mercado (línea con degradado) ──
+// Misma estructura de siempre: total del mes, gráfica de línea por día, datos y top 3 días.
+function setDailyTipo(tipo){
+  sonido('tap');
+  window._dailyTipo=tipo;
+  renderDailyAnalysis();
 }
-
+function diaDeMov(d){ const n=new Date(d.fecha+'T00:00:00').getDate(); return isNaN(n)?1:n; }
 function renderDailyAnalysis(){
-  const wrap=document.getElementById('day-analysis-wrap'); if(!wrap) return;
-  // Solo se dibuja cuando la pestaña está a la vista (se vuelve a dibujar al abrirla)
-  if(!document.getElementById('page-analisis').classList.contains('active')) return;
+  const wrap=document.getElementById('day-analysis-wrap');
+  if(!wrap) return;
+  const tipo=window._dailyTipo||'gasto';
+  const esGasto=tipo==='gasto';
+  const mesSel=document.getElementById('analisis-mes');
+  const anioSel=document.getElementById('analisis-anio');
+  if(!mesSel||!anioSel) return;
+  const mes=parseInt(mesSel.value,10), anio=parseInt(anioSel.value,10);
+  const diasEnMes=new Date(anio,mes+1,0).getDate();
+  const movs=data.filter(d=>d.tipo===tipo&&Number(d.mes)===mes&&Number(d.anio)===anio);
+
+  const color=esGasto?'#C8423B':'#13795B';
+  const colorVarBg=esGasto?'var(--rl)':'var(--gl)';
+  const colorVarTxt=esGasto?'var(--rd)':'var(--gd)';
+
+  window._dailyMovs=movs; // guardar para el detalle al tocar un punto
+  window._dailyMes=mes;
   if(dailyInst){ dailyInst.destroy(); dailyInst=null; }
-  const tipo=window._dailyTipo||'gasto', esG=tipo==='gasto';
-  const mes=parseInt(document.getElementById('analisis-mes').value,10), anio=parseInt(document.getElementById('analisis-anio').value,10);
-  const dias=new Date(anio,mes+1,0).getDate();
-  const hoy=new Date(), esActual=hoy.getMonth()===mes&&hoy.getFullYear()===anio;
-  const futuro=anio*12+mes > hoy.getFullYear()*12+hoy.getMonth();
-  const transcurridos=esActual?hoy.getDate():(futuro?0:dias);
-  const hex=esG?'#C8423B':'#13795B', cVar=esG?'var(--r)':'var(--g)';
 
-  const movs=data.filter(d=>d.tipo===tipo&&d.mes===mes&&d.anio===anio);
-  const porDia=Array(dias+1).fill(0), nDia=Array(dias+1).fill(0);
-  movs.forEach(d=>{ const n=Math.min(dias,diaDeMov(d)); porDia[n]+=d.monto; nDia[n]++; });
-  const total=movs.reduce((s,d)=>s+d.monto,0);
-  const pm=mes===0?11:mes-1, pa=mes===0?anio-1:anio, pDias=new Date(pa,pm+1,0).getDate();
-  const prevDia=Array(pDias+1).fill(0);
-  data.filter(d=>d.tipo===tipo&&d.mes===pm&&d.anio===pa).forEach(d=>{ prevDia[Math.min(pDias,diaDeMov(d))]+=d.monto; });
-  const prevTotal=prevDia.reduce((a,b)=>a+b,0);
-  const corte=esActual?Math.min(hoy.getDate(),pDias):pDias;
-  const prevA=prevDia.slice(1,corte+1).reduce((a,b)=>a+b,0);
-  const compBase=esActual?prevA:prevTotal;
-  window._dailyMovs=movs; window._dailyMes=mes;
-
-  let diaPico=0, pico=0; for(let d=1;d<=dias;d++) if(porDia[d]>pico){ pico=porDia[d]; diaPico=d; }
-  const clave=tipo+'|'+mes+'|'+anio;
-  if(clave!==anaClave){ anaClave=clave; anaDiaSel = esActual && hoy.getDate()<=dias ? hoy.getDate() : (diaPico||null); }
-  const diasCon=porDia.slice(1).filter(v=>v>0).length;
-  const prom=transcurridos?total/transcurridos:0;
-  const proy=esG&&esActual&&transcurridos>=3&&total>0?total/transcurridos*dias:null;
-  anaInfo={tipo,esG,mes,anio,dias,porDia,nDia,prevDia,pm,transcurridos,total,movs,hex};
-
-  // ── Número grande ──
-  let comp='';
-  if(futuro) comp=`<span>Este mes todavía no empieza</span>`;
-  else if(compBase>0 && (total>0||!esActual)){
-    const dif=(total-compBase)/compBase*100, menos=dif<0, bueno=esG?menos:!menos;
-    comp = Math.abs(dif)<1
-      ? `<span class="an-chip neu"><i class="ti ti-equal"></i>Igual</span><span>que ${MF[pm].toLowerCase()}${esActual?' a esta fecha':''}</span>`
-      : `<span class="an-chip ${bueno?'ok':'mal'}"><i class="ti ti-arrow-${menos?'down':'up'}-right"></i>${Math.abs(dif).toFixed(0)}% ${menos?'menos':'más'}</span><span>que ${MF[pm].toLowerCase()}${esActual?' a esta fecha':''}</span>`;
-  } else if(prevTotal===0) comp=`<span>Sin ${esG?'gastos':'ingresos'} en ${MF[pm].toLowerCase()} para comparar</span>`;
-  const hero=`<div class="an-hero">
-    <div class="cp-hero-glow" style="--c:${hex}"></div>
-    <div class="an-h-top">
-      <span class="an-h-lbl"><i class="ti ti-${esG?'arrow-down-right':'arrow-up-right'}"></i>${esG?'Gastaste':'Te entró'} en ${MF[mes].toLowerCase()}</span>
-      <div class="an-seg"><button class="${esG?'on':''}" onclick="setDailyTipo('gasto')">Gastos</button><button class="${!esG?'on':''}" onclick="setDailyTipo('ingreso')">Ingresos</button></div>
-    </div>
-    <div class="an-h-val">${fmt(total)}</div>
-    <div class="an-h-comp">${comp}</div>
-    <div class="an-h-tira">
-      <div><span>Por día</span><b>${fmtCap(prom)}</b><small>en promedio</small></div>
-      <div><span>Movimientos</span><b>${movs.length}</b><small>en ${diasCon} día${diasCon!==1?'s':''}</small></div>
-      <div><span>${proy!==null?'Cerrarías en':MF[pm]}</span><b>${fmtCap(proy!==null?proy:prevTotal)}</b><small>${proy!==null?'a este ritmo':'mes anterior'}</small></div>
-    </div>
-  </div>`;
+  const toggle=`<div class="day-toggle" style="--tc:${color}">
+      <button class="day-toggle-btn${esGasto?' active':''}" onclick="setDailyTipo('gasto')"><i class="ti ti-arrow-down-right"></i>Gastos</button>
+      <button class="day-toggle-btn${!esGasto?' active':''}" onclick="setDailyTipo('ingreso')"><i class="ti ti-arrow-up-right"></i>Ingresos</button>
+    </div>`;
 
   if(!movs.length){
-    wrap.innerHTML=`<div class="an" style="--tc:${cVar}">${hero}<div class="bv-card an-vacio"><i class="ti ti-chart-dots-3"></i><b>Sin ${esG?'gastos':'ingresos'} en ${MF[mes].toLowerCase()}</b><span>Cuando registres movimientos aquí verás tu mes día a día, el calendario y tus patrones.</span></div></div>`;
+    wrap.innerHTML=`<div class="day-wrap" style="--tc:${color}">
+      <div class="day-hd">
+        <div>
+          <div class="day-hd-lbl"><i class="ti ti-chart-line" aria-hidden="true"></i>Análisis diario · ${MS[mes]} ${anio}</div>
+          <div class="day-hd-total" style="color:var(--t3)">Sin datos</div>
+        </div>
+        ${toggle}
+      </div>
+      <div class="day-vacio"><i class="ti ti-chart-dots-3"></i><span>Sin ${esGasto?'gastos':'ingresos'} registrados este mes</span></div>
+    </div>`;
     return;
   }
 
-  // ── Gráfica ──
-  const graf=`<div class="bv-card">
-    <div class="bv-card-hd"><span><i class="ti ti-chart-${anaVista==='dia'?'bar':'line'}"></i>${anaVista==='dia'?'Día a día':'Mes acumulado'}</span>
-      <div class="an-mini"><button class="${anaVista==='dia'?'on':''}" onclick="setAnaVista('dia')">Por día</button><button class="${anaVista==='acum'?'on':''}" onclick="setAnaVista('acum')">Acumulado</button></div></div>
-    <div class="an-lienzo"><canvas id="dailyChart" role="img" aria-label="${esG?'Gastos':'Ingresos'} por día"></canvas></div>
-    ${anaVista==='acum'?`<div class="bv-leyenda an-ley"><i style="background:${hex}"></i>${MF[mes]}<i class="ini"></i>${MF[pm]}</div>`:`<div class="bv-pista-tip"><i class="ti ti-hand-finger"></i>Toca una barra para ver el día</div>`}
+  // Agrupar por día
+  const porDia=Array(diasEnMes+1).fill(0);
+  const countPorDia=Array(diasEnMes+1).fill(0);
+  movs.forEach(d=>{
+    const dia=diaDeMov(d);
+    if(dia>=1&&dia<=diasEnMes){ porDia[dia]+=d.monto; countPorDia[dia]++; }
+  });
+
+  const total=movs.reduce((s,d)=>s+d.monto,0);
+  const diasConMov=porDia.filter(v=>v>0).length;
+  const promDia=diasConMov>0?Math.round(total/diasConMov):0;
+
+  // Día pico
+  let diaPico=1,montoPico=0;
+  for(let d=1;d<=diasEnMes;d++){ if(porDia[d]>montoPico){montoPico=porDia[d];diaPico=d;} }
+
+  // Top 3 días
+  const ranking=[];
+  for(let d=1;d<=diasEnMes;d++){ if(porDia[d]>0) ranking.push({dia:d,monto:porDia[d],n:countPorDia[d]}); }
+  ranking.sort((a,b)=>b.monto-a.monto);
+  const top3=ranking.slice(0,3);
+  window._dailyInfo={porDia,countPorDia,total,mes,anio,esGasto,movs};
+
+  // ── Header ──
+  const headerHTML=`<div class="day-hd">
+    <div>
+      <div class="day-hd-lbl"><i class="ti ti-chart-line" aria-hidden="true"></i>Análisis diario · ${MS[mes]} ${anio}</div>
+      <div class="day-hd-total" style="color:${color}">${fmt(total)}</div>
+      <div class="day-hd-sub">${diasConMov} día${diasConMov!==1?'s':''} con movimiento · Prom. ${fmt(promDia)}/día activo</div>
+    </div>
+    ${toggle}
   </div>`;
 
-  // ── Calendario ──
-  const max=Math.max(...porDia.slice(1),1), primer=(new Date(anio,mes,1).getDay()+6)%7;
-  let celdas=''; for(let i=0;i<primer;i++) celdas+='<span></span>';
-  for(let d=1;d<=dias;d++){
-    const v=porDia[d], p=v>0?Math.round(14+Math.sqrt(v/max)*76):0, fut=esActual?d>hoy.getDate():futuro;
-    celdas+=`<button class="an-cal-d${v>0?' con':''}${p>58?' fuerte':''}${fut?' fut':''}${esActual&&d===hoy.getDate()?' hoy':''}${anaDiaSel===d?' sel':''}" data-d="${d}" style="--p:${p}%" onclick="anaSelDia(${d})" aria-label="Día ${d}"><b>${d}</b><small>${v>0?fmtK(v):''}</small></button>`;
+  // ── Chart ──
+  const chartHTML=`<div class="day-chart-box">
+    <div style="position:relative;width:100%;height:220px">
+      <canvas id="dailyChart" role="img" aria-label="Movimientos diarios"></canvas>
+    </div>
+  </div>
+  <div class="day-legend">
+    <span class="day-chip"><span class="day-chip-dot" style="background:${color}"></span>${esGasto?'Gasto':'Ingreso'} diario</span>
+    <span class="day-chip"><span class="day-chip-dot pico" style="--tc:${color}"></span>Día pico: ${diaPico} ${MS[mes]}</span>
+    <span class="day-chip suave"><i class="ti ti-hand-finger" aria-hidden="true"></i>Toca un punto para ver el detalle</span>
+  </div>`;
+
+  // ── Insights ──
+  const insightsHTML=`<div class="day-insights">
+    <div class="day-insight">
+      <div class="day-insight-icon" style="background:${colorVarBg};color:${colorVarTxt}"><i class="ti ti-flame" aria-hidden="true"></i></div>
+      <div><div class="day-insight-lbl">Día con más ${esGasto?'gasto':'ingreso'}</div><div class="day-insight-val" style="color:${colorVarTxt}">${diaPico} ${MS[mes]} · ${fmt(montoPico)}</div></div>
+    </div>
+    <div class="day-insight">
+      <div class="day-insight-icon" style="background:var(--s1);color:var(--t1)"><i class="ti ti-receipt" aria-hidden="true"></i></div>
+      <div><div class="day-insight-lbl">Movimientos totales</div><div class="day-insight-val" style="color:var(--t0)">${movs.length} registro${movs.length!==1?'s':''}</div></div>
+    </div>
+  </div>`;
+
+  // ── Ranking top 3 días ──
+  const rankHTML=top3.length?`<div class="day-rank-hd"><i class="ti ti-trophy"></i>Top ${top3.length} días con más ${esGasto?'gasto':'ingreso'}</div>`+
+    top3.map((r,i)=>`<button class="day-rank-row" onclick="showDayDetail(${r.dia})">
+      <div class="day-rank-medal m${i+1}">${i+1}</div>
+      <div class="day-rank-body">
+        <div class="day-rank-date">${r.dia} de ${MF[mes].toLowerCase()}</div>
+        <div class="day-rank-count">${r.n} movimiento${r.n!==1?'s':''} · ${Math.round(r.monto/total*100)}% del mes</div>
+        <div class="day-rank-barra"><i style="width:${r.monto/top3[0].monto*100}%;background:${color}"></i></div>
+      </div>
+      <div class="day-rank-amt" style="color:${colorVarTxt}">${fmt(r.monto)}</div>
+      <i class="ti ti-chevron-right day-rank-ir"></i>
+    </button>`).join(''):'';
+
+  wrap.innerHTML=`<div class="day-wrap" style="--tc:${color}">${headerHTML}${chartHTML}${insightsHTML}${rankHTML}</div>`;
+  if(!document.getElementById('page-analisis').classList.contains('active')) return;
+
+  // ── Chart.js — línea estilo mercado, interactiva ──
+  const canvas=document.getElementById('dailyChart');
+  if(canvas){
+    const ctx=canvas.getContext('2d');
+    const grad=ctx.createLinearGradient(0,0,0,220);
+    grad.addColorStop(0,color+'55'); grad.addColorStop(.6,color+'26'); grad.addColorStop(1,color+'0A');
+    const labels=[]; const vals=[];
+    for(let d=1;d<=diasEnMes;d++){ labels.push(String(d)); vals.push(Math.round(porDia[d])); }
+    const pointRadii=labels.map((_,idx)=>(idx+1)===diaPico?6:vals[idx]>0?3:0);
+    const brillo={id:'brilloDia',
+      beforeDatasetDraw(ch){ ch.ctx.save(); ch.ctx.shadowColor=color+'59'; ch.ctx.shadowBlur=10; ch.ctx.shadowOffsetY=4; },
+      afterDatasetDraw(ch){ ch.ctx.restore(); },
+      afterDatasetsDraw(ch){ const act=ch.tooltip&&ch.tooltip.getActiveElements(); if(!act||!act.length) return;
+        const x=act[0].element.x, {top,bottom}=ch.chartArea, c=ch.ctx;
+        c.save(); const g=c.createLinearGradient(0,top,0,bottom); g.addColorStop(0,color+'00'); g.addColorStop(.5,color+'73'); g.addColorStop(1,color+'00');
+        c.strokeStyle=g; c.lineWidth=1.5; c.beginPath(); c.moveTo(x,top); c.lineTo(x,bottom); c.stroke(); c.restore(); }};
+    dailyInst=new Chart(canvas,{type:'line',data:{labels,datasets:[{
+      label:esGasto?'Gastos':'Ingresos',data:vals,
+      borderColor:color,backgroundColor:grad,borderWidth:2.5,
+      pointBackgroundColor:labels.map((_,i)=>(i+1)===diaPico?color:'#fff'),pointBorderColor:color,pointBorderWidth:2,
+      pointRadius:pointRadii,pointHoverRadius:7,pointHoverBackgroundColor:color,pointHoverBorderColor:'#fff',pointHoverBorderWidth:3,pointHitRadius:14,fill:true,tension:.35,cubicInterpolationMode:'monotone'
+    }]},plugins:[brillo],options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+      events: matchMedia('(hover: none)').matches ? ['click','touchstart','touchmove'] : ['mousemove','mouseout','click','touchstart','touchmove'],
+      onClick:(evt,elements)=>{
+        if(elements&&elements.length){
+          const idx=elements[0].index;
+          if(porDia[idx+1]>0) showDayDetail(idx+1);
+        }
+      },
+      plugins:{legend:{display:false},tooltip:{enabled:false,external:c=>tipDia(c)}},
+      scales:{
+        y:{beginAtZero:true,ticks:{color:'#8A93A0',font:{size:11},maxTicksLimit:5,callback:v=>fmtCap(v)},grid:{color:'rgba(0,0,0,.05)'},border:{display:false}},
+        x:{ticks:{color:'#6B7380',font:{size:10.5},autoSkip:true,maxTicksLimit:10,maxRotation:0},grid:{display:false},border:{display:false}}
+      }}});
   }
-  const cal=`<div class="bv-card">
-    <div class="bv-card-hd"><span><i class="ti ti-calendar-month"></i>Tu mes en calendario</span><small>más intenso = más ${esG?'gasto':'ingreso'}</small></div>
-    <div class="an-cal an-cal-sem">${ANA_SEM.map(x=>`<span>${x}</span>`).join('')}</div>
-    <div class="an-cal">${celdas}</div>
-    <div class="an-dia" id="an-dia"></div>
-  </div>`;
-
-  // ── Datos clave ──
-  const mayor=movs.reduce((a,b)=>b.monto>a.monto?b:a);
-  const limpia=x=>String(x.desc||'').replace(/^\[COMP\] /,'')||'Sin descripción';
-  let diasSin=0; for(let d=1;d<=transcurridos;d++) if(!porDia[d]) diasSin++;
-  const t=(ico,col,lbl,val,sub)=>`<div class="rs-dato" style="--c:${col}"><div class="rs-dato-ico"><i class="ti ${ico}"></i></div><span>${lbl}</span><b>${val}</b><small>${sub}</small></div>`;
-  const datos=`<div class="rs-sec bv-sec"><i class="ti ti-sparkles"></i>Lo más importante</div><div class="rs-datos">
-    ${t('ti-flame',hex,esG?'Día de más gasto':'Mejor día',`${diaPico} de ${MS[mes]}`,`${fmt(pico)} · ${nDia[diaPico]} mov.`)}
-    ${t('ti-receipt',hex,esG?'Gasto más grande':'Ingreso más grande',fmt(mayor.monto),esc(limpia(mayor)))}
-    ${esG?t('ti-mood-smile','#13795B','Días sin gastar',`${diasSin} de ${transcurridos}`,diasSin?'días en cero este mes':'hubo gastos todos los días')
-         :t('ti-calendar-check','#13795B','Días con ingresos',`${diasCon}`,`de ${transcurridos||dias} días`)}
-    ${t('ti-scale','#2D5BD0','Movimiento promedio',fmt(total/movs.length),`${movs.length} movimiento${movs.length!==1?'s':''}`)}
-  </div>`;
-
-  // ── Días de la semana (últimos 3 meses, para ver el patrón) ──
-  const ventana=[0,1,2].map(k=>{ const kk=anio*12+mes-k; return kk; });
-  const sem=Array(7).fill(0);
-  data.filter(d=>d.tipo===tipo&&ventana.includes(d.anio*12+d.mes)).forEach(d=>{ const f=new Date(d.fecha+'T00:00:00'); if(!isNaN(f)) sem[(f.getDay()+6)%7]+=d.monto; });
-  const semMax=Math.max(...sem), semTot=sem.reduce((a,b)=>a+b,0);
-  const NOM=['lunes','martes','miércoles','jueves','viernes','sábados','domingos'];
-  const semana=semMax>0?`<div class="bv-card">
-    <div class="bv-card-hd"><span><i class="ti ti-calendar-week"></i>Por día de la semana</span><small>últimos 3 meses</small></div>
-    <div class="an-sem-frase">Los <b>${NOM[sem.indexOf(semMax)]}</b> son tus días de más ${esG?'gasto':'ingreso'}: ${Math.round(semMax/semTot*100)}% del total.</div>
-    <div class="an-sem">${sem.map((v,i)=>`<div class="${v===semMax?'top':''}"><em>${v?fmtK(v):''}</em><i style="--h:${Math.max(3,v/semMax*100)}%"></i><span>${ANA_SEM[i]}</span></div>`).join('')}</div>
-  </div>`:'';
-
-  // ── Los más grandes ──
-  const top=[...movs].sort((a,b)=>b.monto-a.monto).slice(0,5);
-  const grandes=`<div class="bv-card">
-    <div class="bv-card-hd"><span><i class="ti ti-list-numbers"></i>${esG?'Gastos':'Ingresos'} más grandes</span><small>% del mes</small></div>
-    ${top.map(x=>{ const pc=x.monto/total*100;
-      return `<button class="an-mov an-mov-btn" onclick="anaSelDia(${diaDeMov(x)});document.getElementById('an-dia').scrollIntoView({behavior:'smooth',block:'center'})">
-        <div class="an-mov-ico" style="--c:${catClr(x.cat)}">${catIcoHTML(x.cat)}</div>
-        <div class="an-mov-t"><b>${esc(limpia(x))}</b><small>${diaDeMov(x)} de ${MS[mes]} · ${esc(x.cat||'Sin categoría')}</small><i style="--w:${pc}%"></i></div>
-        <div class="an-mov-v"><b>${fmt(x.monto)}</b><small>${pc<1?'<1':Math.round(pc)}%</small></div>
-      </button>`; }).join('')}
-  </div>`;
-
-  wrap.innerHTML=`<div class="an" style="--tc:${cVar}">${hero}${graf}${cal}${datos}${semana}${grandes}</div>`;
-  pintarAnaDia();
-
-  // ── Gráfica (Chart.js) ──
-  const canvas=document.getElementById('dailyChart'); if(!canvas) return;
-  const ctx=canvas.getContext('2d'), alto=canvas.parentNode.clientHeight||220;
-  const touch=matchMedia('(hover: none)').matches;
-  const comunes={responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},animation:{duration:700},
-    events: touch ? ['click','touchstart','touchmove'] : ['mousemove','mouseout','click','touchstart','touchmove'],
-    plugins:{legend:{display:false},tooltip:{enabled:false,external:c=>tipAnalisis(c)}},
-    scales:{y:{beginAtZero:true,ticks:{color:'#8A93A0',font:{size:11},maxTicksLimit:5,callback:v=>fmtCap(v)},grid:{color:'rgba(0,0,0,.05)'},border:{display:false}},
-            x:{grid:{display:false},border:{display:false},ticks:{color:'#6B7380',font:{size:10.5},autoSkip:true,maxTicksLimit:touch?8:16,maxRotation:0}}}};
-  if(anaVista==='dia'){
-    const labels=[], vals=[]; for(let d=1;d<=dias;d++){ labels.push(String(d)); vals.push(Math.round(porDia[d])); }
-    dailyInst=new Chart(canvas,{type:'bar',data:{labels,datasets:[{data:vals,
-      backgroundColor:vals.map((v,i)=>i+1===diaPico?hex:hex+'59'),hoverBackgroundColor:hex,borderRadius:6,borderSkipped:false,maxBarThickness:16,minBarLength:0}]},
-      options:{...comunes,onClick:(e,els)=>{ if(els&&els.length) anaSelDia(els[0].index+1,true); }}});
-  } else {
-    const n=Math.max(dias,pDias), labels=[], este=[], ant=[]; let a1=0,a2=0;
-    for(let d=1;d<=n;d++){ labels.push(String(d));
-      if(d<=dias){ a1+=porDia[d]; este.push(d<=Math.max(transcurridos,1)||!esActual?Math.round(a1):null); } else este.push(null);
-      if(d<=pDias){ a2+=prevDia[d]; ant.push(Math.round(a2)); } else ant.push(null); }
-    const grad=ctx.createLinearGradient(0,0,0,alto); grad.addColorStop(0,hex+'38'); grad.addColorStop(1,hex+'00');
-    dailyInst=new Chart(canvas,{type:'line',data:{labels,datasets:[
-      {data:este,borderColor:hex,backgroundColor:grad,fill:true,borderWidth:3,tension:.3,pointRadius:0,pointHoverRadius:6,pointHoverBackgroundColor:hex,pointHoverBorderColor:'#fff',pointHoverBorderWidth:3,spanGaps:false},
-      {data:ant,borderColor:'#9AA4B2',borderDash:[5,5],borderWidth:1.8,pointRadius:0,pointHoverRadius:4,pointHoverBackgroundColor:'#9AA4B2',fill:false}]},
-      options:comunes});
-  }
-  canvas.addEventListener('touchstart',()=>{ const p=canvas.closest('.bv-card').querySelector('.bv-pista-tip'); if(p) p.classList.add('fuera'); },{passive:true,once:true});
 }
 
-// Movimientos del día elegido en el calendario
-function pintarAnaDia(){
-  const el=document.getElementById('an-dia'); if(!el||!anaInfo) return;
-  const d=anaDiaSel, {esG,mes,anio,movs}=anaInfo;
-  if(!d){ el.innerHTML=`<div class="an-dia-vacio"><i class="ti ti-hand-finger"></i>Toca un día para ver sus movimientos</div>`; return; }
-  const lista=movs.filter(x=>diaDeMov(x)===d).sort((a,b)=>b.monto-a.monto);
-  const tot=lista.reduce((s,x)=>s+x.monto,0);
-  const nombre=new Date(anio,mes,d).toLocaleDateString('es-CO',{weekday:'long'});
-  el.innerHTML=`<div class="an-dia-hd"><div><span>${nombre.charAt(0).toUpperCase()+nombre.slice(1)} ${d} de ${MF[mes].toLowerCase()}</span><b>${fmt(tot)}</b></div><em>${lista.length} movimiento${lista.length!==1?'s':''}</em></div>
-    ${lista.length?lista.map(x=>`<div class="an-mov">
-      <div class="an-mov-ico" style="--c:${catClr(x.cat)}">${catIcoHTML(x.cat)}</div>
-      <div class="an-mov-t"><b>${esc(String(x.desc||'').replace(/^\[COMP\] /,'')||'Sin descripción')}</b><small>${esc(x.cat||'Sin categoría')}</small></div>
-      <div class="an-mov-v"><b class="${esG?'mal':'ok'}">${esG?'−':'+'}${fmt(x.monto)}</b></div></div>`).join('')
-      :`<div class="an-dia-vacio">${esG?'<i class="ti ti-sparkles"></i>Este día no gastaste nada':'<i class="ti ti-calendar-off"></i>Sin ingresos este día'}</div>`}`;
-}
-
-// Recuadro al tocar la gráfica de Análisis
-function tipAnalisis(c){
-  const {chart, tooltip}=c, host=chart.canvas.parentNode, I=anaInfo; if(!I) return;
+// Recuadro al tocar un punto del análisis diario
+function tipDia(c){
+  const {chart, tooltip}=c, host=chart.canvas.parentNode, I=window._dailyInfo; if(!I) return;
   let el=host.querySelector('.bv-tip');
-  if(!el){ el=document.createElement('div'); el.className='bv-tip'; host.appendChild(el); }
+  if(!el){ el=document.createElement('div'); el.className='bv-tip dia-tip'; host.appendChild(el); }
   if(tooltip.opacity===0 || !tooltip.dataPoints || !tooltip.dataPoints.length){ el.classList.remove('on'); return; }
-  const i=tooltip.dataPoints[0].dataIndex, d=i+1;
-  const nom=new Date(I.anio,I.mes,Math.min(d,I.dias)).toLocaleDateString('es-CO',{weekday:'short'}).replace('.','');
-  let html;
-  if(anaVista==='dia'){
-    const v=I.porDia[d]||0, n=I.nDia[d]||0;
-    const mov=I.movs.filter(x=>diaDeMov(x)===d).sort((a,b)=>b.monto-a.monto)[0];
-    html=`<div class="bv-tip-hd"><span>${nom} ${d} ${MS[I.mes]}</span><em class="${v?(I.esG?'mal':'ok'):'neu'}">${n} mov.</em></div>
-      <b class="bv-tip-val">${fmt(v)}</b>
-      <div class="bv-tip-sub">${v?`${Math.round(v/I.total*100)}% del mes`:d>I.transcurridos?'Todavía no llega':(I.esG?'Día sin gastos':'Sin ingresos')}</div>
-      ${mov?`<div class="bv-tip-barras"><div class="an-tip-mov"><span>Mayor</span><b>${esc(String(mov.desc||'').replace(/^\[COMP\] /,'')||'Sin descripción')}</b></div></div>`:''}`;
-  } else {
-    const a1=I.porDia.slice(1,Math.min(d,I.dias)+1).reduce((x,y)=>x+y,0), a2=I.prevDia.slice(1,d+1).reduce((x,y)=>x+y,0);
-    const dif=a2>0?(a1-a2)/a2*100:null, menos=dif!==null&&dif<0, bueno=I.esG?menos:!menos;
-    html=`<div class="bv-tip-hd"><span>Al día ${d}</span>${dif!==null?`<em class="${bueno?'ok':'mal'}"><i class="ti ti-arrow-${menos?'down':'up'}-right"></i>${Math.abs(dif).toFixed(0)}%</em>`:''}</div>
-      <b class="bv-tip-val">${fmt(a1)}</b>
-      <div class="bv-tip-sub">en ${MF[I.mes].toLowerCase()}</div>
-      <div class="bv-tip-barras"><div class="an-tip-mov"><span>${MS[I.pm]}</span><b>${fmt(a2)} a esa fecha</b></div></div>`;
-  }
-  el.innerHTML=html;
-  const pt=chart.getDatasetMeta(0).data[i]; if(!pt) return;
-  ubicarTip(el, host, {x:pt.x, y:anaVista==='dia'?Math.min(pt.y,chart.chartArea.bottom-6):pt.y});
+  const i=tooltip.dataPoints[0].dataIndex, d=i+1, v=I.porDia[d]||0, n=I.countPorDia[d]||0;
+  const nom=new Date(I.anio,I.mes,d).toLocaleDateString('es-CO',{weekday:'short'}).replace('.','');
+  const mayor=I.movs.filter(x=>diaDeMov(x)===d).sort((a,b)=>b.monto-a.monto)[0];
+  el.innerHTML=`<div class="bv-tip-hd"><span>${nom} ${d} ${MS[I.mes]}</span><em class="${v?(I.esGasto?'mal':'ok'):'neu'}">${n} mov.</em></div>
+    <b class="bv-tip-val">${fmt(v)}</b>
+    <div class="bv-tip-sub">${v?`${Math.round(v/I.total*100)}% del mes`:'Sin movimientos'}</div>
+    ${mayor?`<div class="bv-tip-barras"><div class="dia-tip-mov"><span>Mayor</span><b>${esc(String(mayor.desc||'').replace(/^\[COMP\] /,'')||'Sin descripción')}</b></div></div><div class="dia-tip-ir">Toca para ver todo</div>`:''}`;
+  ubicarTip(el, host, chart.getDatasetMeta(0).data[i]);
 }
 
 // ── Detalle del día tocado en el análisis diario (modal flotante) ──
 function showDayDetail(dia){
   const overlay=document.getElementById('day-modal-overlay');
   if(!overlay) return;
-  const movs=(window._dailyMovs||[]).filter(d=>new Date(d.fecha+'T00:00:00').getDate()===dia);
-  const tipo=window._dailyTipo||'gasto';
-  const esGasto=tipo==='gasto';
+  sonido('abrir');
+  const movs=(window._dailyMovs||[]).filter(d=>diaDeMov(d)===dia).sort((a,b)=>b.monto-a.monto);
+  const esGasto=(window._dailyTipo||'gasto')==='gasto';
   const color=esGasto?'var(--rd)':'var(--gd)';
-  const meses2=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-  const mes=window._dailyMes||0;
-
-  document.getElementById('day-modal-date').textContent=`Día ${dia} de ${meses2[mes]}`;
-
-  if(!movs.length){
-    document.getElementById('day-modal-total').textContent='$0';
-    document.getElementById('day-modal-total').style.color='var(--t3)';
-    document.getElementById('day-modal-count').textContent='Sin movimientos este día';
-    document.getElementById('day-modal-list').innerHTML=`<div class="day-modal-empty"><i class="ti ti-inbox" style="font-size:22px;display:block;margin-bottom:6px;" aria-hidden="true"></i>Nada registrado este día</div>`;
-    overlay.style.display='flex';
-    return;
-  }
-
-  const totalDia=movs.reduce((s,d)=>s+d.monto,0);
+  const mes=window._dailyMes||0, anio=parseInt(document.getElementById('analisis-anio').value,10);
+  const nom=new Date(anio,mes,dia).toLocaleDateString('es-CO',{weekday:'long'});
+  overlay.querySelector('.day-modal').style.setProperty('--tc', esGasto?'#C8423B':'#13795B');
+  document.getElementById('day-modal-date').textContent=`${nom.charAt(0).toUpperCase()+nom.slice(1)} ${dia} de ${MF[mes].toLowerCase()}`;
+  const totalDia=movs.reduce((s,d)=>s+d.monto,0), totalMes=(window._dailyInfo&&window._dailyInfo.total)||0;
   document.getElementById('day-modal-total').textContent=fmt(totalDia);
-  document.getElementById('day-modal-total').style.color=color;
-  document.getElementById('day-modal-count').textContent=`${movs.length} movimiento${movs.length!==1?'s':''} ese día`;
-  document.getElementById('day-modal-list').innerHTML=movs.map(m=>`<div class="day-modal-txn">
-      <span class="day-modal-desc">${esc(m.desc||'Sin descripción')}</span>
-      <span class="day-modal-amt" style="color:${color}">${fmt(m.monto)}</span>
-    </div>`).join('');
+  document.getElementById('day-modal-total').style.color=movs.length?color:'var(--t3)';
+  document.getElementById('day-modal-count').textContent=movs.length
+    ? `${movs.length} movimiento${movs.length!==1?'s':''}${totalMes?` · ${Math.round(totalDia/totalMes*100)}% del mes`:''}`
+    : 'Sin movimientos este día';
+  document.getElementById('day-modal-list').innerHTML=movs.length ? movs.map(m=>`<div class="day-modal-txn">
+      <div class="day-modal-ico" style="--c:${catClr(m.cat)}">${catIcoHTML(m.cat)}</div>
+      <div class="day-modal-txt"><span class="day-modal-desc">${esc(String(m.desc||'').replace(/^\[COMP\] /,'')||'Sin descripción')}</span><small>${esc(m.cat||'Sin categoría')}</small></div>
+      <span class="day-modal-amt" style="color:${color}">${esGasto?'−':'+'}${fmt(m.monto)}</span>
+    </div>`).join('')
+    : `<div class="day-modal-empty"><i class="ti ti-inbox" aria-hidden="true"></i>Nada registrado este día</div>`;
   overlay.style.display='flex';
 }
 function closeDayDetail(e){
