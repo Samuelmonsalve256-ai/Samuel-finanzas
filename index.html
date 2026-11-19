@@ -1350,6 +1350,156 @@ html.txt-grande body{zoom:1.1}
 .cel-meta{position:relative;z-index:1;width:120px;height:120px;border-radius:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(145deg,#F6C35B,#C9971C);color:#3A2A05;margin-bottom:18px;box-shadow:0 18px 40px -14px rgba(246,195,91,.7);animation:celPop .5s cubic-bezier(.3,1.5,.5,1) both}
 .cel-meta i{font-size:40px}
 .cel-meta b{font-size:24px;font-weight:800;letter-spacing:-.03em}
+
+/* ══ Capital · Bóveda (identidad propia: noche, menta y oro) ══ */
+.content:has(#page-capital.active){background:#070B09;background-image:radial-gradient(900px 520px at 0% -10%,rgba(19,121,91,.30),transparent 60%),radial-gradient(700px 500px at 110% 40%,rgba(232,184,74,.10),transparent 60%),radial-gradient(800px 600px at 30% 110%,rgba(61,220,151,.08),transparent 60%);background-attachment:fixed}
+.bv{--bv-t0:#F3F7F5;--bv-t1:rgba(243,247,245,.78);--bv-t2:rgba(243,247,245,.55);--bv-t3:rgba(243,247,245,.38);--bv-ln:rgba(255,255,255,.08);--bv-card:rgba(255,255,255,.035);--menta:#3DDC97;--oro:#E8B84A;--rojo:#FF8A80;max-width:1100px;margin:0 auto;color:var(--bv-t0);overflow-x:clip}
+.bv-card,.bv .ci,.bv .ci-h,.bv .rs-dato{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border:1px solid var(--bv-ln);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 20px 40px -28px rgba(0,0,0,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.bv-card{border-radius:22px;padding:16px;margin-bottom:14px;position:relative}
+.bv-card-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.bv-card-hd>span:first-child{display:flex;align-items:center;gap:7px;font-size:14.5px;font-weight:650;color:var(--bv-t0)}
+.bv-card-hd>span:first-child i{font-size:17px;color:var(--menta)}
+.bv-card-hd small{font-size:11.5px;color:var(--bv-t3);font-weight:500}
+/* Número grande */
+.bv-hero{position:relative;padding:10px 4px 6px;margin-bottom:18px}
+.bv-orb{position:absolute;width:300px;max-width:90%;height:300px;left:50%;top:-30px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(61,220,151,.22),transparent 65%);filter:blur(10px);pointer-events:none;animation:cpRespira 7s ease-in-out infinite}
+.bv-h-top{position:relative;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.bv-h-lbl{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--bv-t1);letter-spacing:.02em;text-transform:uppercase}
+.bv-h-lbl i{font-size:17px;color:var(--menta)}
+.bv-h-lock{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:650;color:var(--oro);background:rgba(232,184,74,.1);border:1px solid rgba(232,184,74,.25);padding:4px 9px;border-radius:999px}
+.bv-h-lock i{font-size:13px}
+.bv-h-val{position:relative;font-size:clamp(40px,11vw,64px);font-weight:700;letter-spacing:-.045em;line-height:1.05;margin:12px 0 10px;background:linear-gradient(180deg,#fff 30%,#A8F0CD);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bv-h-mes{position:relative;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bv-h-mes b{display:inline-flex;align-items:center;gap:3px;font-size:14px;font-weight:700;padding:5px 11px;border-radius:999px;background:rgba(61,220,151,.14);color:var(--menta);border:1px solid rgba(61,220,151,.3)}
+.bv-h-mes.mal b{background:rgba(255,138,128,.12);color:var(--rojo);border-color:rgba(255,138,128,.3)}
+.bv-h-mes span{font-size:13px;color:var(--bv-t2)}
+.bv-h-tira{position:relative;display:grid;grid-template-columns:repeat(3,1fr);margin-top:20px;border-top:1px solid var(--bv-ln);padding-top:14px}
+.bv-h-tira>div{display:flex;flex-direction:column;gap:2px;min-width:0;padding:0 10px;border-left:1px solid var(--bv-ln)}
+.bv-h-tira>div:first-child{border-left:none;padding-left:0}
+.bv-h-tira span{font-size:11.5px;color:var(--bv-t3);font-weight:550}
+.bv-h-tira b{font-size:16px;font-weight:700;color:var(--bv-t0);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bv-h-tira b.ok{color:var(--menta)} .bv-h-tira b.mal{color:var(--rojo)}
+.bv-h-tira small{font-size:11px;color:var(--bv-t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Meta en la bóveda */
+.bv .mt{background:linear-gradient(150deg,rgba(232,184,74,.16),rgba(232,184,74,.03) 55%,rgba(255,255,255,.02));border:1px solid rgba(232,184,74,.28);box-shadow:0 24px 48px -30px rgba(232,184,74,.5),inset 0 1px 0 rgba(255,255,255,.06);border-radius:22px}
+.bv .mt.logrado{background:linear-gradient(150deg,rgba(61,220,151,.16),rgba(255,255,255,.02));border-color:rgba(61,220,151,.3)}
+.bv .mt-ico{background:linear-gradient(145deg,#F6C35B,#C9971C);color:#2A1E04}
+.bv .mt-tit span{color:var(--oro)} .bv .mt.logrado .mt-tit span{color:var(--menta)}
+.bv .mt-tit b,.bv .mt-pct b{color:var(--bv-t0)}
+.bv .mt-pct span{color:var(--bv-t1)}
+.bv .mt-edit{background:rgba(255,255,255,.06);border-color:var(--bv-ln);color:var(--bv-t1)}
+.bv .mt-pista{background:rgba(255,255,255,.08)}
+.bv .mt-relleno{background:linear-gradient(90deg,#F6C35B,#E8B84A);box-shadow:0 0 18px rgba(232,184,74,.55)}
+.bv .mt.logrado .mt-relleno{background:linear-gradient(90deg,#7BE8B7,#3DDC97);box-shadow:0 0 18px rgba(61,220,151,.5)}
+.bv .mt-hito i{background:#141A17;color:rgba(255,255,255,.35);border-color:rgba(255,255,255,.15)}
+.bv .mt-hito.ok i{background:var(--oro);color:#2A1E04;border-color:#141A17;box-shadow:0 0 10px rgba(232,184,74,.6)}
+.bv .mt.logrado .mt-hito.ok i{background:var(--menta)}
+.bv .mt-hito span{color:var(--bv-t3)}
+.bv .mt-fin{background:#141A17;color:var(--oro);border-color:rgba(232,184,74,.4)}
+.bv .mt-fin.ok{background:var(--menta);color:#06231A;border-color:#141A17}
+.bv .mt-yo span{background:#fff;color:#0B120F}
+.bv .mt-yo span::after{border-top-color:#fff}
+.bv .mt-datos div{background:rgba(0,0,0,.25);border-color:var(--bv-ln)}
+.bv .mt-datos span{color:var(--bv-t2)} .bv .mt-datos b{color:var(--bv-t0)}
+.bv .mt-aviso{background:rgba(255,138,128,.1);color:var(--rojo)}
+.bv .mt-aviso.suave{background:rgba(232,184,74,.08);color:#F3D488;border-color:rgba(232,184,74,.22)}
+.bv .mt-cta{background:linear-gradient(150deg,rgba(232,184,74,.12),rgba(255,255,255,.02));border:1.5px dashed rgba(232,184,74,.45);color:var(--bv-t0)}
+.bv .mt-cta span{color:var(--bv-t2)} .bv .mt-cta>i{color:var(--bv-t3)}
+.bv .mt-cta-ico{background:linear-gradient(145deg,#F6C35B,#C9971C);color:#2A1E04}
+/* Gráfica */
+.bv .cap-lienzo{position:relative;height:290px}
+.bv-leyenda{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--bv-t2);flex-wrap:wrap;justify-content:flex-end}
+.bv-leyenda i{width:12px;height:2.5px;border-radius:2px;margin-left:5px}
+.bv-leyenda i.cap{background:var(--menta);box-shadow:0 0 6px var(--menta)}
+.bv-leyenda i.ini{background:repeating-linear-gradient(90deg,rgba(255,255,255,.45) 0 4px,transparent 4px 7px)}
+.bv-leyenda i.met{background:repeating-linear-gradient(90deg,var(--oro) 0 5px,transparent 5px 8px)}
+.bv-pista-tip{display:flex;align-items:center;justify-content:center;gap:5px;font-size:11.5px;color:var(--bv-t3);margin-top:8px;transition:opacity .4s}
+.bv-pista-tip.fuera{opacity:0}
+.bv-pulso{position:absolute;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--menta);box-shadow:0 0 0 3px #0B120F,0 0 14px var(--menta);pointer-events:none}
+.bv-pulso::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:2px solid var(--menta);animation:bvPulso 1.8s ease-out infinite}
+@keyframes bvPulso{from{transform:scale(1);opacity:.9}to{transform:scale(3.2);opacity:0}}
+/* Recuadro al tocar la gráfica */
+.bv-tip{position:absolute;left:0;top:0;z-index:5;width:212px;padding:12px 13px 11px;border-radius:16px;pointer-events:none;
+  background:linear-gradient(160deg,rgba(28,40,34,.96),rgba(10,15,12,.97));border:1px solid rgba(61,220,151,.28);
+  box-shadow:0 18px 40px -12px rgba(0,0,0,.75),0 0 0 1px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--bv-t0);
+  opacity:0;transition:opacity .18s ease,transform .22s cubic-bezier(.3,.8,.3,1)}
+.bv-tip.on{opacity:1}
+.bv-tip.sin-mov{transition:none}
+.bv-tip::after{content:'';position:absolute;left:var(--fx,50%);bottom:-6px;width:10px;height:10px;margin-left:-5px;transform:rotate(45deg);background:#0B110E;border-right:1px solid rgba(61,220,151,.28);border-bottom:1px solid rgba(61,220,151,.28)}
+.bv-tip.abajo::after{bottom:auto;top:-6px;background:#1A2620;border:none;border-left:1px solid rgba(61,220,151,.28);border-top:1px solid rgba(61,220,151,.28)}
+.bv-tip.lado::after{display:none}
+@media(max-width:520px){.bv-tip{width:170px;padding:10px 11px 9px}.bv-tip-hd span{font-size:10.5px}.bv-tip-hd em{font-size:10.5px;padding:2px 6px}.bv-tip-barras div{grid-template-columns:32px 1fr auto;gap:5px}.bv-tip-barras b{font-size:11px}.bv-tip-sub{font-size:11.5px}.bv-tip-val{font-size:18px;margin-top:4px}.bv-tip-barras{margin-top:8px;padding-top:7px;gap:5px}.bv-tip-meta{margin-top:7px;padding-top:7px}}
+.bv-tip-hd{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.bv-tip-hd span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bv-tip-hd em{flex-shrink:0}
+.bv-tip-hd span{font-size:11.5px;font-weight:650;color:var(--bv-t2);text-transform:uppercase;letter-spacing:.04em}
+.bv-tip-hd em{font-style:normal;display:inline-flex;align-items:center;gap:2px;font-size:11.5px;font-weight:750;padding:3px 7px;border-radius:999px}
+.bv-tip-hd em i{font-size:13px}
+.bv-tip-hd em.ok{background:rgba(61,220,151,.16);color:var(--menta)}
+.bv-tip-hd em.mal{background:rgba(255,138,128,.15);color:var(--rojo)}
+.bv-tip-hd em.neu{background:rgba(232,184,74,.14);color:var(--oro)}
+.bv-tip-val{display:block;font-size:21px;font-weight:700;letter-spacing:-.03em;margin:6px 0 1px;color:#fff}
+.bv-tip-sub{font-size:12px;color:var(--bv-t2)}
+.bv-tip-sub.ok{color:#8FEBC2} .bv-tip-sub.mal{color:#FFB3AB}
+.bv-tip-barras{display:flex;flex-direction:column;gap:6px;margin-top:10px;padding-top:9px;border-top:1px solid var(--bv-ln)}
+.bv-tip-barras div{display:grid;grid-template-columns:38px 1fr auto;align-items:center;gap:7px}
+.bv-tip-barras span{font-size:11px;color:var(--bv-t3)}
+.bv-tip-barras b{font-size:11.5px;font-weight:650;color:var(--bv-t1)}
+.bv-tip-barras i{display:block;height:6px;border-radius:999px;background:rgba(255,255,255,.07);position:relative;overflow:hidden}
+.bv-tip-barras i::before{content:'';position:absolute;inset:0 auto 0 0;width:var(--w);border-radius:999px}
+.bv-tip-barras i.in::before{background:linear-gradient(90deg,#1FA971,var(--menta))}
+.bv-tip-barras i.out::before{background:linear-gradient(90deg,#D9534F,var(--rojo))}
+.bv-tip-meta{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:4px 6px;margin-top:9px;padding-top:9px;border-top:1px solid var(--bv-ln);font-size:11.5px;color:#F3D488}
+.bv-tip-meta i.ti{color:var(--oro);font-size:14px}
+.bv-tip-meta div{grid-column:1/-1;height:4px;border-radius:999px;background:rgba(255,255,255,.07);position:relative;overflow:hidden}
+.bv-tip-meta div i{position:absolute;inset:0 auto 0 0;width:var(--w);background:linear-gradient(90deg,#F6C35B,var(--oro));border-radius:999px}
+/* Análisis */
+.bv-sec{display:flex;align-items:center;gap:7px;color:var(--bv-t0)!important}
+.bv-sec i{color:var(--oro);font-size:17px}
+.bv-sec small{color:var(--bv-t3)!important}
+.bv .rs-dato{border-radius:18px}
+.bv .rs-dato-ico{background:color-mix(in srgb,var(--c) 22%,transparent);color:color-mix(in srgb,var(--c) 45%,#fff)}
+.bv .rs-dato span{color:var(--bv-t2)} .bv .rs-dato b{color:var(--bv-t0)} .bv .rs-dato small{color:var(--bv-t3)}
+/* Mes a mes */
+.bv-mes{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--bv-ln);animation:cpEntra .45s ease both;animation-delay:var(--d)}
+.bv-card-hd+.bv-mes{border-top:none}
+.bv-mes-f{display:flex;flex-direction:column;align-items:center;justify-content:center;height:44px;border-radius:13px;background:rgba(255,255,255,.05);border:1px solid var(--bv-ln)}
+.bv-mes-f b{font-size:13.5px;font-weight:700;color:var(--bv-t0);line-height:1.1}
+.bv-mes-f small{font-size:10px;color:var(--bv-t3)}
+.bv-mes.ok .bv-mes-f{border-color:rgba(61,220,151,.22)} .bv-mes.mal .bv-mes-f{border-color:rgba(255,138,128,.25)}
+.bv-mes-m{min-width:0}
+.bv-mes-pct{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.bv-mes-pct b{display:inline-flex;align-items:center;gap:2px;font-size:16px;font-weight:750;letter-spacing:-.02em;color:var(--menta)}
+.bv-mes.mal .bv-mes-pct b{color:var(--rojo)}
+.bv-mes-pct b i{font-size:16px}
+.bv-mes-pct span{font-size:12px;color:var(--bv-t2);white-space:nowrap}
+.bv-mes-barra{height:5px;border-radius:999px;background:rgba(255,255,255,.06);margin-top:6px;overflow:hidden}
+.bv-mes-barra i{display:block;height:100%;width:var(--w);border-radius:999px;background:linear-gradient(90deg,rgba(61,220,151,.35),var(--menta));box-shadow:0 0 8px rgba(61,220,151,.5);animation:bvBarra .9s cubic-bezier(.3,.8,.3,1) both;animation-delay:calc(var(--d) + .15s);transform-origin:left}
+.bv-mes.mal .bv-mes-barra i{background:linear-gradient(90deg,rgba(255,138,128,.35),var(--rojo));box-shadow:0 0 8px rgba(255,138,128,.45)}
+@keyframes bvBarra{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.bv-mes-c{display:flex;flex-direction:column;align-items:flex-end;text-align:right}
+.bv-mes-c b{font-size:14px;font-weight:700;color:var(--bv-t0);white-space:nowrap}
+.bv-mes-c small{font-size:10.5px;color:var(--bv-t3)}
+.bv-vertodo{width:100%;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid var(--bv-ln);background:rgba(255,255,255,.04);color:var(--bv-t1);font-family:inherit;font-weight:600;font-size:12.5px;padding:10px;border-radius:12px;cursor:pointer}
+/* Capital inicial e historial */
+.bv .ci{border-radius:20px}
+.bv .ci-ico{background:linear-gradient(145deg,#F6C35B,#C9971C);color:#2A1E04;box-shadow:0 8px 18px -8px rgba(232,184,74,.7)}
+.bv .ci-txt span{color:var(--bv-t2)} .bv .ci-txt b{color:var(--bv-t0)} .bv .ci-txt small{color:var(--bv-t3)}
+.bv .ci-btn{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);color:var(--bv-t0)}
+.bv .ci-hist-btn{color:var(--bv-t2)}
+.bv .ci-h{border-radius:14px}
+.bv .ci-h-top b{color:var(--bv-t0)} .bv .ci-h-top span,.bv .ci-h small{color:var(--bv-t3)}
+.bv .ci-h-mot{color:var(--bv-t1)} .bv .ci-h-mot i{color:var(--oro)}
+.bv .resp-nota{color:var(--bv-t2)}
+.bv .cap-vacio{background:linear-gradient(160deg,rgba(61,220,151,.12),rgba(255,255,255,.03));border:1px solid var(--bv-ln)}
+.bv .cap-vacio-ico{background:linear-gradient(145deg,#F6C35B,#C9971C);color:#2A1E04}
+@media(min-width:900px){
+  .bv-hero{padding:22px 8px 10px}
+  .bv-h-tira{max-width:680px}
+  .bv .cap-lienzo{height:340px}
+}
+@media(max-width:380px){.bv-h-tira b{font-size:14px}.bv-mes{gap:9px}.bv-mes-c b{font-size:13px}}
 </style>
 </head>
 <body>
@@ -2733,33 +2883,110 @@ function ritmoCapital(seq){
 function mesesHastaMeta(falta, ritmo){ return ritmo>0 ? Math.ceil(falta/ritmo) : null; }
 function sumarMeses(m,a,n){ const k=a*12+m+n; return {mes:k%12, anio:Math.floor(k/12)}; }
 
+// % que creció el capital en un mes, frente a cómo empezó ese mes
+function pctCrec(x){ const antes=x.capital-x.bal; return antes>0 ? x.bal/antes*100 : null; }
+function pctTxt(v){ return v===null||!isFinite(v) ? '—' : (v>=0?'+':'−')+Math.abs(v).toFixed(1).replace('.',',')+'%'; }
+// $ 1,2 M · $ 916 mil · $ 800
+function fmtCap(v){
+  const a=Math.abs(v), sg=v<0?'−':'';
+  if(a>=1e6){ const n=a/1e6; return sg+'$ '+(n>=100?Math.round(n):n.toFixed(1).replace('.',',').replace(/,0$/,''))+' M'; }
+  if(a>=1e3) return sg+'$ '+Math.round(a/1e3)+' mil';
+  return sg+'$ '+Math.round(a);
+}
+// El número grande sube contando cuando cambia
+function contarCapital(v){
+  const el=document.getElementById('bv-valor'); if(!el) return;
+  const desde=window._capContado;
+  window._capContado=v;
+  if(desde===v || matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent=fmt(v); return; }
+  const ini=desde===undefined ? v*0.82 : desde, t0=performance.now(), dur=1100;
+  const paso=t=>{ const k=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-k,3);
+    if(!document.body.contains(el)) return;
+    el.textContent=fmt(ini+(v-ini)*e); if(k<1) requestAnimationFrame(paso); };
+  requestAnimationFrame(paso);
+}
+// Punto que late en el último mes de la gráfica
+function pulsoCapital(n){
+  if(!capInst) return;
+  const host=capInst.canvas.parentNode, pt=capInst.getDatasetMeta(0).data[n-1]; if(!pt) return;
+  let d=host.querySelector('.bv-pulso'); if(!d){ d=document.createElement('div'); d.className='bv-pulso'; host.appendChild(d); }
+  d.style.left=pt.x+'px'; d.style.top=pt.y+'px';
+}
+// Recuadro de la gráfica al tocar un mes
+function tipCapital(c, pts, meta){
+  const {chart, tooltip}=c, host=chart.canvas.parentNode;
+  let el=host.querySelector('.bv-tip');
+  if(!el){ el=document.createElement('div'); el.className='bv-tip'; host.appendChild(el); }
+  if(tooltip.opacity===0 || !tooltip.dataPoints || !tooltip.dataPoints.length){ el.classList.remove('on'); return; }
+  const i=tooltip.dataPoints[0].dataIndex, x=pts[i];
+  let html;
+  if(x.ini){
+    html=`<div class="bv-tip-hd"><span>${MF[x.mes]} ${x.anio}</span><em class="neu"><i class="ti ti-flag"></i>Inicio</em></div>
+      <b class="bv-tip-val">${fmt(x.capital)}</b><div class="bv-tip-sub">Aquí arrancaste tu capital</div>`;
+  } else {
+    const ok=x.bal>=0, pc=pctCrec(x), mx=Math.max(x.ingresos,x.gastos,1);
+    html=`<div class="bv-tip-hd"><span>${MF[x.mes]} ${x.anio}</span><em class="${ok?'ok':'mal'}"><i class="ti ti-arrow-${ok?'up':'down'}-right"></i>${pctTxt(pc)}</em></div>
+      <b class="bv-tip-val">${fmt(x.capital)}</b>
+      <div class="bv-tip-sub ${ok?'ok':'mal'}">${ok?'+':'−'}${fmt(Math.abs(x.bal))} este mes</div>
+      <div class="bv-tip-barras">
+        <div><span>Entró</span><i class="in" style="--w:${x.ingresos/mx*100}%"></i><b>${fmtCap(x.ingresos)}</b></div>
+        <div><span>Salió</span><i class="out" style="--w:${x.gastos/mx*100}%"></i><b>${fmtCap(x.gastos)}</b></div>
+      </div>`;
+  }
+  if(meta){ const pm=Math.max(0,Math.min(100,x.capital/meta.monto*100));
+    html+=`<div class="bv-tip-meta"><i class="ti ti-flag-3"></i><span>${Math.floor(pm)}% de tu meta</span><div><i style="--w:${pm}%"></i></div></div>`; }
+  el.innerHTML=html;
+  const pt=chart.getDatasetMeta(0).data[i], W=host.clientWidth, H=host.clientHeight;
+  const w=el.offsetWidth, h=el.offsetHeight;
+  let left, top, modo='arriba';
+  if(W<520){
+    // Teléfono: el recuadro se acomoda en la esquina contraria al punto, así nunca lo tapa
+    modo='lado'; left=pt.x>W/2 ? 0 : W-w; top=0;
+    const tapa = pt.x+12>left && pt.x-12<left+w;
+    if(tapa && pt.y<h+14) top=Math.min(H-h, pt.y+18);
+  } else {
+    left=Math.max(2,Math.min(W-w-2,pt.x-w/2));
+    if(pt.y-h-16>=-34) top=pt.y-h-16;
+    else if(pt.y+16+h<=H+24){ top=pt.y+16; modo='abajo'; }
+    else { modo='lado'; left=pt.x<W/2 ? pt.x+16 : pt.x-w-16; left=Math.max(2,Math.min(W-w-2,left)); top=Math.max(-34,Math.min(H-h,pt.y-h/2)); }
+  }
+  el.style.transform=`translate(${Math.round(left)}px,${Math.round(top)}px)`;
+  el.style.setProperty('--fx',Math.round(Math.max(14,Math.min(w-14,pt.x-left)))+'px');
+  el.classList.toggle('abajo', modo==='abajo'); el.classList.toggle('lado', modo==='lado');
+  if(!el.classList.contains('on')){ el.classList.add('sin-mov'); requestAnimationFrame(()=>{ el.classList.remove('sin-mov'); el.classList.add('on'); }); }
+}
+
 function renderCapital(){
   const wrap=document.getElementById('cap-wrap'); if(!wrap) return;
   if(capInst){ capInst.destroy(); capInst=null; }
   if(capHist===null && !capHistCargando) cargarCapHist();
   if(!capCfg){
-    wrap.innerHTML=`<div class="cap-vacio">
+    wrap.innerHTML=`<div class="bv"><div class="cap-vacio">
       <div class="cap-vacio-ico"><i class="ti ti-building-bank"></i></div>
       <b>Define tu capital inicial</b>
       <span>Es la plata con la que arrancaste. Desde ahí la app calcula cuánto ha crecido tu capital mes a mes.</span>
       <button onclick="abrirCapSheet()"><i class="ti ti-lock"></i>Definir con mi contraseña</button>
-    </div>`;
+    </div></div>`;
     return;
   }
   const seq=getCapSeq(), ini=capCfg.initial, actual=seq.length?seq[seq.length-1].capital:ini;
   const ganado=actual-ini, pct=ini>0?ganado/ini*100:0, pos=ganado>=0;
   const ritmo=ritmoCapital(seq);
 
-  // ── Tarjeta principal ──
-  const hero=`<div class="cp-hero cap-hero2">
-    <div class="cp-hero-glow" style="--c:var(--acc)"></div>
-    <div class="cap-h-lbl"><i class="ti ti-building-bank"></i>Capital actual</div>
-    <div class="cap-h-val">${fmt(actual)}</div>
-    <div class="cap-h-chips">
-      <span class="cx-hero-chip ${pos?'ok':'mal'}">${pos?'▲':'▼'} ${Math.abs(pct).toFixed(1).replace('.',',')}% desde el inicio</span>
-      ${seq.length?`<span class="cx-hero-chip">${ritmo>=0?'+':'−'}${fmt(Math.abs(ritmo))} al mes</span>`:''}
+  // ── Bóveda: el número grande ──
+  const ultimo=seq.length?seq[seq.length-1]:null;
+  const pctMes=ultimo?pctCrec(ultimo):null;
+  const hero=`<div class="bv-hero">
+    <div class="bv-orb"></div>
+    <div class="bv-h-top"><span class="bv-h-lbl"><i class="ti ti-building-bank"></i>Tu capital hoy</span>
+      <span class="bv-h-lock"><i class="ti ti-shield-lock"></i>Protegido</span></div>
+    <div class="bv-h-val" id="bv-valor">${fmt(actual)}</div>
+    ${ultimo?`<div class="bv-h-mes ${ultimo.bal>=0?'ok':'mal'}"><b><i class="ti ti-arrow-${ultimo.bal>=0?'up':'down'}-right"></i>${pctTxt(pctMes)}</b><span>${ultimo.bal>=0?'+':'−'}${fmt(Math.abs(ultimo.bal))} en ${MF[ultimo.mes].toLowerCase()}</span></div>`:''}
+    <div class="bv-h-tira">
+      <div><span>Empezaste</span><b>${fmtCap(ini)}</b><small>${MS[capCfg.mes]} ${capCfg.anio}</small></div>
+      <div><span>${pos?'Ganaste':'Perdiste'}</span><b class="${pos?'ok':'mal'}">${pos?'+':'−'}${fmtCap(Math.abs(ganado))}</b><small>${pos?'+':'−'}${Math.abs(pct).toFixed(1).replace('.',',')}% en total</small></div>
+      <div><span>Tu ritmo</span><b>${ritmo>=0?'+':'−'}${fmtCap(Math.abs(ritmo))}</b><small>al mes</small></div>
     </div>
-    <div class="cap-h-sub">Empezaste con <b>${fmt(ini)}</b> en ${MF[capCfg.mes].toLowerCase()} de ${capCfg.anio} · ${pos?'has ganado':'has perdido'} <b>${fmt(Math.abs(ganado))}</b></div>
   </div>`;
 
   // ── Meta ──
@@ -2799,9 +3026,10 @@ function renderCapital(){
   }
 
   // ── Gráfica de evolución ──
-  const grafica=`<div class="rs-card">
-    <div class="rs-card-hd"><span>Cómo ha crecido</span><span class="rs-leyenda"><i class="lin"></i>Capital<i class="lin ini"></i>Inicial${meta?'<i class="lin met"></i>Meta':''}</span></div>
+  const grafica=`<div class="bv-card">
+    <div class="bv-card-hd"><span><i class="ti ti-chart-area-line"></i>Cómo ha crecido</span><span class="bv-leyenda"><i class="cap"></i>Capital<i class="ini"></i>Inicial${meta?'<i class="met"></i>Meta':''}</span></div>
     <div class="cap-lienzo"><canvas id="capChart"></canvas></div>
+    <div class="bv-pista-tip"><i class="ti ti-hand-finger"></i>Toca un mes para ver el detalle</div>
   </div>`;
 
   // ── Análisis ──
@@ -2810,7 +3038,7 @@ function renderCapital(){
     const mejor=seq.reduce((a,b)=>b.bal>a.bal?b:a), peor=seq.reduce((a,b)=>b.bal<a.bal?b:a);
     const positivos=seq.filter(x=>x.bal>=0).length, promPct=ini>0?ritmo/ini*100:0;
     const t=(ico,col,lbl,val,sub)=>`<div class="rs-dato" style="--c:${col}"><div class="rs-dato-ico"><i class="ti ${ico}"></i></div><span>${lbl}</span><b>${val}</b><small>${sub}</small></div>`;
-    analisis=`<div class="rs-sec">Cómo va tu capital <small>${positivos} de ${seq.length} meses creciendo</small></div><div class="rs-datos">
+    analisis=`<div class="rs-sec bv-sec"><i class="ti ti-sparkles"></i>Cómo va tu capital <small>${positivos} de ${seq.length} meses creciendo</small></div><div class="rs-datos">
       ${t('ti-trending-up',pos?'#13795B':'#C8423B',pos?'Ganaste':'Perdiste',fmt(Math.abs(ganado)),`${pos?'+':'−'}${Math.abs(pct).toFixed(1).replace('.',',')}% desde ${MS[capCfg.mes]} ${capCfg.anio}`)}
       ${t('ti-chart-arrows-vertical','#2D5BD0','Crece en promedio',`${ritmo>=0?'+':'−'}${fmt(Math.abs(ritmo))}`,`al mes · ${promPct>=0?'+':''}${promPct.toFixed(1).replace('.',',')}% del inicial`)}
       ${t('ti-trophy','#13795B','Mejor mes',`${MF[mejor.mes]} ${mejor.anio}`,`${mejor.bal>=0?'+':'−'}${fmt(Math.abs(mejor.bal))}`)}
@@ -2818,16 +3046,23 @@ function renderCapital(){
     </div>`;
   }
 
-  // ── Mes a mes ──
+  // ── Mes a mes, con el % de crecimiento de cada mes ──
   let historial='';
   if(seq.length){
     const lista=[...seq].reverse(), vis=capVerTodo?lista:lista.slice(0,6);
-    historial=`<div class="rs-card cap-meses">
-      <div class="rs-card-hd"><span>Mes a mes</span><span>${seq.length} mes${seq.length!==1?'es':''}</span></div>
-      ${vis.map(x=>`<div class="cap-mes"><span class="cap-mes-n">${MF[x.mes]} <small>${x.anio}</small></span>
-        <span class="cap-mes-d ${x.bal>=0?'ok':'mal'}">${x.bal>=0?'+':'−'}${fmt(Math.abs(x.bal))}</span>
-        <b class="cap-mes-c">${fmt(x.capital)}</b></div>`).join('')}
-      ${lista.length>6?`<button class="cap-vertodo" onclick="capVerTodo=!capVerTodo;sonido('tap');renderCapital()">${capVerTodo?'Ver menos':`Ver los ${lista.length} meses`}<i class="ti ti-chevron-${capVerTodo?'up':'down'}"></i></button>`:''}
+    const maxP=Math.max(0.1,...seq.map(x=>Math.abs(pctCrec(x)||0)));
+    historial=`<div class="bv-card bv-meses">
+      <div class="bv-card-hd"><span><i class="ti ti-calendar-stats"></i>Mes a mes</span><small>crecimiento de cada mes</small></div>
+      ${vis.map((x,i)=>{ const ok=x.bal>=0, pc=pctCrec(x), w=pc===null?0:Math.max(4,Math.abs(pc)/maxP*100);
+        return `<div class="bv-mes ${ok?'ok':'mal'}" style="--d:${i*45}ms">
+        <div class="bv-mes-f"><b>${MS[x.mes]}</b><small>${x.anio}</small></div>
+        <div class="bv-mes-m">
+          <div class="bv-mes-pct"><b><i class="ti ti-arrow-${ok?'up':'down'}-right"></i>${pctTxt(pc)}</b><span>${ok?'+':'−'}${fmt(Math.abs(x.bal))}</span></div>
+          <div class="bv-mes-barra"><i style="--w:${w}%"></i></div>
+        </div>
+        <div class="bv-mes-c"><b>${fmt(x.capital)}</b><small>capital</small></div>
+      </div>`; }).join('')}
+      ${lista.length>6?`<button class="bv-vertodo" onclick="capVerTodo=!capVerTodo;sonido('tap');renderCapital()">${capVerTodo?'Ver menos':`Ver los ${lista.length} meses`}<i class="ti ti-chevron-${capVerTodo?'up':'down'}"></i></button>`:''}
     </div>`;
   }
 
@@ -2846,33 +3081,43 @@ function renderCapital(){
           ${a&&(a.mes!==nv.mes||a.anio!==nv.anio)?`<small>Inicio: ${MS[a.mes]} ${a.anio} → ${MS[nv.mes]} ${nv.anio}</small>`:''}
           <div class="ci-h-mot"><i class="ti ti-message"></i>${esc(h.motivo||'')}</div></div>`; }).join('')}</div>`:''}`;
 
-  wrap.innerHTML=hero+metaHTML+grafica+analisis+historial+inicial;
+  wrap.innerHTML=`<div class="bv">${hero+metaHTML+grafica+analisis+historial+inicial}</div>`;
+  contarCapital(actual);
   requestAnimationFrame(()=>requestAnimationFrame(()=>{ wrap.querySelectorAll('.mt-relleno,.mt-yo').forEach(e=>e.classList.add('listo')); }));
 
-  // Gráfica
+  // Gráfica (estilo bóveda: línea menta que brilla, meta dorada y recuadro propio al tocar)
   const canvas=document.getElementById('capChart');
   if(canvas){
     const pts=[{mes:capCfg.mes,anio:capCfg.anio,capital:ini,ini:true},...seq];
-    const acc=getComputedStyle(document.documentElement).getPropertyValue('--acc').trim()||'#13795B';
+    const MENTA='#3DDC97', ORO='#E8B84A';
     const ctx=canvas.getContext('2d'), alto=canvas.parentNode.clientHeight||240;
     const grad=ctx.createLinearGradient(0,0,0,alto);
-    grad.addColorStop(0,acc+'40'); grad.addColorStop(1,acc+'00');
+    grad.addColorStop(0,'rgba(61,220,151,.32)'); grad.addColorStop(.7,'rgba(61,220,151,.04)'); grad.addColorStop(1,'rgba(61,220,151,0)');
     const maxCap=Math.max(...pts.map(x=>x.capital));
     const mostrarMeta=meta && meta.monto<=maxCap*1.6;
+    const ultimoIdx=pts.length-1;
     const ds=[
-      {label:'Capital',data:pts.map(x=>Math.round(x.capital)),borderColor:acc,backgroundColor:grad,fill:true,borderWidth:3,tension:.35,pointRadius:pts.length>18?0:3.5,pointHoverRadius:7,pointBackgroundColor:'#fff',pointBorderColor:acc,pointBorderWidth:2},
-      {label:'Capital inicial',data:pts.map(()=>Math.round(ini)),borderColor:'#9AA4B2',borderDash:[5,5],borderWidth:1.5,pointRadius:0,fill:false}
+      {label:'Capital',data:pts.map(x=>Math.round(x.capital)),borderColor:MENTA,backgroundColor:grad,fill:true,borderWidth:3,tension:.38,
+        pointRadius:pts.map((_,i)=>i===ultimoIdx?0:(pts.length>18?0:3)),pointHoverRadius:7,pointBackgroundColor:'#0B120F',pointBorderColor:MENTA,pointBorderWidth:2,pointHoverBackgroundColor:MENTA,pointHoverBorderColor:'#fff',pointHoverBorderWidth:3},
+      {label:'Capital inicial',data:pts.map(()=>Math.round(ini)),borderColor:'rgba(255,255,255,.28)',borderDash:[4,5],borderWidth:1.5,pointRadius:0,pointHoverRadius:0,fill:false}
     ];
-    if(mostrarMeta) ds.push({label:'Meta',data:pts.map(()=>Math.round(meta.monto)),borderColor:'#C9971C',borderDash:[7,5],borderWidth:2,pointRadius:0,fill:false});
+    if(mostrarMeta) ds.push({label:'Meta',data:pts.map(()=>Math.round(meta.monto)),borderColor:ORO,borderDash:[7,5],borderWidth:2,pointRadius:0,pointHoverRadius:0,fill:false});
+    const bvBrillo={id:'bvBrillo',
+      beforeDatasetDraw(ch,a){ if(a.index===0){ ch.ctx.save(); ch.ctx.shadowColor='rgba(61,220,151,.6)'; ch.ctx.shadowBlur=16; ch.ctx.shadowOffsetY=4; } },
+      afterDatasetDraw(ch,a){ if(a.index===0) ch.ctx.restore(); },
+      afterDatasetsDraw(ch){ const act=ch.tooltip&&ch.tooltip.getActiveElements(); if(!act||!act.length) return;
+        const x=act[0].element.x, {top,bottom}=ch.chartArea, c=ch.ctx;
+        c.save(); const g=c.createLinearGradient(0,top,0,bottom); g.addColorStop(0,'rgba(61,220,151,0)'); g.addColorStop(.5,'rgba(61,220,151,.45)'); g.addColorStop(1,'rgba(61,220,151,0)');
+        c.strokeStyle=g; c.lineWidth=1.5; c.beginPath(); c.moveTo(x,top); c.lineTo(x,bottom); c.stroke(); c.restore(); }};
     capInst=new Chart(canvas,{type:'line',data:{labels:pts.map(x=>x.ini?'Inicio':MS[x.mes]+(pts.some(y=>y.anio!==pts[0].anio)?' '+String(x.anio).slice(2):'')),datasets:ds},
-      options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},animation:{duration:800},
+      plugins:[bvBrillo],
+      options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},layout:{padding:{top:8,right:10}},
+        animation:{duration:900,onComplete:()=>pulsoCapital(pts.length)},
         events: matchMedia('(hover: none)').matches ? ['click','touchstart','touchmove'] : ['mousemove','mouseout','click','touchstart','touchmove'],
-        plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(14,17,22,.96)',padding:11,cornerRadius:12,boxPadding:4,titleFont:{size:12.5,weight:'700'},bodyFont:{size:12.5},
-          callbacks:{title:its=>{ const x=pts[its[0].dataIndex]; return x.ini?`Inicio · ${MF[x.mes]} ${x.anio}`:`${MF[x.mes]} ${x.anio}`; },
-            label:c=>' '+c.dataset.label+': '+fmt(c.raw),
-            afterBody:its=>{ const x=pts[its[0].dataIndex]; return x.ini?[]:['',` Este mes: ${x.bal>=0?'+':'−'}${fmt(Math.abs(x.bal))}`]; }}}},
-        scales:{y:{ticks:{callback:v=>'$'+Math.round(v).toLocaleString('es-CO',{notation:'compact',compactDisplay:'short'})},grid:{color:'rgba(0,0,0,.05)'},border:{display:false}},
-                x:{grid:{display:false},border:{display:false},ticks:{autoSkip:true,autoSkipPadding:8,maxRotation:0}}}}});
+        plugins:{legend:{display:false},tooltip:{enabled:false,external:c=>tipCapital(c,pts,meta)}},
+        scales:{y:{ticks:{color:'rgba(255,255,255,.42)',font:{size:11},callback:v=>fmtCap(v)},grid:{color:'rgba(255,255,255,.06)'},border:{display:false}},
+                x:{grid:{display:false},border:{display:false},ticks:{color:'rgba(255,255,255,.5)',font:{size:11},autoSkip:true,autoSkipPadding:8,maxRotation:0}}}}});
+    canvas.addEventListener('touchstart',()=>{ const p=canvas.parentNode.parentNode.querySelector('.bv-pista-tip'); if(p) p.classList.add('fuera'); },{passive:true,once:true});
   }
   revisarHitosMeta(actual);
 }
