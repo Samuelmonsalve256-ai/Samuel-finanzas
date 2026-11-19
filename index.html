@@ -1237,6 +1237,119 @@ html.txt-grande body{zoom:1.1}
 .rs-tip-bal.mal b{color:#FF8A80}
 .rs-tip-acum{font-size:11px;color:rgba(255,255,255,.5);margin-top:6px}
 .rs-tip-acum b{color:rgba(255,255,255,.8);font-weight:600}
+
+/* ══ Capital ══ */
+.cap-hero2{padding:20px 20px 18px}
+.cap-h-lbl{position:relative;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;opacity:.7}
+.cap-h-lbl i{font-size:16px}
+.cap-h-val{position:relative;font-size:38px;font-weight:700;letter-spacing:-.04em;line-height:1.1;margin:6px 0 12px;animation:celSube .4s ease both}
+.cap-h-chips{position:relative;display:flex;gap:6px;flex-wrap:wrap}
+.cap-h-sub{position:relative;font-size:12.5px;color:rgba(255,255,255,.7);margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.09);line-height:1.45}
+.cap-h-sub b{color:#fff;font-weight:650}
+.cap-vacio{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;background:var(--ink);color:#fff;border-radius:22px;padding:30px 22px}
+.cap-vacio-ico{width:64px;height:64px;border-radius:20px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:4px}
+.cap-vacio b{font-size:18px}
+.cap-vacio span{font-size:13px;color:rgba(255,255,255,.7);line-height:1.5;max-width:300px}
+.cap-vacio button{margin-top:10px;display:flex;align-items:center;gap:6px;border:none;background:#fff;color:var(--ink);font-family:inherit;font-weight:700;font-size:14px;padding:12px 18px;border-radius:999px;cursor:pointer}
+/* Meta */
+.mt-cta{width:100%;display:flex;align-items:center;gap:12px;text-align:left;background:#fff;border:1.5px dashed color-mix(in srgb,#C9971C 55%,transparent);border-radius:18px;padding:14px;margin-bottom:12px;cursor:pointer;font-family:inherit;color:var(--t0)}
+.mt-cta-ico{width:46px;height:46px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;background:#FBF1D9;color:#B07F12}
+.mt-cta b{display:block;font-size:14.5px}
+.mt-cta span{display:block;font-size:12.5px;color:var(--t2);margin-top:2px;line-height:1.35}
+.mt-cta>i{margin-left:auto;color:var(--t4);font-size:18px}
+.mt{background:linear-gradient(160deg,#FFF8E6 0%,#fff 55%);border:1px solid #F1DFAE;border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:0 10px 26px -18px rgba(176,127,18,.55)}
+.mt.logrado{background:linear-gradient(160deg,#E4F6EC 0%,#fff 60%);border-color:#BFE3CD}
+.mt-top{display:flex;align-items:center;gap:12px}
+.mt-ico{width:44px;height:44px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:23px;background:#C9971C;color:#fff;box-shadow:0 6px 14px -6px rgba(201,151,28,.8)}
+.mt.logrado .mt-ico{background:var(--g);box-shadow:0 6px 14px -6px rgba(19,121,91,.7)}
+.mt-tit{flex:1;min-width:0;display:flex;flex-direction:column}
+.mt-tit span{font-size:12.5px;font-weight:600;color:#8A6A12;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mt.logrado .mt-tit span{color:var(--gd)}
+.mt-tit b{font-size:20px;font-weight:700;letter-spacing:-.02em;color:var(--t0)}
+.mt-edit{width:36px;height:36px;border-radius:50%;border:1px solid var(--bdrm);background:#fff;color:var(--t2);font-size:16px;cursor:pointer;flex-shrink:0}
+.mt-pct{display:flex;align-items:baseline;gap:10px;margin-top:14px}
+.mt-pct b{font-size:34px;font-weight:700;letter-spacing:-.04em;color:var(--t0);line-height:1}
+.mt-pct span{font-size:13px;color:var(--t1);font-weight:550;line-height:1.35}
+.mt-pista{position:relative;height:14px;border-radius:999px;background:#F1E6C8;margin:30px 22px 26px 6px}
+.mt.logrado .mt-pista{background:#CFEBDA}
+.mt-relleno{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:999px;background:linear-gradient(90deg,#E9B949,#C9971C);transition:width 1.4s cubic-bezier(.3,.8,.2,1) .15s;overflow:hidden}
+.mt.logrado .mt-relleno{background:linear-gradient(90deg,#3DDC97,#13795B)}
+.mt-relleno.listo{width:var(--p)}
+.mt-relleno::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-100%);animation:mtBrillo 2.8s ease-in-out 1.6s infinite}
+@keyframes mtBrillo{to{transform:translateX(100%)}}
+.mt-hito{position:absolute;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center}
+.mt-hito i{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;background:#fff;color:#C4B38A;border:2px solid #E9DBB4}
+.mt-hito.ok i{background:#C9971C;color:#fff;border-color:#fff;box-shadow:0 2px 6px rgba(176,127,18,.4)}
+.mt.logrado .mt-hito.ok i{background:var(--g)}
+.mt-hito span{position:absolute;top:24px;font-size:10px;font-weight:650;color:#A8935F}
+.mt-fin{position:absolute;right:-18px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;background:#fff;color:#C9971C;border:2px solid #E9DBB4}
+.mt-fin.ok{background:var(--g);color:#fff;border-color:#fff;animation:calLatido 1.8s ease-in-out infinite}
+.mt-yo{position:absolute;top:-26px;left:0;transform:translateX(-50%);transition:left 1.4s cubic-bezier(.3,.8,.2,1) .15s}
+.mt-yo.listo{left:var(--p)}
+.mt-yo span{display:block;font-size:10.5px;font-weight:700;color:#fff;background:var(--ink);padding:2px 8px;border-radius:999px;position:relative}
+.mt-yo span::after{content:'';position:absolute;left:50%;bottom:-4px;transform:translateX(-50%);border:4px solid transparent;border-top-color:var(--ink);border-bottom:0}
+.mt-datos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mt-datos div{background:rgba(255,255,255,.75);border:1px solid #F1E6C8;border-radius:12px;padding:9px 10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.mt.logrado .mt-datos div{border-color:#CFEBDA}
+.mt-datos span{font-size:11px;color:var(--t2)}
+.mt-datos b{font-size:13.5px;font-weight:700;color:var(--t0);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mt-aviso{display:flex;gap:8px;align-items:flex-start;margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--rl);color:var(--rd);font-size:12.5px;line-height:1.4}
+.mt-aviso.suave{background:rgba(255,255,255,.7);color:#6B530F;border:1px solid #F1E6C8}
+.mt-aviso i{font-size:16px;flex-shrink:0;margin-top:1px}
+@media(max-width:520px){.mt-datos{grid-template-columns:1fr 1fr}.mt-datos div:last-child{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center}}
+/* Gráfica y análisis */
+.cap-lienzo{position:relative;height:240px}
+@media(min-width:700px){.cap-lienzo{height:300px}}
+.rs-leyenda i.lin.ini{background:repeating-linear-gradient(90deg,#9AA4B2 0 4px,transparent 4px 7px)}
+.rs-leyenda i.lin.met{background:repeating-linear-gradient(90deg,#C9971C 0 5px,transparent 5px 8px)}
+.rs-sec small{font-size:12px;font-weight:500;color:var(--t3);margin-left:6px}
+.cap-mes{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bdr)}
+.cap-mes:last-of-type{border-bottom:none}
+.cap-mes-n{flex:1;font-size:13.5px;font-weight:600;color:var(--t0)}
+.cap-mes-n small{font-weight:500;color:var(--t3)}
+.cap-mes-d{font-size:12px;font-weight:650;padding:3px 8px;border-radius:999px}
+.cap-mes-d.ok{background:var(--gl);color:var(--gd)} .cap-mes-d.mal{background:var(--rl);color:var(--rd)}
+.cap-mes-c{font-size:13.5px;font-weight:700;color:var(--t0);min-width:110px;text-align:right}
+.cap-vertodo{width:100%;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:4px;border:none;background:var(--s1);color:var(--t1);font-family:inherit;font-weight:600;font-size:12.5px;padding:9px;border-radius:10px;cursor:pointer}
+/* Capital inicial bloqueado */
+.ci{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--bdr);border-radius:18px;padding:14px;box-shadow:var(--shadow)}
+.ci-ico{width:42px;height:42px;border-radius:13px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:21px;background:var(--ink);color:#fff}
+.ci-txt{flex:1;min-width:0;display:flex;flex-direction:column}
+.ci-txt span{font-size:12px;color:var(--t2);font-weight:550}
+.ci-txt b{font-size:18px;font-weight:700;letter-spacing:-.02em;color:var(--t0)}
+.ci-txt small{font-size:11.5px;color:var(--t3);margin-top:1px}
+.ci-btn{border:1px solid var(--bdrm);background:#fff;color:var(--t0);font-family:inherit;font-weight:650;font-size:13px;padding:9px 14px;border-radius:999px;cursor:pointer;flex-shrink:0}
+.ci-hist-btn{width:100%;display:flex;align-items:center;gap:6px;border:none;background:transparent;color:var(--t2);font-family:inherit;font-size:12.5px;font-weight:600;padding:12px 6px 6px;cursor:pointer}
+.ci-hist-btn i:last-child{margin-left:auto}
+.ci-hist{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.ci-h{background:#fff;border:1px solid var(--bdr);border-radius:14px;padding:11px 12px}
+.ci-h-top{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.ci-h-top b{color:var(--t0)}
+.ci-h-top span{color:var(--t3);font-size:11.5px;white-space:nowrap}
+.ci-h small{display:block;font-size:11.5px;color:var(--t2);margin-top:2px}
+.ci-h-mot{display:flex;gap:6px;font-size:12.5px;color:var(--t1);margin-top:6px;line-height:1.4}
+.ci-h-mot i{color:var(--t3);font-size:14px;margin-top:1px}
+/* Hoja de capital */
+.cap-s-txt{font-size:13.5px;color:var(--t1);line-height:1.5;margin:0 0 4px}
+.cap-clave-w{position:relative}
+.cap-clave-w .cs-in{padding-right:46px}
+.cap-ojo{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:36px;height:36px;border:none;background:transparent;color:var(--t2);font-size:19px;cursor:pointer}
+.cap-err{min-height:20px;font-size:12.5px;font-weight:600;color:var(--r);margin-top:8px}
+.cap-bloq{display:flex;gap:12px;align-items:center;margin-top:12px;padding:14px;border-radius:14px;background:var(--aml);color:var(--amd)}
+.cap-bloq i{font-size:26px}
+.cap-bloq>div>b{display:block;font-size:14px}
+.cap-bloq span{display:block}
+.cap-bloq span b{font-variant-numeric:tabular-nums}
+.cap-bloq span{font-size:12.5px}
+.cap-desde{display:grid;grid-template-columns:1.4fr 1fr;gap:8px}
+.cap-previa{display:flex;gap:8px;align-items:center;margin-top:14px;padding:11px 12px;border-radius:12px;background:var(--s1);font-size:13px;color:var(--t1);line-height:1.4}
+.cap-previa:empty{display:none}
+.cap-previa i{font-size:18px;color:var(--acc);flex-shrink:0}
+.cap-previa b{color:var(--t0)}
+.cs-box.tiembla{animation:pnTiembla .45s ease}
+.cel-meta{position:relative;z-index:1;width:120px;height:120px;border-radius:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(145deg,#F6C35B,#C9971C);color:#3A2A05;margin-bottom:18px;box-shadow:0 18px 40px -14px rgba(246,195,91,.7);animation:celPop .5s cubic-bezier(.3,1.5,.5,1) both}
+.cel-meta i{font-size:40px}
+.cel-meta b{font-size:24px;font-weight:800;letter-spacing:-.03em}
 </style>
 </head>
 <body>
@@ -1482,53 +1595,12 @@ html.txt-grande body{zoom:1.1}
 
 <!-- CAPITAL -->
 <div class="page" id="page-capital">
-  <div class="cap-hero">
-    <div class="cap-hero-lbl">Capital neto actual</div>
-    <div class="cap-hero-val" id="cap-hero-val">$ 0</div>
-    <div class="cap-hero-sub" id="cap-hero-sub">Establece tu capital inicial</div>
-    <div class="cap-hero-badge" id="cap-badge" style="display:none">
-      <i class="ti ti-trending-up" id="cap-badge-ico" style="font-size:12px"></i>
-      <span id="cap-badge-pct">+0%</span>
-      <span style="opacity:.7;font-weight:400">crecimiento total</span>
-    </div>
-  </div>
-  <div class="section" style="margin-bottom:12px">
-    <div class="sec-hd"><i class="ti ti-settings"></i>Capital inicial</div>
-    <div class="fg" style="margin-bottom:8px">
-      <span class="fg-lbl">Monto inicial (COP)</span>
-      <div class="pw"><span class="pw-pre">$</span>
-        <input class="pw-in" id="cap-init-d" type="text" inputmode="numeric" placeholder="Ej: 330.000.000"
-          oninput="fmtPI(this,'cap-init')">
-        <input type="hidden" id="cap-init">
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
-      <div class="fg"><span class="fg-lbl">Mes inicio</span>
-        <select class="fi" id="cap-mes">
-          <option value="0">Enero</option><option value="1">Febrero</option><option value="2">Marzo</option>
-          <option value="3">Abril</option><option value="4">Mayo</option><option value="5">Junio</option>
-          <option value="6">Julio</option><option value="7">Agosto</option><option value="8">Septiembre</option>
-          <option value="9">Octubre</option><option value="10">Noviembre</option><option value="11">Diciembre</option>
-        </select>
-      </div>
-      <div class="fg"><span class="fg-lbl">Año inicio</span>
-        <select class="fi" id="cap-anio"></select>
-      </div>
-    </div>
-    <button class="add-btn b-blue" style="width:100%" onclick="saveCapital()">
-      <i class="ti ti-device-floppy"></i>Guardar capital inicial
-    </button>
-  </div>
-  <div class="section" style="margin-bottom:12px">
-    <div class="sec-hd"><i class="ti ti-chart-line"></i>Evolución del capital</div>
-    <div style="position:relative;width:100%;height:200px">
-      <canvas id="capChart" role="img" aria-label="Capital neto">Capital.</canvas>
-    </div>
-  </div>
-  <div class="section">
-    <div class="sec-hd"><i class="ti ti-timeline"></i>Historial mes a mes</div>
-    <div id="cap-timeline"><div class="empty-st"><i class="ti ti-inbox"></i><span>Sin movimientos</span></div></div>
-  </div>
+  <div id="cap-wrap"></div>
+</div>
+
+<!-- HOJA DE CAPITAL (contraseña, cambio y meta) -->
+<div class="cs-overlay" id="cap-sheet" style="display:none" onclick="cerrarCapSheet(event)">
+  <div class="cs-box" id="cap-sheet-box" onclick="event.stopPropagation()"></div>
 </div>
 
 <!-- RESUMEN -->
@@ -2637,70 +2709,393 @@ function refreshActive(){
 }
 
 // ── Capital ──
-async function saveCapital() {
-  requirePin('Para modificar el capital necesitas tu PIN', async ()=>{
-    const confirmed = await showConfirm('¿Modificar capital?','¿Estás seguro de que quieres cambiar el capital inicial? Esta acción afecta todo el historial.');
-    if(!confirmed) return;
-    const initial=parseFloat(document.getElementById('cap-init').value);
-    if(!initial){showToast('Ingresa un capital válido','#C8423B');return;}
-    capCfg={initial,mes:parseInt(document.getElementById('cap-mes').value),anio:parseInt(document.getElementById('cap-anio').value)};
-    try {
-      setSyncDot('loading');
-      await sbUpsert('capital',{id:1,...capCfg});
-      setSyncDot('ok');
-      showToast('✓ Capital guardado','#13795B');
-    } catch(e){ setSyncDot('error'); showToast('Error al guardar','#C8423B'); }
-    renderCapital(); updateCapKPI();
-  });
+// ══ CAPITAL ═════════════════════════════════════════════════════════════════
+// Capital actual = capital inicial + lo que entra − lo que sale desde el mes de inicio.
+// El capital inicial está bloqueado: para cambiarlo se pide la contraseña de la cuenta
+// (con bloqueo tras 5 intentos) y un motivo; cada cambio queda en capital_historial,
+// que desde la app solo se puede leer y agregar.
+let capHist=null, capHistCargando=false, capVerTodo=false, capHistAbierto=false;
+let capSheet=null;            // {paso:'clave'|'editar', verificado:bool}
+const CAP_INTENTOS_KEY='mf_cap_intentos', CAP_MAX_INTENTOS=5, CAP_BLOQUEO_MIN=5;
+
+function capActualCon(cfg){
+  if(!cfg) return 0;
+  const startKey=cfg.anio*100+cfg.mes; let r=cfg.initial;
+  getStats().filter(s=>s.anio*100+s.mes>=startKey).forEach(s=>{ r+=s.ingresos-s.gastos; });
+  return r;
+}
+function metaCapital(){ const m=ajustesNube.meta_capital; return m && m.monto>0 ? m : null; }
+// Ritmo reciente: promedio de los últimos 6 meses con movimientos
+function ritmoCapital(seq){
+  const ult=seq.slice(-6); if(!ult.length) return 0;
+  return ult.reduce((s,x)=>s+x.bal,0)/ult.length;
+}
+function mesesHastaMeta(falta, ritmo){ return ritmo>0 ? Math.ceil(falta/ritmo) : null; }
+function sumarMeses(m,a,n){ const k=a*12+m+n; return {mes:k%12, anio:Math.floor(k/12)}; }
+
+function renderCapital(){
+  const wrap=document.getElementById('cap-wrap'); if(!wrap) return;
+  if(capInst){ capInst.destroy(); capInst=null; }
+  if(capHist===null && !capHistCargando) cargarCapHist();
+  if(!capCfg){
+    wrap.innerHTML=`<div class="cap-vacio">
+      <div class="cap-vacio-ico"><i class="ti ti-building-bank"></i></div>
+      <b>Define tu capital inicial</b>
+      <span>Es la plata con la que arrancaste. Desde ahí la app calcula cuánto ha crecido tu capital mes a mes.</span>
+      <button onclick="abrirCapSheet()"><i class="ti ti-lock"></i>Definir con mi contraseña</button>
+    </div>`;
+    return;
+  }
+  const seq=getCapSeq(), ini=capCfg.initial, actual=seq.length?seq[seq.length-1].capital:ini;
+  const ganado=actual-ini, pct=ini>0?ganado/ini*100:0, pos=ganado>=0;
+  const ritmo=ritmoCapital(seq);
+
+  // ── Tarjeta principal ──
+  const hero=`<div class="cp-hero cap-hero2">
+    <div class="cp-hero-glow" style="--c:var(--acc)"></div>
+    <div class="cap-h-lbl"><i class="ti ti-building-bank"></i>Capital actual</div>
+    <div class="cap-h-val">${fmt(actual)}</div>
+    <div class="cap-h-chips">
+      <span class="cx-hero-chip ${pos?'ok':'mal'}">${pos?'▲':'▼'} ${Math.abs(pct).toFixed(1).replace('.',',')}% desde el inicio</span>
+      ${seq.length?`<span class="cx-hero-chip">${ritmo>=0?'+':'−'}${fmt(Math.abs(ritmo))} al mes</span>`:''}
+    </div>
+    <div class="cap-h-sub">Empezaste con <b>${fmt(ini)}</b> en ${MF[capCfg.mes].toLowerCase()} de ${capCfg.anio} · ${pos?'has ganado':'has perdido'} <b>${fmt(Math.abs(ganado))}</b></div>
+  </div>`;
+
+  // ── Meta ──
+  const meta=metaCapital();
+  let metaHTML;
+  if(!meta){
+    metaHTML=`<button class="mt-cta" onclick="abrirMetaSheet()">
+      <div class="mt-cta-ico"><i class="ti ti-flag-3"></i></div>
+      <div><b>Ponte una meta de capital</b><span>Mira tu avance, celebra cada etapa y descubre en qué mes la alcanzas.</span></div>
+      <i class="ti ti-chevron-right"></i></button>`;
+  } else {
+    const p=Math.max(0,Math.min(100,actual/meta.monto*100)), logrado=actual>=meta.monto;
+    const falta=Math.max(0,meta.monto-actual), n=mesesHastaMeta(falta,ritmo);
+    const hoy=new Date(), llega=n!==null?sumarMeses(hoy.getMonth(),hoy.getFullYear(),n):null;
+    const frase = logrado ? '¡Lo lograste! Tu capital superó la meta.' : p>=75 ? 'Recta final: ya casi llegas.' : p>=50 ? 'Vas por más de la mitad. ¡Sigue así!' : p>=25 ? 'Buen avance: ya pasaste el primer cuarto.' : 'Cada mes que ahorras te acerca. ¡Arrancamos!';
+    const hitos=[25,50,75].map(h=>`<div class="mt-hito${p>=h?' ok':''}" style="left:${h}%"><i class="ti ${p>=h?'ti-check':'ti-point'}"></i><span>${h}%</span></div>`).join('');
+    metaHTML=`<div class="mt${logrado?' logrado':''}">
+      <div class="mt-top">
+        <div class="mt-ico"><i class="ti ${logrado?'ti-trophy':'ti-flag-3'}"></i></div>
+        <div class="mt-tit"><span>${esc(meta.nombre||'Mi meta de capital')}</span><b>${fmt(meta.monto)}</b></div>
+        <button class="mt-edit" onclick="abrirMetaSheet()" aria-label="Editar meta"><i class="ti ti-pencil"></i></button>
+      </div>
+      <div class="mt-pct"><b>${Math.floor(p)}%</b><span>${frase}</span></div>
+      <div class="mt-pista">
+        <div class="mt-relleno" style="--p:${p}%"></div>${hitos}
+        <div class="mt-fin${logrado?' ok':''}"><i class="ti ti-trophy"></i></div>
+        <div class="mt-yo" style="--p:${p}%"><span>Tú</span></div>
+      </div>
+      <div class="mt-datos">
+        <div><span>${logrado?'Superaste por':'Te faltan'}</span><b>${fmt(logrado?actual-meta.monto:falta)}</b></div>
+        <div><span>Tu ritmo</span><b>${ritmo>=0?'+':'−'}${fmt(Math.abs(ritmo))}/mes</b></div>
+        <div><span>${logrado?'Meta':'La alcanzas en'}</span><b>${logrado?'Cumplida':llega?`${MS[llega.mes]} ${llega.anio}`:'—'}</b></div>
+      </div>
+      ${!logrado&&n===null?`<div class="mt-aviso"><i class="ti ti-info-circle"></i>A tu ritmo actual no crece. Para lograrla en 12 meses necesitas sumar ${fmt(falta/12)} al mes.</div>`:''}
+      ${!logrado&&n!==null?`<div class="mt-aviso suave"><i class="ti ti-calendar-time"></i>${n<=1?'¡El próximo mes podrías alcanzarla!':`Faltan unos ${n} meses si mantienes el ritmo.`}</div>`:''}
+    </div>`;
+  }
+
+  // ── Gráfica de evolución ──
+  const grafica=`<div class="rs-card">
+    <div class="rs-card-hd"><span>Cómo ha crecido</span><span class="rs-leyenda"><i class="lin"></i>Capital<i class="lin ini"></i>Inicial${meta?'<i class="lin met"></i>Meta':''}</span></div>
+    <div class="cap-lienzo"><canvas id="capChart"></canvas></div>
+  </div>`;
+
+  // ── Análisis ──
+  let analisis='';
+  if(seq.length){
+    const mejor=seq.reduce((a,b)=>b.bal>a.bal?b:a), peor=seq.reduce((a,b)=>b.bal<a.bal?b:a);
+    const positivos=seq.filter(x=>x.bal>=0).length, promPct=ini>0?ritmo/ini*100:0;
+    const t=(ico,col,lbl,val,sub)=>`<div class="rs-dato" style="--c:${col}"><div class="rs-dato-ico"><i class="ti ${ico}"></i></div><span>${lbl}</span><b>${val}</b><small>${sub}</small></div>`;
+    analisis=`<div class="rs-sec">Cómo va tu capital <small>${positivos} de ${seq.length} meses creciendo</small></div><div class="rs-datos">
+      ${t('ti-trending-up',pos?'#13795B':'#C8423B',pos?'Ganaste':'Perdiste',fmt(Math.abs(ganado)),`${pos?'+':'−'}${Math.abs(pct).toFixed(1).replace('.',',')}% desde ${MS[capCfg.mes]} ${capCfg.anio}`)}
+      ${t('ti-chart-arrows-vertical','#2D5BD0','Crece en promedio',`${ritmo>=0?'+':'−'}${fmt(Math.abs(ritmo))}`,`al mes · ${promPct>=0?'+':''}${promPct.toFixed(1).replace('.',',')}% del inicial`)}
+      ${t('ti-trophy','#13795B','Mejor mes',`${MF[mejor.mes]} ${mejor.anio}`,`${mejor.bal>=0?'+':'−'}${fmt(Math.abs(mejor.bal))}`)}
+      ${t('ti-arrow-down-right','#C8423B','Mes más flojo',`${MF[peor.mes]} ${peor.anio}`,`${peor.bal>=0?'+':'−'}${fmt(Math.abs(peor.bal))}`)}
+    </div>`;
+  }
+
+  // ── Mes a mes ──
+  let historial='';
+  if(seq.length){
+    const lista=[...seq].reverse(), vis=capVerTodo?lista:lista.slice(0,6);
+    historial=`<div class="rs-card cap-meses">
+      <div class="rs-card-hd"><span>Mes a mes</span><span>${seq.length} mes${seq.length!==1?'es':''}</span></div>
+      ${vis.map(x=>`<div class="cap-mes"><span class="cap-mes-n">${MF[x.mes]} <small>${x.anio}</small></span>
+        <span class="cap-mes-d ${x.bal>=0?'ok':'mal'}">${x.bal>=0?'+':'−'}${fmt(Math.abs(x.bal))}</span>
+        <b class="cap-mes-c">${fmt(x.capital)}</b></div>`).join('')}
+      ${lista.length>6?`<button class="cap-vertodo" onclick="capVerTodo=!capVerTodo;sonido('tap');renderCapital()">${capVerTodo?'Ver menos':`Ver los ${lista.length} meses`}<i class="ti ti-chevron-${capVerTodo?'up':'down'}"></i></button>`:''}
+    </div>`;
+  }
+
+  // ── Capital inicial (bloqueado) e historial de cambios ──
+  const nCambios=capHist?capHist.length:0;
+  const inicial=`<div class="ci">
+      <div class="ci-ico"><i class="ti ti-lock"></i></div>
+      <div class="ci-txt"><span>Capital inicial</span><b>${fmt(ini)}</b><small>Desde ${MF[capCfg.mes].toLowerCase()} de ${capCfg.anio} · protegido con tu contraseña</small></div>
+      <button class="ci-btn" onclick="abrirCapSheet()">Modificar</button>
+    </div>
+    <button class="ci-hist-btn" onclick="capHistAbierto=!capHistAbierto;sonido('tap');renderCapital()">
+      <i class="ti ti-history"></i>Historial de cambios${capHist===null?'':` (${nCambios})`}<i class="ti ti-chevron-${capHistAbierto?'up':'down'}"></i></button>
+    ${capHistAbierto?`<div class="ci-hist">${capHist===null?'<div class="resp-nota">Cargando…</div>':!nCambios?'<div class="resp-nota">Todavía no hay cambios registrados. Cada cambio que hagas quedará aquí con su fecha y motivo, y no se puede borrar.</div>':
+      capHist.map(h=>{ const a=h.anterior, nv=h.nuevo||{}, f=new Date(h.creado);
+        return `<div class="ci-h"><div class="ci-h-top"><b>${a?`${fmt(a.initial)} → ${fmt(nv.initial)}`:`Definido en ${fmt(nv.initial)}`}</b><span>${isNaN(f)?'':f.toLocaleDateString('es-CO',{day:'numeric',month:'short',year:'numeric'})}</span></div>
+          ${a&&(a.mes!==nv.mes||a.anio!==nv.anio)?`<small>Inicio: ${MS[a.mes]} ${a.anio} → ${MS[nv.mes]} ${nv.anio}</small>`:''}
+          <div class="ci-h-mot"><i class="ti ti-message"></i>${esc(h.motivo||'')}</div></div>`; }).join('')}</div>`:''}`;
+
+  wrap.innerHTML=hero+metaHTML+grafica+analisis+historial+inicial;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ wrap.querySelectorAll('.mt-relleno,.mt-yo').forEach(e=>e.classList.add('listo')); }));
+
+  // Gráfica
+  const canvas=document.getElementById('capChart');
+  if(canvas){
+    const pts=[{mes:capCfg.mes,anio:capCfg.anio,capital:ini,ini:true},...seq];
+    const acc=getComputedStyle(document.documentElement).getPropertyValue('--acc').trim()||'#13795B';
+    const ctx=canvas.getContext('2d'), alto=canvas.parentNode.clientHeight||240;
+    const grad=ctx.createLinearGradient(0,0,0,alto);
+    grad.addColorStop(0,acc+'40'); grad.addColorStop(1,acc+'00');
+    const maxCap=Math.max(...pts.map(x=>x.capital));
+    const mostrarMeta=meta && meta.monto<=maxCap*1.6;
+    const ds=[
+      {label:'Capital',data:pts.map(x=>Math.round(x.capital)),borderColor:acc,backgroundColor:grad,fill:true,borderWidth:3,tension:.35,pointRadius:pts.length>18?0:3.5,pointHoverRadius:7,pointBackgroundColor:'#fff',pointBorderColor:acc,pointBorderWidth:2},
+      {label:'Capital inicial',data:pts.map(()=>Math.round(ini)),borderColor:'#9AA4B2',borderDash:[5,5],borderWidth:1.5,pointRadius:0,fill:false}
+    ];
+    if(mostrarMeta) ds.push({label:'Meta',data:pts.map(()=>Math.round(meta.monto)),borderColor:'#C9971C',borderDash:[7,5],borderWidth:2,pointRadius:0,fill:false});
+    capInst=new Chart(canvas,{type:'line',data:{labels:pts.map(x=>x.ini?'Inicio':MS[x.mes]+(pts.some(y=>y.anio!==pts[0].anio)?' '+String(x.anio).slice(2):'')),datasets:ds},
+      options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},animation:{duration:800},
+        events: matchMedia('(hover: none)').matches ? ['click','touchstart','touchmove'] : ['mousemove','mouseout','click','touchstart','touchmove'],
+        plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(14,17,22,.96)',padding:11,cornerRadius:12,boxPadding:4,titleFont:{size:12.5,weight:'700'},bodyFont:{size:12.5},
+          callbacks:{title:its=>{ const x=pts[its[0].dataIndex]; return x.ini?`Inicio · ${MF[x.mes]} ${x.anio}`:`${MF[x.mes]} ${x.anio}`; },
+            label:c=>' '+c.dataset.label+': '+fmt(c.raw),
+            afterBody:its=>{ const x=pts[its[0].dataIndex]; return x.ini?[]:['',` Este mes: ${x.bal>=0?'+':'−'}${fmt(Math.abs(x.bal))}`]; }}}},
+        scales:{y:{ticks:{callback:v=>'$'+Math.round(v).toLocaleString('es-CO',{notation:'compact',compactDisplay:'short'})},grid:{color:'rgba(0,0,0,.05)'},border:{display:false}},
+                x:{grid:{display:false},border:{display:false},ticks:{autoSkip:true,autoSkipPadding:8,maxRotation:0}}}}});
+  }
+  revisarHitosMeta(actual);
 }
 
-function renderCapital() {
-  const seq=getCapSeq();
-  const initial=capCfg?capCfg.initial:0;
-  const current=seq.length?seq[seq.length-1].capital:initial;
-  const totalPct=initial>0?((current-initial)/initial*100):0;
-  document.getElementById('cap-hero-val').textContent=fmt(current);
-  document.getElementById('cap-hero-sub').textContent=seq.length?`${seq.length} mes${seq.length!==1?'es':''} desde ${fmt(initial)}`:'Establece tu capital inicial';
-  const badge=document.getElementById('cap-badge');
-  if(seq.length&&initial){
-    badge.style.display='inline-flex';
-    document.getElementById('cap-badge-ico').className=totalPct>=0?'ti ti-trending-up':'ti ti-trending-down';
-    document.getElementById('cap-badge-pct').textContent=(totalPct>=0?'+':'')+totalPct.toFixed(1)+'%';
-  } else badge.style.display='none';
-  if(capCfg){
-    document.getElementById('cap-init-d').value=fmtN(capCfg.initial);
-    document.getElementById('cap-init').value=capCfg.initial;
-    document.getElementById('cap-mes').value=capCfg.mes;
-    ensureYearOption('cap-anio', capCfg.anio);
-    document.getElementById('cap-anio').value=capCfg.anio;
+// ── Historial de cambios del capital ──
+async function cargarCapHist(){
+  capHistCargando=true;
+  let filas=[];
+  try { filas=await sbGet('capital_historial','select=*&order=creado.desc&limit=100'); } catch(e){ filas=null; }
+  // Respaldo si la tabla aún no existe: los cambios guardados en "ajustes"
+  const loc=(ajustesNube.capital_historial_local||[]);
+  capHist=[...(filas||[]), ...loc].sort((a,b)=>String(b.creado).localeCompare(String(a.creado)));
+  capHistCargando=false;
+  if(document.getElementById('page-capital').classList.contains('active')) renderCapital();
+}
+
+// ── Hoja para modificar el capital: contraseña → cambio con motivo ──
+function capIntentos(){ try{ return JSON.parse(localStorage.getItem(CAP_INTENTOS_KEY)||'{}'); }catch(e){ return {}; } }
+function capGuardarIntentos(o){ try{ localStorage.setItem(CAP_INTENTOS_KEY, JSON.stringify(o)); }catch(e){} }
+function abrirCapSheet(){
+  sonido('abrir');
+  capSheet={paso:'clave', verificado:false};
+  pintarCapSheet();
+  document.getElementById('cap-sheet').style.display='flex';
+  setTimeout(()=>{ const i=document.getElementById('cap-clave'); if(i) i.focus(); },120);
+}
+function cerrarCapSheet(ev){
+  if(ev && ev.target!==document.getElementById('cap-sheet')) return;
+  document.getElementById('cap-sheet').style.display='none';
+  capSheet=null;
+  clearInterval(window._capReloj);
+}
+function pintarCapSheet(msg){
+  const box=document.getElementById('cap-sheet-box'); if(!box||!capSheet) return;
+  clearInterval(window._capReloj);
+  if(capSheet.paso==='clave'){
+    const o=capIntentos(), bloqueado=o.hasta && Date.now()<o.hasta;
+    const quedan=CAP_MAX_INTENTOS-(o.n||0);
+    box.innerHTML=`<div class="cs-hd"><div class="cs-prev" style="--c:var(--ink)"><i class="ti ti-shield-lock"></i></div>
+        <div><div class="cs-title">Confirma que eres tú</div><div class="cs-sub">Protección del capital</div></div>
+        <button class="cs-x" onclick="cerrarCapSheet()">✕</button></div>
+      <p class="cap-s-txt">Para ${capCfg?'modificar':'definir'} el capital inicial escribe la <b>contraseña de tu cuenta</b> (la misma con la que inicias sesión${usuario&&usuario.email?` como ${esc(usuario.email)}`:''}).</p>
+      ${bloqueado?`<div class="cap-bloq"><i class="ti ti-lock-pause"></i><div><b>Demasiados intentos</b><span>Por seguridad, espera <b id="cap-reloj">—</b> para intentar de nuevo.</span></div></div>`:`
+      <form onsubmit="event.preventDefault();verificarClaveCapital()">
+        <input type="email" autocomplete="username" value="${esc(usuario&&usuario.email||'')}" style="display:none" tabindex="-1" aria-hidden="true">
+        <label class="cs-lbl" for="cap-clave">Contraseña</label>
+        <div class="cap-clave-w"><input class="cs-in" type="password" id="cap-clave" autocomplete="current-password" placeholder="Tu contraseña">
+          <button type="button" class="cap-ojo" onclick="verClaveCapital(this)" aria-label="Mostrar contraseña"><i class="ti ti-eye"></i></button></div>
+        <div class="cap-err" id="cap-err">${msg?esc(msg):(o.n?`Te quedan ${quedan} intento${quedan!==1?'s':''}`:'')}</div>
+        <div class="cs-btns"><button class="cs-ok" id="cap-verif" type="submit">Continuar</button></div>
+      </form>`}`;
+    if(bloqueado){
+      const tick=()=>{ const r=Math.max(0,o.hasta-Date.now()); const e=document.getElementById('cap-reloj');
+        if(e) e.textContent=`${Math.floor(r/60000)}:${String(Math.floor(r%60000/1000)).padStart(2,'0')}`;
+        if(r<=0){ capGuardarIntentos({}); pintarCapSheet(); } };
+      tick(); window._capReloj=setInterval(tick,1000);
+    }
+    return;
   }
-  // Chart
-  const pts=[{mes:capCfg?capCfg.mes:0,anio:capCfg?capCfg.anio:now.getFullYear(),capital:initial},...seq];
-  const labels=pts.map(p=>MS[p.mes]+' '+p.anio);
-  const caps=pts.map(p=>Math.round(p.capital));
-  if(capInst)capInst.destroy();
-  if(pts.length>1){
-    const ctx=document.getElementById('capChart').getContext('2d');
-    const grad=ctx.createLinearGradient(0,0,0,200);
-    grad.addColorStop(0,'rgba(124,58,237,.2)');grad.addColorStop(1,'rgba(124,58,237,.01)');
-    capInst=new Chart(document.getElementById('capChart'),{type:'line',data:{labels,datasets:[{label:'Capital',data:caps,borderColor:'#7c3aed',backgroundColor:grad,borderWidth:2,pointBackgroundColor:'#7c3aed',pointBorderColor:'#fff',pointBorderWidth:2,pointRadius:4,pointHoverRadius:6,fill:true,tension:.4}]},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' Capital: '+fmt(ctx.raw)}}},
-        scales:{y:{ticks:{callback:v=>'$'+Math.round(v).toLocaleString('es-CO',{notation:'compact',compactDisplay:'short'})},grid:{color:'rgba(0,0,0,.04)'},border:{display:false}},x:{ticks:{autoSkip:false,maxRotation:40},grid:{display:false},border:{display:false}}}}});
-  }
-  // Timeline
-  const tl=document.getElementById('cap-timeline');
-  if(!seq.length){tl.innerHTML='<div class="empty-st"><i class="ti ti-inbox"></i><span>Sin movimientos aún</span></div>';return;}
-  tl.innerHTML=[...seq].reverse().map(s=>{
-    const pct=capCfg&&capCfg.initial>0?((s.capital-capCfg.initial)/capCfg.initial*100):0;
-    const pos=s.bal>=0;
-    return `<div class="cap-tl-row">
-      <div class="cap-tl-dot" style="background:${pos?'var(--g)':'var(--r)'}"></div>
-      <span class="cap-tl-month">${MF[s.mes]} ${s.anio}</span>
-      <span class="cap-tl-val">${fmt(s.capital)}</span>
-      <span class="cap-tl-delta" style="background:${pos?'var(--gl)':'var(--rl)'};color:${pos?'var(--gd)':'var(--rd)'}">${pos?'+':''}${fmt(s.bal)}</span>
-      <span class="cap-tl-pct" style="background:${pct>=0?'var(--vl)':'var(--rl)'};color:${pct>=0?'var(--vd)':'var(--rd)'}">${pct>=0?'+':''}${pct.toFixed(1)}%</span>
-    </div>`;
-  }).join('');
+  // Paso 2: el cambio
+  const anioAct=new Date().getFullYear(), c=capCfg||{initial:0,mes:new Date().getMonth(),anio:anioAct};
+  const anios=[]; for(let y=anioAct-10;y<=anioAct+1;y++) anios.push(y);
+  if(!anios.includes(c.anio)) anios.unshift(c.anio);
+  box.innerHTML=`<div class="cs-hd"><div class="cs-prev" style="--c:var(--g)"><i class="ti ti-lock-open"></i></div>
+      <div><div class="cs-title">${capCfg?'Modificar capital inicial':'Definir capital inicial'}</div><div class="cs-sub">Verificado · el cambio quedará registrado</div></div>
+      <button class="cs-x" onclick="cerrarCapSheet()">✕</button></div>
+    <label class="cs-lbl" for="cap-init-d">Capital inicial</label>
+    <div class="cpf-monto"><span>$</span><input type="text" inputmode="numeric" id="cap-init-d" value="${c.initial?fmtN(c.initial):''}" placeholder="0" oninput="fmtPI(this,'cap-init');previaCapital()"></div>
+    <input type="hidden" id="cap-init" value="${c.initial||''}">
+    <label class="cs-lbl">Desde</label>
+    <div class="cap-desde">
+      <select class="cs-in" id="cap-mes" onchange="previaCapital()">${MF.map((m,i)=>`<option value="${i}"${i===c.mes?' selected':''}>${m}</option>`).join('')}</select>
+      <select class="cs-in" id="cap-anio" onchange="previaCapital()">${anios.map(y=>`<option value="${y}"${y===c.anio?' selected':''}>${y}</option>`).join('')}</select>
+    </div>
+    <label class="cs-lbl" for="cap-motivo">Motivo del cambio ${capCfg?'':'<span>(opcional)</span>'}</label>
+    <textarea class="cs-in" id="cap-motivo" rows="2" maxlength="200" placeholder="${capCfg?'Ej: Corregí el valor del inventario inicial':'Ej: Capital con el que empecé'}"></textarea>
+    <div class="cap-previa" id="cap-previa"></div>
+    <div class="cs-btns"><button class="cs-ok" onclick="guardarCambioCapital()">Guardar cambio</button></div>`;
+  previaCapital();
+}
+async function verificarClaveCapital(){
+  const inp=document.getElementById('cap-clave'), btn=document.getElementById('cap-verif'), err=document.getElementById('cap-err');
+  const clave=inp?inp.value:'';
+  if(!clave){ err.textContent='Escribe tu contraseña'; sonido('error'); return; }
+  if(!navigator.onLine || !sb){ err.textContent='Necesitas internet para verificar tu contraseña'; sonido('error'); return; }
+  if(!usuario || !usuario.email){ err.textContent='Inicia sesión de nuevo para continuar'; sonido('error'); return; }
+  btn.disabled=true; btn.textContent='Verificando…';
+  try {
+    const {data:d, error}=await sb.auth.signInWithPassword({email:usuario.email, password:clave});
+    if(error){
+      if(/invalid/i.test(error.message)){
+        const o=capIntentos(); o.n=(o.n||0)+1;
+        if(o.n>=CAP_MAX_INTENTOS){ o.hasta=Date.now()+CAP_BLOQUEO_MIN*60000; o.n=0; capGuardarIntentos(o); sonido('error'); pintarCapSheet(); return; }
+        capGuardarIntentos(o); sonido('error');
+        const q=CAP_MAX_INTENTOS-o.n;
+        pintarCapSheet(`Contraseña incorrecta · te quedan ${q} intento${q!==1?'s':''}`);
+        const b=document.getElementById('cap-sheet-box'); b.classList.remove('tiembla'); void b.offsetWidth; b.classList.add('tiembla');
+        return;
+      }
+      throw error;
+    }
+    if(d && d.session){ accessToken=d.session.access_token; usuario=d.session.user; }
+    capGuardarIntentos({});
+    sonido('ok');
+    capSheet.paso='editar'; capSheet.verificado=true;
+    pintarCapSheet();
+  } catch(e){
+    err.textContent='No se pudo verificar ahora. Revisa tu internet e inténtalo de nuevo';
+    sonido('error');
+  } finally { if(btn){ btn.disabled=false; btn.textContent='Continuar'; } }
+}
+function verClaveCapital(btn){
+  const i=document.getElementById('cap-clave'); if(!i) return;
+  i.type = i.type==='password' ? 'text' : 'password';
+  btn.innerHTML=`<i class="ti ${i.type==='password'?'ti-eye':'ti-eye-off'}"></i>`;
+}
+function leerFormCapital(){
+  return {initial:parseFloat(document.getElementById('cap-init').value)||0,
+          mes:parseInt(document.getElementById('cap-mes').value,10), anio:parseInt(document.getElementById('cap-anio').value,10)};
+}
+function previaCapital(){
+  const el=document.getElementById('cap-previa'); if(!el) return;
+  const n=leerFormCapital();
+  if(!n.initial){ el.innerHTML=''; return; }
+  const antes=capCfg?capActualCon(capCfg):null, despues=capActualCon(n);
+  el.innerHTML=antes===null
+    ? `<i class="ti ti-building-bank"></i><span>Tu capital actual quedará en <b>${fmt(despues)}</b></span>`
+    : `<i class="ti ti-arrows-right-left"></i><span>Tu capital actual pasará de <b>${fmt(antes)}</b> a <b>${fmt(despues)}</b></span>`;
+}
+async function guardarCambioCapital(){
+  if(!capSheet || !capSheet.verificado){ capSheet={paso:'clave',verificado:false}; pintarCapSheet(); return; }
+  const nuevo=leerFormCapital();
+  const motivo=(document.getElementById('cap-motivo').value||'').trim() || (capCfg?'':'Capital inicial');
+  if(!nuevo.initial || nuevo.initial<=0){ showToast('Escribe un capital inicial válido','#C8423B'); return; }
+  if(capCfg && motivo.length<4){ showToast('Escribe el motivo del cambio','#C8423B'); document.getElementById('cap-motivo').focus(); return; }
+  const anterior=capCfg?{...capCfg}:null;
+  if(anterior && anterior.initial===nuevo.initial && anterior.mes===nuevo.mes && anterior.anio===nuevo.anio){ showToast('No hay cambios para guardar','#6b7280'); return; }
+  if(anterior && !(await showConfirm('¿Guardar el cambio?',`El capital inicial pasará de ${fmt(anterior.initial)} a ${fmt(nuevo.initial)}. Quedará registrado en el historial y no se puede borrar.`))) return;
+  const registro={anterior, nuevo, motivo, dispositivo:navigator.userAgent.includes('iPhone')?'iPhone':navigator.platform||'web'};
+  try {
+    setSyncDot('loading');
+    capCfg=nuevo;
+    await sbUpsert('capital',{id:1,...nuevo});
+    try { await sbInsert('capital_historial', registro); }
+    catch(e){
+      // La tabla aún no existe: el cambio se guarda en "ajustes" para no perderlo
+      const loc=[...(ajustesNube.capital_historial_local||[]), {...registro, creado:new Date().toISOString()}];
+      guardarAjuste('capital_historial_local', loc);
+    }
+    capHist=[{...registro, creado:new Date().toISOString()}, ...(capHist||[])];
+    setSyncDot('ok');
+    cerrarCapSheet();
+    renderCapital(); updateCapKPI();
+    showToast(anterior?'✓ Capital inicial actualizado y registrado':'✓ Capital inicial definido','#13795B');
+  } catch(e){ setSyncDot('error'); showToast('No se pudo guardar el capital','#C8423B'); }
+}
+// Compatibilidad: el botón antiguo
+function saveCapital(){ abrirCapSheet(); }
+
+// ── Meta de capital ──
+function abrirMetaSheet(){
+  sonido('abrir');
+  const m=metaCapital(), seq=getCapSeq(), actual=seq.length?seq[seq.length-1].capital:(capCfg?capCfg.initial:0);
+  const redondo=v=>{ const paso=v>=100e6?10e6:v>=10e6?1e6:100e3; return Math.ceil(v/paso)*paso; };
+  const sug=actual>0?[['+10%',redondo(actual*1.1)],['+25%',redondo(actual*1.25)],['+50%',redondo(actual*1.5)],['El doble',redondo(actual*2)]]:[];
+  document.getElementById('cap-sheet-box').innerHTML=`<div class="cs-hd"><div class="cs-prev" style="--c:#C9971C"><i class="ti ti-flag-3"></i></div>
+      <div><div class="cs-title">${m?'Editar meta':'Nueva meta de capital'}</div><div class="cs-sub">Hoy tienes ${fmt(actual)}</div></div>
+      <button class="cs-x" onclick="cerrarCapSheet()">✕</button></div>
+    <label class="cs-lbl" for="meta-monto-v">¿A cuánto quieres llegar?</label>
+    <div class="cpf-monto"><span>$</span><input type="text" inputmode="numeric" id="meta-monto-v" value="${m?fmtN(m.monto):''}" placeholder="0" oninput="fmtPI(this,'meta-monto')"></div>
+    <input type="hidden" id="meta-monto" value="${m?m.monto:''}">
+    ${sug.length?`<div class="cpf-rapidas">${sug.map(([l,v])=>`<button type="button" onclick="document.getElementById('meta-monto').value=${v};document.getElementById('meta-monto-v').value='${fmtN(v)}';sonido('tap')">${l} · ${fmtCorto(v)}</button>`).join('')}</div>`:''}
+    <label class="cs-lbl" for="meta-nombre">Nombre <span>(opcional)</span></label>
+    <input class="cs-in" id="meta-nombre" maxlength="40" value="${esc(m&&m.nombre||'')}" placeholder="Ej: Comprar mi local, Fondo de 500 millones…">
+    <div class="cs-btns">${m?`<button class="cs-del" onclick="borrarMetaCapital()" aria-label="Quitar meta"><i class="ti ti-trash"></i></button>`:''}<button class="cs-ok" onclick="guardarMetaCapital()">${m?'Guardar meta':'Crear meta'}</button></div>`;
+  capSheet={paso:'meta'};
+  document.getElementById('cap-sheet').style.display='flex';
+}
+function guardarMetaCapital(){
+  const monto=parseFloat(document.getElementById('meta-monto').value)||0;
+  const nombre=(document.getElementById('meta-nombre').value||'').trim();
+  const seq=getCapSeq(), actual=seq.length?seq[seq.length-1].capital:(capCfg?capCfg.initial:0);
+  if(monto<=0){ showToast('Escribe el monto de tu meta','#C8423B'); return; }
+  if(monto<=actual && !metaCapital()){ showToast('Tu meta debe ser mayor a tu capital actual','#C8423B'); return; }
+  const p=actual/monto*100;
+  // Las etapas que ya superaste no se celebran de nuevo
+  const hitos=[25,50,75,100].filter(h=>p>=h);
+  const existia=!!metaCapital();
+  guardarAjuste('meta_capital',{monto, nombre, creada:existia?metaCapital().creada:today(), hitos});
+  cerrarCapSheet(); renderCapital();
+  showToast(existia?'✓ Meta guardada':'✓ Meta creada · ¡a por ella!','#13795B');
+}
+async function borrarMetaCapital(){
+  if(!(await showConfirm('¿Quitar la meta?','Podrás crear otra cuando quieras.'))) return;
+  guardarAjuste('meta_capital', null); sonido('eliminar');
+  cerrarCapSheet(); renderCapital();
+}
+// Celebra cada etapa (25, 50, 75 y 100 %) la primera vez que se alcanza
+function revisarHitosMeta(actual){
+  const m=metaCapital(); if(!m) return;
+  const p=actual/m.monto*100, hechos=m.hitos||[];
+  const nuevos=[25,50,75,100].filter(h=>p>=h && !hechos.includes(h));
+  if(!nuevos.length) return;
+  guardarAjuste('meta_capital',{...m, hitos:[...hechos,...nuevos]});
+  const h=Math.max(...nuevos);
+  setTimeout(()=>celebrarHito(h,m,actual),500);
+}
+function celebrarHito(h,m,actual){
+  sonido('pagar');
+  const el=document.createElement('div');
+  el.className='cel cel-ok';
+  const colores=['#3DDC97','#F6C35B','#7AA7FF','#FF8A80','#C9A7FF','#ffffff'];
+  const confeti=Array.from({length:30},(_,i)=>`<i style="--x:${Math.round(Math.cos(i/30*6.283)*(130+Math.random()*90))}px;--y:${Math.round(Math.sin(i/30*6.283)*(130+Math.random()*90)-40)}px;--r:${Math.round(Math.random()*540)}deg;--d:${(Math.random()*.25).toFixed(2)}s;background:${colores[i%colores.length]}"></i>`).join('');
+  el.innerHTML=`<div class="cel-confeti">${confeti}</div>
+    <div class="cel-meta"><i class="ti ${h===100?'ti-trophy':'ti-flag-3'}"></i><b>${h}%</b></div>
+    <div class="cel-lbl">${h===100?'¡Meta cumplida!':'¡Nueva etapa alcanzada!'}</div>
+    <div class="cel-tit">${esc(m.nombre||'Tu meta de capital')}</div>
+    <div class="cel-monto">${fmt(actual)}</div>
+    <div class="cel-msg"><i class="ti ti-sparkles"></i>${h===100?`Llegaste a ${fmt(m.monto)}. Ponte una meta nueva cuando quieras.`:`Ya tienes el ${h}% de ${fmt(m.monto)}. ¡Sigue así!`}</div>
+    <div class="cel-hint">Toca para continuar</div>`;
+  el.onclick=()=>el.remove();
+  document.body.appendChild(el);
+  setTimeout(()=>{ if(el.isConnected) el.remove(); },5000);
 }
 
 // ── Resumen ──
@@ -4191,7 +4586,6 @@ function ensureYearOption(id, year) {
   }
 }
 fillYearSelect('sel-anio', now.getFullYear());
-fillYearSelect('cap-anio', now.getFullYear());
 fillYearSelect('cat-anio', now.getFullYear());
 fillYearSelect('analisis-anio', now.getFullYear());
 document.getElementById('sel-mes').value=now.getMonth();
